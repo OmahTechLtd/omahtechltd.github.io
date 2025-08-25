@@ -35,8 +35,9 @@ This website is automatically deployed via **GitHub Pages** from the `main` bran
 ---
 
 ##  Contact  
-📧 Email: omahtechltd@gmail.com 
-🔗 LinkedIn:  
+ Email: omahtechltd@gmail.com 
+
+ LinkedIn:  
 
 ---
 
