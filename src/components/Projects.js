@@ -9,7 +9,7 @@ export default function Projects() {
         </div>
         <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300">
           <h3 className="text-xl font-semibold mb-2">Coming Soon</h3>
-          <p className="text-gray-600">Stay tuned for more groundbreaking projects from Omah Tech.</p>
+          <p className="text-gray-600">Stay tuned for more groundbreaking projects from OmahTech.</p>
         </div>
       </div>
     </section>

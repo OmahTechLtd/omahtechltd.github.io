@@ -1,17 +1,18 @@
 import { useState } from "react";
-import logo from '../assets/logo.png';
-
+import logoPart1 from '../assets/logo.png';
+import logoPart2 from '../assets/logoname.png'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md fixed w-full top-0 left-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-    <div className="flex items-center">
-    <img src={logo} alt="Logo" className="h-10 w-10" />        {
-    /* <span className="text-2xl font-bold text-blue-600 hidden md:inline">Omah Tech</span> */}
-    </div>
+        <nav className="bg-white shadow-md fixed w-full top-0 left-0 z-50 h-12">
+  <div className="max-w-6xl mx-auto px-4 flex justify-between items-center h-full">
+        <div className="flex items-center h-full space-x-1">
+            <img src={logoPart1} alt="OmahTech Logo Part 1" className="h-12 w-auto object-contain" />
+        <img src={logoPart2} alt="OmahTech Logo Part 2" className="h-12 w-auto object-contain" />
+</div>
+
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-gray-700 font-medium">
           <li><a href="#about" className="hover:text-blue-600 transition">About</a></li>

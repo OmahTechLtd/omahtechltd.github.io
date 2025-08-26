@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="font-sans">
+    <div className="App">
       <Navbar />
       <Hero />
       <About />
