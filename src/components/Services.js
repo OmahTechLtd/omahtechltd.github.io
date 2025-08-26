@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   return (
@@ -27,11 +28,11 @@ const Services = () => {
         </div>
 
         {/* Models (special layout) */}
-        <div className="md:col-span-2 flex flex-col md:flex-row items-start justify-between bg-gradient-to-r from-black via-[#111111] to-teal-700 rounded-lg p-8 shadow-lg">
+        <div className="md:col-span-2 flex flex-col md:flex-row items-start justify-between bg-gradient-to-r from-blue-800 to-teal-700 rounded-lg p-8 shadow-lg">
           
           {/* Left side: text */}
-          <div className="max-w-xl text-left">
-            <h3 className="text-xl font-semibold mb-2 text-green-700">Models</h3>
+          <div className="max-w-xl">
+            <h3 className="text-2xl font-bold mb-4">Models</h3>
             <p className="text-gray-100">
               Whether you're a researcher needing quick pipelines or an
               organization requiring full-scale solutions, we’ve got you
@@ -41,18 +42,18 @@ const Services = () => {
           
           {/* Right side: buttons stacked vertically */}
           <div className="flex flex-col gap-4 mt-6 md:mt-0 md:ml-12 w-full md:w-auto">
-            <a
-              href="/models/generic"
+            <Link
+              to="/models/generic"
               className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center"
             >
               For Researchers & Students
-            </a>
-            <a
-              href="/models/custom"
+            </Link>
+            <Link
+              to="/models/custom"
               className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center"
             >
               For Organizations
-            </a>
+            </Link>
           </div>
         </div>
 
