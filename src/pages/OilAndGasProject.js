@@ -1,15 +1,18 @@
 import React from "react";
+import ProjectTemplate from "./ProjectTemplate";
 
-const OilAndGasProject = () => {
+export default function OilAndGas() {
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col justify-center items-center px-6">
-      <h1 className="text-4xl font-bold mb-4">Oil & Gas Project</h1>
-      <p className="text-gray-300 max-w-2xl text-center">
-        Demo pipeline coming soon. This project will focus on predicting equipment
-        failures and optimizing production for the energy sector.
-      </p>
-    </div>
+    <ProjectTemplate
+      title="Oil & Gas: Equipment Failure Prediction"
+      industry="Oil & Gas"
+      problem="Predicting equipment failures using sensor data to minimize downtime and improve maintenance planning."
+      dataset="We used the AI4I 2020 Predictive Maintenance Dataset (UCI Machine Learning Repository). It contains 10,000 records of machine sensor readings with failure labels. Features include torque, tool wear, air temperature, and process temperature."
+      models={[
+        "Logistic Regression (baseline)",
+        "Random Forest (stronger, handles nonlinearities)"
+      ]}
+      results="Random Forest achieved ~92% accuracy with better recall on failure cases compared to Logistic Regression. This demonstrates how predictive maintenance can reduce unexpected breakdowns in oil & gas operations."
+    />
   );
-};
-
-export default OilAndGasProject;
+}

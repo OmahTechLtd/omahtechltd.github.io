@@ -17,7 +17,7 @@ const Projects = () => {
             Predicting equipment failures and optimizing production using AI-driven insights.
           </p>
           <Link
-            to="/projects/oil-gas"
+            to="/projects/oil-and-gas"
             className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
           >
             View Demo
@@ -52,14 +52,14 @@ const Projects = () => {
           </Link>
         </div>
 
-        {/* Student Performance */}
+        {/* Education */}
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Student Performance</h3>
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Education</h3>
           <p className="text-gray-300 mb-4">
             Predicting student outcomes to improve education strategies.
           </p>
           <Link
-            to="/projects/student-performance"
+            to="/projects/education"
             className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
           >
             View Demo
