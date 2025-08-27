@@ -28,7 +28,7 @@ const ModelPipelineForm = () => {
 
       {/* Show selected plan */}
       <p className="text-gray-300 mb-6">
-        You selected the <span className="font-semibold text-teal-400">{plan || "No Plan"}</span> plan.
+        You selected the <span className="font-semibold text-green-400">{plan || "No Plan"}</span> plan.
       </p>
 
       <form
@@ -81,7 +81,7 @@ const ModelPipelineForm = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-teal-600 hover:bg-teal-700 px-6 py-2 rounded-lg font-medium"
+          className="w-full bg-green-600 hover:bg-teal-700 px-6 py-2 rounded-lg font-medium"
         >
           Submit Pipeline
         </button>

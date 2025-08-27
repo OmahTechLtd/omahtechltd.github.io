@@ -44,7 +44,7 @@ const GenericModels = () => {
 
   return (
     <section className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
-      <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+      <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
         Generic Models Assistant
       </h1>
       <p className="text-gray-300 max-w-2xl text-center mb-8">
@@ -59,7 +59,7 @@ const GenericModels = () => {
             <div
               className={`p-3 rounded-lg max-w-[85%] ${
                 msg.sender === "bot"
-                  ? "bg-teal-600 text-white self-start"
+                  ? "bg-green-600 text-white self-start"
                   : "bg-blue-600 text-white self-end ml-auto"
               }`}
             >
@@ -87,7 +87,7 @@ const GenericModels = () => {
       {/* Train Model Button — always visible */}
       <button
         onClick={() => navigate("/billing")}
-        className="mt-6 bg-gradient-to-r from-green-500 to-blue-500 hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
+        className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
       >
          Train Model
       </button>
