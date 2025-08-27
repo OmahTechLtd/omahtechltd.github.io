@@ -1,18 +1,74 @@
-export default function Projects() {
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Projects = () => {
   return (
     <section id="projects" className="py-16 px-4">
-<h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-        Projects</h2>
-      <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Simulation AI Model</h3>
-          <p className="text-gray-300 text-lg">An AI model trained on simulation data for testing intelligent solutions across industries.</p>
+      <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
+        Projects
+      </h2>
+
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
+
+        {/* Oil & Gas */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Oil & Gas</h3>
+          <p className="text-gray-300 mb-4">
+            Predicting equipment failures and optimizing production using AI-driven insights.
+          </p>
+          <Link
+            to="/projects/oil-gas"
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+          >
+            View Demo
+          </Link>
         </div>
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Coming Soon</h3>
-          <p className="text-gray-300 text-lg">Stay tuned for more groundbreaking AI and ML projects from Omah.</p>
+
+        {/* Real Estate */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Real Estate</h3>
+          <p className="text-gray-300 mb-4">
+            House price prediction and property valuation with machine learning.
+          </p>
+          <Link
+            to="/projects/real-estate"
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+          >
+            View Demo
+          </Link>
         </div>
+
+        {/* Agriculture */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Agriculture</h3>
+          <p className="text-gray-300 mb-4">
+            Yield prediction and crop health monitoring for smarter farming.
+          </p>
+          <Link
+            to="/projects/agriculture"
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+          >
+            View Demo
+          </Link>
+        </div>
+
+        {/* Student Performance */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Student Performance</h3>
+          <p className="text-gray-300 mb-4">
+            Predicting student outcomes to improve education strategies.
+          </p>
+          <Link
+            to="/projects/student-performance"
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+          >
+            View Demo
+          </Link>
+        </div>
+
       </div>
     </section>
   );
-}
+};
+
+export default Projects;

@@ -9,24 +9,6 @@ const Services = () => {
       </h2>
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
         
-        {/* AI Consulting */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">AI Consulting</h3>
-          <p className="text-gray-300">
-            We guide businesses in adopting AI the right way — from identifying
-            opportunities to selecting the right models and strategies.
-          </p>
-        </div>
-
-        {/* Training */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Training</h3>
-          <p className="text-gray-300">
-            Whether it’s upskilling your team or training individuals, we provide
-            hands-on AI and ML training tailored to your goals.
-          </p>
-        </div>
-
         {/* Models (special layout) */}
         <div className="md:col-span-2 flex flex-col md:flex-row items-start justify-between bg-gradient-to-r from-black via-[#111111] to-teal-700 rounded-lg p-8 shadow-lg">
           
@@ -56,6 +38,26 @@ const Services = () => {
             </Link>
           </div>
         </div>
+        
+        {/* AI Consulting */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">AI Consulting</h3>
+          <p className="text-gray-300">
+            We guide businesses in adopting AI the right way — from identifying
+            opportunities to selecting the right models and strategies.
+          </p>
+        </div>
+
+        {/* Training */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Training</h3>
+          <p className="text-gray-300">
+            Whether it’s upskilling your team or training individuals, we provide
+            hands-on AI and ML training tailored to your goals.
+          </p>
+        </div>
+
+        
 
       </div>
     </section>

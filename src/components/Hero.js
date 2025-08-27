@@ -10,15 +10,13 @@ export default function Hero() {
       <FloatingNodes />
 
       <div className="relative z-10 max-w-4xl pb-8">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fadeIn">
-          AI Solutions for{' '}
-          <span className="text-green-400">Nigeria</span>,{' '}
-          <span className="text-orange-400">Africa</span>, and the{' '}
-          <span className="text-blue-400">World</span>
-        </h1>
+       <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent animate-fadeIn">
+  AI solutions for real-world industries
+</h1>
         <p className="text-lg md:text-2xl text-gray-200 mb-8 animate-fadeIn">
-          Building intelligent AI solutions with Nigerian data, scaling to Africa, powering the world.
-        </p>
+  Starting in Africa, built for the world. We help businesses and researchers unlock practical AI that scales globally.
+</p>
+        
         <div className="flex justify-center gap-4">
           <a
             href="#services"
