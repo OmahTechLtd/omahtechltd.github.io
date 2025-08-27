@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const GenericModels = () => {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "👋 Hi! What kind of problem are you trying to solve? (e.g., classification, regression, clustering)" }
   ]);
   const [input, setInput] = useState("");
+  const [showTrainButton, setShowTrainButton] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -16,10 +20,13 @@ const GenericModels = () => {
     let botReply = "";
     if (input.toLowerCase().includes("classification")) {
       botReply = "✅ Sounds like a classification problem. You might consider Logistic Regression, Decision Trees, or Random Forests.";
+      setShowTrainButton(true);
     } else if (input.toLowerCase().includes("regression")) {
       botReply = "📈 Regression problem detected. Linear Regression, Ridge, or XGBoost could be great fits.";
+      setShowTrainButton(true);
     } else if (input.toLowerCase().includes("clustering")) {
       botReply = "🔍 For clustering, K-Means or DBSCAN might be a good start.";
+      setShowTrainButton(true);
     } else {
       botReply = "🤔 Interesting... can you tell me more about your dataset size or type?";
     }
@@ -35,7 +42,7 @@ const GenericModels = () => {
       </h1>
       <p className="text-gray-300 max-w-2xl text-center mb-8">
         This assistant will guide researchers and students in selecting and training
-        models. Start by describing your problem below 
+        models. Start by describing your problem below 👇
       </p>
 
       {/* Chatbot UI */}
@@ -70,6 +77,16 @@ const GenericModels = () => {
           Send
         </button>
       </div>
+
+      {/* Train Model button (appears after suggestion) */}
+      {showTrainButton && (
+        <button
+          onClick={() => navigate("/billing")}
+          className="mt-6 bg-gradient-to-r from-green-500 to-blue-500 hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
+        >
+           Train Model Now
+        </button>
+      )}
     </section>
   );
 };

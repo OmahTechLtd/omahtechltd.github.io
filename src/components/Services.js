@@ -28,11 +28,11 @@ const Services = () => {
         </div>
 
         {/* Models (special layout) */}
-        <div className="md:col-span-2 flex flex-col md:flex-row items-start justify-between bg-gradient-to-r from-blue-800 to-teal-700 rounded-lg p-8 shadow-lg">
+        <div className="md:col-span-2 flex flex-col md:flex-row items-start justify-between bg-gradient-to-r from-black via-[#111111] to-teal-700 rounded-lg p-8 shadow-lg">
           
           {/* Left side: text */}
           <div className="max-w-xl">
-            <h3 className="text-2xl font-bold mb-4">Models</h3>
+            <h3 className="text-xl font-semibold mb-2 text-green-700">Models</h3>
             <p className="text-gray-100">
               Whether you're a researcher needing quick pipelines or an
               organization requiring full-scale solutions, we’ve got you

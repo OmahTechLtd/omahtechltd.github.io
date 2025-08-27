@@ -1,6 +1,8 @@
 import { useState } from "react";
 import logoPart1 from '../assets/logo.png';
 import logoPart2 from '../assets/logoname.png';
+import { Link } from "react-router-dom"; 
+
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,8 +13,10 @@ export default function Navbar() {
 
       {/* Logo */}
       <div className="flex items-center space-x-1 h-full">
+        <Link to="/" className="flex items-center space-x-1 h-full">
         <img src={logoPart1} alt="Omah Logo Part 1" className="h-10 w-auto object-contain" />
         <img src={logoPart2} alt="Omah Logo Part 2" className="h-10 w-auto object-contain" />
+      </Link>
       </div>
 
       {/* Desktop Right Section */}

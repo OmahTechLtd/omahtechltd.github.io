@@ -9,6 +9,8 @@ import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import GenericModels from "./pages/GenericModels";
 import CustomModels from "./pages/CustomModels";
+import Billing from "./pages/Billing";
+import ModelPipelineForm from "./pages/ModelPipelineForm";
 
 function App() {
   return (
@@ -33,6 +35,13 @@ function App() {
 
           {/* Custom Models page */}
           <Route path="/models/custom" element={<CustomModels />} />
+
+          {/* Billing page */}
+          <Route path="/billing" element={<Billing />} /> 
+
+          {/* Model Pipeline page */}
+          <Route path="/models/pipeline" element={<ModelPipelineForm />} />  
+
         </Routes>
 
         <Footer />
