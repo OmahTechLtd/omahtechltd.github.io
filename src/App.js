@@ -11,6 +11,10 @@ import GenericModels from "./pages/GenericModels";
 import CustomModels from "./pages/CustomModels";
 import Billing from "./pages/Billing";
 import ModelPipelineForm from "./pages/ModelPipelineForm";
+import OilAndGasProject from "./pages/OilAndGasProject";
+import RealEstateProject from "./pages/RealEstateProject";
+import AgricultureProject from "./pages/Agriculture";
+import StudentPerformanceProject from "./pages/StudentPerformanceProject";
 
 function App() {
   return (
@@ -41,6 +45,11 @@ function App() {
 
           {/* Model Pipeline page */}
           <Route path="/models/pipeline" element={<ModelPipelineForm />} />  
+
+          <Route path="/projects/oil-gas" element={<OilAndGasProject />} />
+          <Route path="/projects/real-estate" element={<RealEstateProject />} />
+          <Route path="/projects/agriculture" element={<AgricultureProject />} />
+          <Route path="/projects/student-performance" element={<StudentPerformanceProject />} />
 
         </Routes>
 
