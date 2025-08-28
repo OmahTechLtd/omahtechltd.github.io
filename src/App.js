@@ -15,6 +15,7 @@ import OilAndGasProject from "./pages/OilAndGasProject";
 import RealEstateProject from "./pages/RealEstateProject";
 import AgricultureProject from "./pages/AgricultureProject";
 import EducationProject from "./pages/EducationProject";
+import Billing from "./pages/Billing";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           {/* Services pages */}
           <Route path="/models/generic" element={<GenericModels />} />
           <Route path="/models/custom" element={<CustomModels />} />
+          <Route path="/billing" element={<Billing />} />
 
           {/* Project demo pages */}
           <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />
