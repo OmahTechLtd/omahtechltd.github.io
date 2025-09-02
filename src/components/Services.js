@@ -25,17 +25,18 @@ const Services = () => {
           {/* Right side: buttons stacked vertically */}
           <div className="flex flex-col gap-4 mt-6 md:mt-0 md:ml-12 w-full md:w-auto">
             <Link
-              to="/models/generic"
-              className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center"
-            >
-              For Researchers & Students
-            </Link>
-            <Link
               to="/models/custom"
               className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center"
             >
               For Organizations
             </Link>
+            <Link
+              to="/models/generic"
+              className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center"
+            >
+              For Researchers & Students
+            </Link>
+            
           </div>
         </div>
         
