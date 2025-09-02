@@ -4,13 +4,13 @@ import FloatingNodes from './FloatingNodes';
 export default function Hero() {
   return (
     <section className="min-h-[60vh] md:min-h-[70vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden
-      bg-gradient-to-r from-blue-700 via-green-500 via-orange-400 to-black">
+      bg-gradient-to-b from-blue-700 via-green-500 via-orange-400 to-black">
 
       <ParticleBackground />
       <FloatingNodes />
 
-      <div className="relative z-10 max-w-4xl pb-8">
-       <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent animate-fadeIn">
+      <div className="relative z-10 max-w-4xl pb-8 pt-12 md:pt-16">
+       <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-green-500 via-blue-600 to-orange-600  bg-clip-text text-transparent drop-shadow-lg">
   AI solutions for real-world industries
 </h1>
         <p className="text-lg md:text-2xl text-gray-200 mb-8 animate-fadeIn">
