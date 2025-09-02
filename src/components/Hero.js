@@ -3,7 +3,7 @@ import FloatingNodes from './FloatingNodes';
 
 export default function Hero() {
   return (
-    <section className="min-h-[80vh] md:min-h-[70vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-black pt-24 md:pt-32">
+    <section className="min-h-screen md:min-h-[70vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-black pt-24 md:pt-32">
 
       <ParticleBackground />
       <FloatingNodes />
