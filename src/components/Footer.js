@@ -22,7 +22,7 @@ function Footer() {
 </div>
       <div className="flex justify-center space-x-6 mb-2">
         <a
-          href="/docs/OmahTech_Company_Policy.pdf"
+          href="/docs/Company Policy.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline"
