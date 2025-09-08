@@ -4,7 +4,7 @@ Welcome to the official GitHub Pages repository for **Omah Tech Ltd.**
 
 We are building **intelligent AI solutions** that empower businesses and people to innovate, scale, and thrive in a data-driven world. This repository hosts our company website, live at:  
 
- [https://omahtechltd.github.io/](https://omahtechltd.github.io/)  
+ [https://omahtech.co/](https://omahtech.co/)  
 
 ---
 
@@ -35,7 +35,7 @@ This website is automatically deployed via **GitHub Pages** from the `main` bran
 ---
 
 ##  Contact  
- Email: omahtechltd@gmail.com 
+ Email: vera@omahtech.co 
 
  LinkedIn:  
 
