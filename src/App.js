@@ -16,6 +16,8 @@ import RealEstateProject from "./pages/RealEstateProject";
 import AgricultureProject from "./pages/AgricultureProject";
 import EducationProject from "./pages/EducationProject";
 import Billing from "./pages/Billing";
+import NotFound from "./pages/NotFound";
+
 
 function App() {
   return (
@@ -48,6 +50,9 @@ function App() {
           <Route path="/projects/real-estate" element={<RealEstateProject />} />
           <Route path="/projects/agriculture" element={<AgricultureProject />} />
           <Route path="/projects/education" element={<EducationProject />} />
+
+          {/* not found 404 page*/}
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />
