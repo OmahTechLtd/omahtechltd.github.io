@@ -8,6 +8,16 @@ export default function About() {
           At Omah, we specialize in developing cutting-edge AI and ML solutions tailored for Nigeria, Africa, and the global market.
           Our mission is to drive digital transformation by leveraging local data and intelligent insights.
         </p>
+        <p className="mt-8 text-center">
+  <a
+    href="/docs/OmahTech_Company_Policy.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-400 hover:underline"
+  >
+    View our Company Policy
+  </a>
+</p>
       </div>
     </section>
   );
