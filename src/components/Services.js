@@ -41,22 +41,28 @@ const Services = () => {
         </div>
         
         {/* AI Consulting */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
+        <Link
+          to="/services/ai-consulting"
+          className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl block hover:shadow-2xl transition-shadow"
+        >
           <h3 className="text-xl font-semibold mb-2 text-green-700">AI Consulting</h3>
           <p className="text-gray-300">
             We guide businesses in adopting AI the right way, from identifying
             opportunities to selecting the right models and strategies.
           </p>
-        </div>
+        </Link>
 
         {/* Training */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl">
+        <Link
+          to="/services/training"
+          className="bg-gradient-to-r from-black via-[#111111] to-[#222222] bg-opacity-80 p-8 rounded-xl shadow-xl block hover:shadow-2xl transition-shadow"
+        >
           <h3 className="text-xl font-semibold mb-2 text-green-700">Training</h3>
           <p className="text-gray-300">
             Whether it’s upskilling your team or training individuals, we provide
             hands-on AI and ML training tailored to your goals.
           </p>
-        </div>
+        </Link>
 
         
 
