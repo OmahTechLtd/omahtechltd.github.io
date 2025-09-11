@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import ConsultationModal from "../components/ConsultationModal";
 
 export default function AiConsulting() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +18,8 @@ export default function AiConsulting() {
           </h1>
 
           <p className="mt-4 max-w-2xl mx-auto text-gray-300">
-            We help organizations identify opportunities, develop custom AI solutions, and integrate machine learning into their operations to drive growth and efficiency.
+            We help organizations identify opportunities, develop custom AI solutions,
+            and integrate machine learning into their operations to drive growth and efficiency.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-4">
@@ -58,7 +59,9 @@ export default function AiConsulting() {
                 <li>Supply Chain Optimization</li>
                 <li>Customer Insights</li>
               </ul>
-              <p className="text-gray-400 mt-auto">We design and build machine learning models tailored to your business challenges.</p>
+              <p className="text-gray-400 mt-auto">
+                We design and build machine learning models tailored to your business challenges.
+              </p>
             </div>
           </div>
 
@@ -73,7 +76,9 @@ export default function AiConsulting() {
                 <li>Train your team on AI tools and workflows</li>
                 <li>Provide actionable recommendations for scaling AI systems</li>
               </ul>
-              <p className="text-gray-400 mt-auto">Not sure where to start with AI? We’ll help you map out a strategy and define a roadmap.</p>
+              <p className="text-gray-400 mt-auto">
+                Not sure where to start with AI? We’ll help you map out a strategy and define a roadmap.
+              </p>
             </div>
           </div>
         </div>
@@ -84,7 +89,8 @@ export default function AiConsulting() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-semibold mb-4">Why Choose Us</h2>
           <p className="max-w-3xl text-gray-300">
-            At Omah Tech, we combine technical expertise with deep industry understanding to deliver solutions that work in the real world. Whether you’re looking to automate workflows or explore AI-driven growth, we partner with you every step of the way.
+            At Omah Tech, we combine technical expertise with deep industry understanding
+            to deliver solutions that work in the real world.
           </p>
         </div>
       </section>
@@ -94,98 +100,25 @@ export default function AiConsulting() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-semibold">Industries we serve</h2>
           <div className="mt-4 flex flex-wrap gap-3">
-            {[
-              "Oil & Gas",
-              "Real Estate",
-              "Agriculture",
-              "Education",
-              "Fintech",
-              "Retail"
-            ].map((chip) => (
-              <span
-                key={chip}
-                className="rounded-full px-4 py-2 text-sm bg-white/5 ring-1 ring-white/10"
-              >
-                {chip}
-              </span>
-            ))}
+            {["Oil & Gas", "Real Estate", "Agriculture", "Education", "Fintech", "Retail"].map(
+              (chip) => (
+                <span
+                  key={chip}
+                  className="rounded-full px-4 py-2 text-sm bg-white/5 ring-1 ring-white/10"
+                >
+                  {chip}
+                </span>
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-          <div className="relative w-full max-w-md p-6 bg-black rounded-lg shadow-lg ring-1 ring-white/10">
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white focus:outline-none"
-              aria-label="Close modal"
-            >
-              &#10005;
-            </button>
-            <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 bg-clip-text text-transparent">
-              Book a Consultation
-            </h3>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-
-                emailjs
-                  .sendForm(
-                    "service_qivxk34",       // EmailJS Service ID
-                    "template_u4y05zm",      // EmailJS Template ID
-                    e.target,
-                    "tefVZMAa7f6_ULKWs"        // EmailJS Public Key
-                  )
-                  .then(
-                    (result) => {
-                      alert("✅ Consultation request sent successfully!");
-                      setIsModalOpen(false);
-                    },
-                    (error) => {
-                      alert("❌ Failed to send. Please try again later.");
-                      console.error("EmailJS Error:", error);
-                    }
-                  );
-              }}
-              className="flex flex-col gap-4"
-            >
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                required
-                className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-                className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <input
-                type="text"
-                name="company"
-                placeholder="Company"
-                className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                rows="4"
-                className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              ></textarea>
-              <button
-                type="submit"
-                className="mt-2 rounded bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 px-5 py-3 font-medium text-black hover:brightness-110 transition"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* ✅ Insert Consultation Modal Here */}
+      <ConsultationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </main>
   );
 }

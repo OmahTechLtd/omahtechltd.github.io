@@ -1,115 +1,106 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ConsultationModal({ isOpen, onClose }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
+  const [loading, setLoading] = useState(false);
 
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     emailjs
-      .send(
-        "service_qivxk34",       // EmailJS Service ID
-        "template_u4y05zm",      // EmailJS Template ID
-        formData,
-        "tefVZMAa7f6_ULKWs"        // EmailJS Public Key
+      .sendForm(
+        "service_qivxk34",    //  EmailJS Service ID
+        "template_u4y05zm",   //  Template ID
+        e.target,
+        "tefVZMAa7f6_ULKWs"   //  Public Key
       )
       .then(
         () => {
-          setStatus("success");
-          setFormData({ name: "", email: "", company: "", message: "" });
+          toast.success("✅ Consultation request sent successfully!", {
+            position: "top-right",
+            autoClose: 4000,
+            theme: "dark",
+          });
+          setLoading(false);
+          e.target.reset();
+          onClose(); 
         },
-        () => {
-          setStatus("error");
+        (error) => {
+          console.error("EmailJS Error:", error);
+          toast.error("❌ Failed to send. Please try again later.", {
+            position: "top-right",
+            autoClose: 4000,
+            theme: "dark",
+          });
+          setLoading(false);
         }
       );
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="bg-gray-900 rounded-2xl shadow-lg w-full max-w-md p-6 relative">
-        {/* Close button */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+      {/* Toastify container */}
+      <ToastContainer />
+
+      <div className="relative w-full max-w-md p-6 bg-black rounded-lg shadow-lg ring-1 ring-white/10">
+        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl"
+          className="absolute top-3 right-3 text-gray-400 hover:text-white focus:outline-none"
+          aria-label="Close modal"
         >
-          &times;
+          &#10005;
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 bg-clip-text text-transparent">
+        {/* Title */}
+        <h3 className="mb-4 text-2xl font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 bg-clip-text text-transparent">
           Book a Consultation
-        </h2>
+        </h3>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
+            placeholder="Name"
             required
-            className="w-full px-4 py-2 rounded-lg bg-black/50 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
+            placeholder="Email"
             required
-            className="w-full px-4 py-2 rounded-lg bg-black/50 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
           <input
             type="text"
             name="company"
-            placeholder="Company / Organization"
-            value={formData.company}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg bg-black/50 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            placeholder="Company"
+            className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
           <textarea
             name="message"
-            placeholder="Tell us about your project..."
-            value={formData.message}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 rounded-lg bg-black/50 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 min-h-[100px]"
+            placeholder="Message"
+            rows="4"
+            className="px-4 py-2 rounded bg-black/70 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
           ></textarea>
 
           <button
             type="submit"
-            className="w-full py-3 rounded-lg font-semibold bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 hover:opacity-90 transition-all"
+            disabled={loading}
+            className={`mt-2 rounded bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 px-5 py-3 font-medium text-black transition ${
+              loading ? "opacity-50 cursor-not-allowed" : "hover:brightness-110"
+            }`}
           >
-            Submit
+            {loading ? "Sending..." : "Submit"}
           </button>
         </form>
-
-        {status === "success" && (
-          <p className="text-green-400 text-sm mt-3 text-center">
-            ✅ Your request has been sent successfully!
-          </p>
-        )}
-        {status === "error" && (
-          <p className="text-red-400 text-sm mt-3 text-center">
-            ❌ Something went wrong. Please try again.
-          </p>
-        )}
       </div>
     </div>
   );
