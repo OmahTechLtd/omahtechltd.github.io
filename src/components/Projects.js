@@ -67,6 +67,16 @@ const Projects = () => {
         </div>
 
       </div>
+      <div className="mt-10 text-center">
+        <Link
+  to="/projects"
+  className="px-6 py-3 rounded-lg font-medium text-green-400 border border-green-400
+             bg-black hover:bg-green-500 hover:text-black hover:border-green-500 
+             transition duration-300 shadow-lg hover:shadow-green-500/50"
+>
+  See More Projects
+</Link>
+      </div>
     </section>
   );
 };
