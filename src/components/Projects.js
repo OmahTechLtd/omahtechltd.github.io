@@ -68,14 +68,20 @@ const Projects = () => {
 
       </div>
       <div className="mt-10 text-center">
-        <Link
-  to="/projects"
-  className="px-6 py-3 rounded-lg font-medium text-green-400 border border-green-400
-             bg-black hover:bg-green-500 hover:text-black hover:border-green-500 
-             transition duration-300 shadow-lg hover:shadow-green-500/50"
->
-  See More Projects
-</Link>
+      <Link
+    to="/projects"
+className="
+    relative inline-block px-6 py-3 rounded-lg font-semibold text-white bg-black  
+    overflow-hidden
+    border-2 border-gray-800   /* subtle border background */
+    shadow-[0_2px_4px_rgba(0,0,0,0.5)]   /* base shadow, subtle */
+    hover:border-gradient-to-r hover:from-blue-500 hover:via-indigo-600 hover:to-green-500 
+    hover:shadow-[0_4px_8px_rgba(34,197,94,0.4),0_4px_8px_rgba(99,102,241,0.4),0_4px_8px_rgba(59,130,246,0.4)]
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    transition ease-in-out duration-300
+  "
+>    See More Projects
+  </Link>
       </div>
     </section>
   );

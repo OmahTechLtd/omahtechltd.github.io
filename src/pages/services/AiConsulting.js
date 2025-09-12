@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ConsultationModal from "../components/ConsultationModal";
+import ConsultationModal from "../../components/ConsultationModal";
 
 export default function AiConsulting() {
   const [isModalOpen, setIsModalOpen] = useState(false);

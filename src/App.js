@@ -17,8 +17,8 @@ import AgricultureProject from "./pages/AgricultureProject";
 import EducationProject from "./pages/EducationProject";
 import Billing from "./pages/Billing";
 import NotFound from "./pages/NotFound";
-import AiConsulting from "./services/AiConsulting";
-
+import AiConsulting from "./pages/services/AiConsulting";
+import Training from "./pages/services/Training";
 
 
 function App() {
@@ -47,6 +47,7 @@ function App() {
           <Route path="/models/custom" element={<CustomModels />} />
           <Route path="/billing" element={<Billing />} />
           <Route path="/services/ai-consulting" element={<AiConsulting />} />
+          <Route path="/services/training" element={<Training />} />
 
           {/* Project demo pages */}
           <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />
