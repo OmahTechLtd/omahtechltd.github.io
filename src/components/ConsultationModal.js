@@ -21,7 +21,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
       )
       .then(
         () => {
-          toast.success("✅ Consultation request sent successfully!", {
+          toast.success("Consultation request sent successfully!", {
             position: "top-right",
             autoClose: 4000,
             theme: "dark",
@@ -32,7 +32,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
         },
         (error) => {
           console.error("EmailJS Error:", error);
-          toast.error("❌ Failed to send. Please try again later.", {
+          toast.error("Failed to send. Please try again later.", {
             position: "top-right",
             autoClose: 4000,
             theme: "dark",
@@ -44,8 +44,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-      {/* Toastify container */}
-      <ToastContainer />
+      
 
       <div className="relative w-full max-w-md p-6 bg-black rounded-lg shadow-lg ring-1 ring-white/10">
         {/* Close Button */}

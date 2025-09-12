@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,6 +9,7 @@ import Services from './components/Services';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Pages
 import GenericModels from "./pages/GenericModels";
@@ -26,6 +29,7 @@ function App() {
     <Router>
       <div className="bg-black text-white min-h-screen">
         <Navbar />
+        <ScrollToTop />
 
         <Routes>
           {/* Home page with sections */}
@@ -61,6 +65,8 @@ function App() {
 
         <Footer />
       </div>
+      <ToastContainer position="top-right" autoClose={4000} theme="dark" />
+
     </Router>
   );
 }
