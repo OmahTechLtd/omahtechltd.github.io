@@ -25,13 +25,13 @@ export default function Contact() {
         {/* Contact Options */}
         {open && (
           <div className="flex justify-center gap-6 mt-4 text-white text-2xl">
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
+            <a href="https://www.linkedin.com/company/108520214/admin/dashboard" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
               <FaLinkedin />
             </a>
-            <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+            <a href="https://twitter.com/OmahTechLtd" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
               <FaTwitter />
             </a>
-            <a href="mailto:omahtechltd@gmail.com" className="hover:text-red-400 transition">
+            <a href="mailto:vera@omahtech.co" className="hover:text-red-400 transition">
               <FaEnvelope />
             </a>
           </div>
