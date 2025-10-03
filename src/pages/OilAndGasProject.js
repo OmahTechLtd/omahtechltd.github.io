@@ -1,6 +1,13 @@
 import React from "react";
 import ProjectTemplate from "./ProjectTemplate";
 
+// images
+import correlationHeatmap from "../assets/oilgas/eda/correlation_heatmap.png";
+import machineFailureDist from "../assets/oilgas/eda/Machine_failure_dist.png";
+import confusionMatrixBinary from "../assets/oilgas/binary/confusion_matrix_binary.png";
+import confusionMatrixMulti from "../assets/oilgas/multiclass/confusion_matrix_multi.png";
+import featureImportance from "../assets/oilgas/binary/feature_importance.png";
+
 export default function OilAndGas() {
   return (
     <ProjectTemplate
@@ -14,12 +21,12 @@ export default function OilAndGas() {
       ]}
       results="Random Forest achieved ~92% accuracy with better recall on failure cases compared to Logistic Regression. This demonstrates how predictive maintenance can reduce unexpected breakdowns in oil & gas operations."
       charts={[
-        { title: "Correlation Heatmap", src: "/assets/oilgas/eda/correlation_heatmap.png" },
-        { title: "Failure Type Distribution", src: "/assets/oilgas/eda/Machine_failure_dist.png" },
-        { title: "Confusion Matrix (Binary)", src: "/assets/oilgas/binary/confusion_matrix_binary.png" },
-        { title: "Confusion Matrix (Multiclass)", src: "/assets/oilgas/multiclass/confusion_matrix_multi.png" },
-        { title: "Feature Importance (Random Forest)", src: "/assets/oilgas/binary/feature_importance.png" }
-      ]}
+  { title: "Correlation Heatmap", src: correlationHeatmap },
+  { title: "Failure Type Distribution", src: machineFailureDist },
+  { title: "Confusion Matrix (Binary)", src: confusionMatrixBinary },
+  { title: "Confusion Matrix (Multiclass)", src: confusionMatrixMulti },
+  { title: "Feature Importance (Random Forest)", src: featureImportance },
+]}
       links={[
         { label: "View Live Dashboard", url: "https://omahtechltd-oil-gas-dashboard-app-uly6nd.streamlit.app/" }
       ]}
