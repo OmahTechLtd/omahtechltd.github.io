@@ -19,12 +19,12 @@ export default function Hero() {
         <div className="flex justify-center gap-4">
           <a
             href="#services"
-            className="relative inline-block px-6 py-2 bg-black border-2 border-transparent rounded-lg text-white text-lg font-semibold shadow-[0_0_6px_rgba(59,130,246,0.5),0_0_8px_rgba(99,102,241,0.5),0_0_10px_rgba(34,197,94,0.5)] hover:shadow-[0_0_8px_rgba(59,130,246,0.8),0_0_10px_rgba(99,102,241,0.8),0_0_12px_rgba(34,197,94,0.8)] hover:scale-105 transition-transform before:absolute before:-inset-0.5 before:rounded-lg before:bg-gradient-to-r before:from-blue-500 before:via-indigo-600 before:to-green-500 before:z-[-1]">
+            className="relative inline-block px-6 py-2 bg-black border-2 border-transparent rounded-lg text-white text-lg font-semibold shadow-[0_0_6px_rgba(59,130,246,0.5),0_0_8px_rgba(99,102,241,0.5),0_0_10px_rgba(34,197,94,0.5)] hover:opacity-90 hover:scale-[1.03] hover:shadow-[0_0_12px_rgba(99,102,241,0.4)] transition-opacity transition-transform before:absolute before:-inset-0.5 before:rounded-lg before:bg-gradient-to-r before:from-blue-500 before:via-indigo-600 before:to-green-500 before:z-[-1]">
             Explore Solutions
           </a>
           <a
             href="#contact"
-            className="relative inline-block px-6 py-2 bg-black border-2 border-transparent rounded-lg text-white text-lg font-semibold shadow-[0_0_6px_rgba(59,130,246,0.5),0_0_8px_rgba(99,102,241,0.5),0_0_10px_rgba(34,197,94,0.5)] hover:shadow-[0_0_8px_rgba(59,130,246,0.8),0_0_10px_rgba(99,102,241,0.8),0_0_12px_rgba(34,197,94,0.8)] hover:scale-105 transition-transform before:absolute before:-inset-0.5 before:rounded-lg before:bg-gradient-to-r before:from-blue-500 before:via-indigo-600 before:to-green-500 before:z-[-1]">
+            className="relative inline-block px-6 py-2 bg-black border-2 border-transparent rounded-lg text-white text-lg font-semibold shadow-[0_0_6px_rgba(59,130,246,0.5),0_0_8px_rgba(99,102,241,0.5),0_0_10px_rgba(34,197,94,0.5)] hover:opacity-90 hover:scale-[1.03] hover:shadow-[0_0_12px_rgba(99,102,241,0.4)] transition-opacity transition-transform before:absolute before:-inset-0.5 before:rounded-lg before:bg-gradient-to-r before:from-blue-500 before:via-indigo-600 before:to-green-500 before:z-[-1]">
             Join Community
           </a>
         </div>
