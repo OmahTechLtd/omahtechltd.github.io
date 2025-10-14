@@ -7,8 +7,16 @@ import Subscriber from "./models/Subscriber.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(
+  cors({
+    origin: [
+      "https://omahtech.co/",  // frontend domain
+      "http://localhost:3000",            // for local testing
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);app.use(express.json());
 
 // Connect to MongoDB Atlas
 mongoose
@@ -58,7 +66,7 @@ app.post("/chat", async (req, res) => {
 
     const data = await response.json();
 
-    // Extract the model’s reply safely
+    console.log("🧠 HF API raw response:", data);
     const reply =
       data[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
 
