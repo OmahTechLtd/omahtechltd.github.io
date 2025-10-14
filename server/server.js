@@ -10,13 +10,20 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://omahtech.co/",  // frontend domain
-      "http://localhost:3000",            // for local testing
+      "https://omahtech.co",            // ✅ your production frontend domain
+      "https://www.omahtech.co",        // optional www
+      "http://localhost:3000",          // ✅ for local React testing
     ],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"], // ✅ include OPTIONS for preflight
+    allowedHeaders: ["Content-Type"],
     credentials: true,
   })
-);app.use(express.json());
+);
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Server is live ✅");
+});
 
 // Connect to MongoDB Atlas
 mongoose
