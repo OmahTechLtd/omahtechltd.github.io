@@ -16,7 +16,7 @@ mongoose
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// API route
+// API subscribe route
 app.post("/subscribe", async (req, res) => {
   const { email } = req.body;
   console.log("📩 Incoming email:", email); 
@@ -33,6 +33,39 @@ app.post("/subscribe", async (req, res) => {
   } catch (error) {
     console.error(" Error saving subscriber:", error);
     res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// AI Chat route
+app.post("/chat", async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.HF_API_KEY}`, // Optional if you have one
+        },
+        body: JSON.stringify({
+          inputs: message,
+          parameters: { max_new_tokens: 200, temperature: 0.7 },
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    // Extract the model’s reply safely
+    const reply =
+      data[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
+
+    res.json({ reply });
+  } catch (error) {
+    console.error("Chatbot error:", error);
+    res.status(500).json({ error: "Error generating response." });
   }
 });
 

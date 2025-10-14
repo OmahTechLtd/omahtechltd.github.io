@@ -14,33 +14,31 @@ const GenericModels = () => {
   const navigate = useNavigate();
 
   const handleOptionClick = (option) => {
-    const newUserMessage = { sender: "user", text: option };
-    let botReply = null;
+      handleUserMessage(option);
 
-    if (option.startsWith("A number")) {
-      botReply = { 
-        sender: "bot", 
-        text: "📈 That sounds like a **Regression problem**. You might use Linear Regression for simplicity, or Random Forest/XGBoost for robustness." 
-      };
-    } else if (option.startsWith("A category")) {
-      botReply = { 
-        sender: "bot", 
-        text: "✅ That’s a **Classification problem**. Options include Logistic Regression (fast) or Decision Trees / Neural Nets (more accurate)." 
-      };
-    } else if (option.startsWith("Groups")) {
-      botReply = { 
-        sender: "bot", 
-        text: "🔍 That’s **Unsupervised learning**. K-Means or DBSCAN clustering would be good choices." 
-      };
-    } else if (option.startsWith("Actions")) {
-      botReply = { 
-        sender: "bot", 
-        text: "🎮 That’s **Reinforcement Learning**. You’d likely need a Q-learning or Policy Gradient approach." 
-      };
-    }
-
-    setMessages((prev) => [...prev, newUserMessage, botReply]);
   };
+
+  const handleUserMessage = async (userText) => {
+  const newUserMessage = { sender: "user", text: userText };
+  setMessages((prev) => [...prev, newUserMessage]);
+
+  try {
+    const res = await fetch("https://omahtechltd-github-io.onrender.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText }),
+    });
+    const data = await res.json();
+
+    const newBotMessage = { sender: "bot", text: data.reply };
+    setMessages((prev) => [...prev, newBotMessage]);
+  } catch (error) {
+    setMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: "⚠️ Error: I couldn't respond right now. Try again." },
+    ]);
+  }
+};
 
   return (
     <section className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
