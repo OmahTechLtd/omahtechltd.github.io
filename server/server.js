@@ -57,13 +57,10 @@ app.post("/chat", async (req, res) => {
 
   try {
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta",
+      "https://api-inference.huggingface.co/models/google/gemma-2b",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           inputs: message,
           parameters: { max_new_tokens: 200, temperature: 0.7 },
@@ -72,13 +69,10 @@ app.post("/chat", async (req, res) => {
     );
 
     const data = await response.json();
-    console.log("🧠 Hugging Face response:", JSON.stringify(data, null, 2)); // 👈 Add this
+    console.log("🧠 HF API raw response:", data);
 
     const reply =
-      data[0]?.generated_text ||
-      data.generated_text || // sometimes response is object not array
-      data.error ||
-      "Sorry, I couldn’t generate a response right now.";
+      data[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
 
     res.json({ reply });
   } catch (error) {
