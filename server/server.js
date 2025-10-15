@@ -53,25 +53,41 @@ app.post("/subscribe", async (req, res) => {
 });
 
 // AI Chat route
-const hf = new HfInference(process.env.HF_API_KEY);
-
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
 
   try {
-    const response = await hf.textGeneration({
-      model: "facebook/blenderbot-400M-distill", // light & free conversational model
-      inputs: message,
-      parameters: { max_new_tokens: 150, temperature: 0.7 },
+    const response = await fetch("https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.HF_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        inputs: message,
+        parameters: { max_new_tokens: 100, temperature: 0.7 },
+      }),
     });
 
-    console.log("🧠 HF SDK raw response:", response);
+    // if model not found or Hugging Face down, log response
+    const text = await response.text();
+    console.log("🧠 HF raw text:", text);
 
-    const reply = response?.generated_text || "Sorry, I couldn’t generate a response right now.";
+    // try parsing JSON
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      console.error("Invalid JSON:", text);
+      return res.status(500).json({ reply: "⚠️ Model returned invalid response." });
+    }
+
+    // extract reply
+    const reply = data?.[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
     res.json({ reply });
   } catch (error) {
-    console.error("Chatbot error (HF SDK):", error);
-    res.status(500).json({ error: "Error generating response." });
+    console.error("Chatbot error (fetch):", error);
+    res.status(500).json({ reply: "Server error while contacting model." });
   }
 });
 
