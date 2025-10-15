@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import Subscriber from "./models/Subscriber.js";
+import { HfInference } from "@huggingface/inference";
 
 dotenv.config();
 
@@ -52,31 +53,24 @@ app.post("/subscribe", async (req, res) => {
 });
 
 // AI Chat route
+const hf = new HfInference(process.env.HF_API_KEY);
+
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
 
   try {
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/google/gemma-2b",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          inputs: message,
-          parameters: { max_new_tokens: 200, temperature: 0.7 },
-        }),
-      }
-    );
+    const response = await hf.textGeneration({
+      model: "facebook/blenderbot-400M-distill", // light & free conversational model
+      inputs: message,
+      parameters: { max_new_tokens: 150, temperature: 0.7 },
+    });
 
-    const data = await response.json();
-    console.log("🧠 HF API raw response:", data);
+    console.log("🧠 HF SDK raw response:", response);
 
-    const reply =
-      data[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
-
+    const reply = response?.generated_text || "Sorry, I couldn’t generate a response right now.";
     res.json({ reply });
   } catch (error) {
-    console.error("Chatbot error:", error);
+    console.error("Chatbot error (HF SDK):", error);
     res.status(500).json({ error: "Error generating response." });
   }
 });
