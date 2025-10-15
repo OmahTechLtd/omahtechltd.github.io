@@ -53,12 +53,19 @@ app.post("/subscribe", async (req, res) => {
 });
 
 // AI Chat route
+// robust chat route (replace your current /chat handler with this)
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
 
+  if (!message || !message.trim()) {
+    return res.status(400).json({ reply: "Please send a non-empty message." });
+  }
+
   try {
-const response = await fetch("https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct", 
-    {      
+    const MODEL = process.env.HF_MODEL || "tiiuae/falcon-7b-instruct"; // fallback model id (change as needed)
+    const HF_URL = `https://api-inference.huggingface.co/models/${MODEL}`;
+
+    const hfResponse = await fetch(HF_URL, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.HF_API_KEY}`,
@@ -66,26 +73,60 @@ const response = await fetch("https://api-inference.huggingface.co/models/tiiuae
       },
       body: JSON.stringify({
         inputs: message,
-        parameters: { max_new_tokens: 100, temperature: 0.7 },
+        parameters: { max_new_tokens: 150, temperature: 0.7 },
       }),
+      // keep timeout handling in mind for prod (node-fetch/undici options)
     });
 
-    // if model not found or Hugging Face down, log response
-    const text = await response.text();
-    console.log("🧠 HF raw text:", text);
+    // Log status and headers for debugging
+    console.log("HF status:", hfResponse.status);
+    console.log("HF headers:", Object.fromEntries(hfResponse.headers.entries()));
 
-    // try parsing JSON
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      console.error("Invalid JSON:", text);
-      return res.status(500).json({ reply: "⚠️ Model returned invalid response." });
+    // Read raw text (we will attempt JSON parse only if Content-Type is json)
+    const raw = await hfResponse.text();
+    console.log("🧠 HF raw text:", raw);
+
+    // If not ok (4xx/5xx), return a detailed error to logs & user
+    if (!hfResponse.ok) {
+      console.error("Hugging Face returned non-OK status:", hfResponse.status, raw);
+      return res.status(502).json({
+        reply: "Model error: upstream model returned an error. See logs for details."
+      });
     }
 
-    // extract reply
-    const reply = data?.[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
-    res.json({ reply });
+    // Try parse JSON if content-type suggests JSON
+    const contentType = hfResponse.headers.get("content-type") || "";
+    if (contentType.includes("application/json")) {
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch (err) {
+        console.error("Failed to JSON.parse HF response:", err, raw);
+        return res.status(502).json({ reply: "Model returned invalid JSON. Check server logs." });
+      }
+
+      // HF JSON result can vary by model. Try common locations:
+      const reply =
+        // many HF text-generation models return array of objects
+        (Array.isArray(data) && (data[0]?.generated_text || data[0]?.summary_text)) ||
+        // some return object with 'generated_text' directly
+        data.generated_text ||
+        // some models return { outputs: [...] }
+        (data.outputs && data.outputs[0]?.generated_text) ||
+        // fallback
+        null;
+
+      if (!reply) {
+        console.error("HF JSON parsed but no reply found:", JSON.stringify(data).slice(0, 1000));
+        return res.status(502).json({ reply: "Upstream model returned no text. See server logs." });
+      }
+
+      return res.json({ reply });
+    } else {
+      // Content-type is not JSON (maybe 'Not Found' HTML). Log and return generic message.
+      console.error("HF returned non-JSON response:", raw.slice(0, 1000));
+      return res.status(502).json({ reply: "Model returned non-JSON response. Check server logs." });
+    }
   } catch (error) {
     console.error("Chatbot error (fetch):", error);
     res.status(500).json({ reply: "Server error while contacting model." });
