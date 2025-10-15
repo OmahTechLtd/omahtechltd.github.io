@@ -62,7 +62,7 @@ app.post("/chat", async (req, res) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.HF_API_KEY}`, // Optional if you have one
+          "Authorization": `Bearer ${process.env.HF_API_KEY}`,
         },
         body: JSON.stringify({
           inputs: message,
@@ -72,10 +72,13 @@ app.post("/chat", async (req, res) => {
     );
 
     const data = await response.json();
+    console.log("🧠 Hugging Face response:", JSON.stringify(data, null, 2)); // 👈 Add this
 
-    console.log("🧠 HF API raw response:", data);
     const reply =
-      data[0]?.generated_text || "Sorry, I couldn’t generate a response right now.";
+      data[0]?.generated_text ||
+      data.generated_text || // sometimes response is object not array
+      data.error ||
+      "Sorry, I couldn’t generate a response right now.";
 
     res.json({ reply });
   } catch (error) {
