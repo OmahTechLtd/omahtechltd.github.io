@@ -6,8 +6,11 @@ import Subscriber from "./models/Subscriber.js";
 import { HfInference } from "@huggingface/inference";
 import OpenAI from "openai";
 
-
 dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 const app = express();
 app.use(
@@ -58,8 +61,11 @@ app.post("/subscribe", async (req, res) => {
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
 
+  if (!message || message.trim() === "") {
+    return res.status(400).json({ reply: "⚠️ Please enter a message." });
+  }
+
   try {
-    // Try OpenAI first
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
@@ -68,13 +74,14 @@ app.post("/chat", async (req, res) => {
       ],
     });
 
-    const reply = completion.choices[0].message.content;
+    const reply = completion.choices?.[0]?.message?.content?.trim() || "⚠️ No response received.";
     return res.json({ reply });
-  } catch (error) {
-    console.error("⚠️ OpenAI failed, switching to Hugging Face:", error.message);
 
+  } catch (error) {
+    console.error("⚠️ OpenAI failed:", error.message);
+
+    // Fall back to Hugging Face
     try {
-      // Fallback: Hugging Face Zephyr 7B
       const hfResponse = await fetch(
         "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta",
         {
@@ -90,11 +97,17 @@ app.post("/chat", async (req, res) => {
         }
       );
 
-      const data = await hfResponse.json();
-      console.log("🧠 HF raw:", data);
+      const rawText = await hfResponse.text();
+      console.log("🧠 HF raw text:", rawText);
+
+      let data;
+      try {
+        data = JSON.parse(rawText);
+      } catch {
+        return res.status(500).json({ reply: "⚠️ Invalid response from Hugging Face." });
+      }
 
       let reply = "";
-
       if (Array.isArray(data) && data[0]?.generated_text) {
         reply = data[0].generated_text.replace(/^User:.*?AI:/s, "").trim();
       } else if (data?.generated_text) {
@@ -106,8 +119,9 @@ app.post("/chat", async (req, res) => {
       }
 
       return res.json({ reply });
+
     } catch (hfError) {
-      console.error("🔥 Hugging Face fallback also failed:", hfError);
+      console.error("🔥 Hugging Face fallback failed:", hfError.message);
       return res.status(500).json({
         reply: "⚠️ Both OpenAI and Hugging Face failed to respond.",
       });
