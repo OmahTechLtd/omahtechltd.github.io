@@ -3,44 +3,42 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import Subscriber from "./models/Subscriber.js";
-import { HfInference } from "@huggingface/inference";
 import OpenAI from "openai";
 
 dotenv.config();
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const app = express();
 app.use(
   cors({
     origin: [
-      "https://omahtech.co",            // ✅ your production frontend domain
-      "https://www.omahtech.co",        // optional www
-      "http://localhost:3000",          // ✅ for local React testing
+      "https://omahtech.co",            // ✅ Production domain
+      "https://www.omahtech.co",        // Optional www
+      "http://localhost:3000",          // ✅ Local testing
     ],
-    methods: ["GET", "POST", "OPTIONS"], // ✅ include OPTIONS for preflight
+    methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
   })
 );
 app.use(express.json());
 
+// Connect to MongoDB Atlas
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+// Root route
 app.get("/", (req, res) => {
   res.send("Server is live ✅");
 });
 
-// Connect to MongoDB Atlas
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((err) => console.error("MongoDB connection error:", err));
-
-// API subscribe route
+// ---------------------------
+// 📩 Subscribe Route
+// ---------------------------
 app.post("/subscribe", async (req, res) => {
   const { email } = req.body;
-  console.log("📩 Incoming email:", email); 
+  console.log("📩 Incoming email:", email);
 
   if (!email) {
     return res.status(400).json({ message: "Email is required" });
@@ -49,15 +47,21 @@ app.post("/subscribe", async (req, res) => {
   try {
     const newSubscriber = new Subscriber({ email });
     await newSubscriber.save();
-    console.log(" Email saved successfully"); // 👈 Add this too
+    console.log("✅ Email saved successfully");
     res.status(200).json({ message: "Subscribed successfully" });
   } catch (error) {
-    console.error(" Error saving subscriber:", error);
+    console.error("❌ Error saving subscriber:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
-// AI Chat route
+// ---------------------------
+// 🤖 Chatbot Route
+// ---------------------------
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
 
@@ -66,60 +70,49 @@ app.post("/chat", async (req, res) => {
   }
 
   try {
+    // Try OpenAI first
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: "You are OmahTech’s helpful AI assistant." },
+        { role: "system", content: "You are OmahTech’s friendly and helpful AI assistant." },
         { role: "user", content: message },
       ],
     });
 
-    const reply = completion.choices?.[0]?.message?.content?.trim() || "⚠️ No response received.";
+    const reply =
+      completion.choices?.[0]?.message?.content?.trim() ||
+      "⚠️ No response received from OpenAI.";
     return res.json({ reply });
 
-  } catch (error) {
-    console.error("⚠️ OpenAI failed:", error.message);
+  } catch (openaiError) {
+    console.error("⚠️ OpenAI failed:", openaiError.message);
 
-    // Fall back to Hugging Face
+    // ---------------------------
+    // 🧠 Fallback to Hugging Face Space
+    // ---------------------------
     try {
       const hfResponse = await fetch(
-        "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta",
+        "https://veraeze-omahtech-chatbot.hf.space/chat", // Your Hugging Face Space URL
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.HF_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            inputs: `User: ${message}\nAI:`,
-            parameters: { max_new_tokens: 200, temperature: 0.7 },
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
         }
       );
 
-      const rawText = await hfResponse.text();
-      console.log("🧠 HF raw text:", rawText);
-
-      let data;
-      try {
-        data = JSON.parse(rawText);
-      } catch {
-        return res.status(500).json({ reply: "⚠️ Invalid response from Hugging Face." });
+      if (!hfResponse.ok) {
+        const text = await hfResponse.text();
+        console.error("❌ HF Space response error:", text);
+        throw new Error(`Hugging Face returned ${hfResponse.status}`);
       }
 
-      let reply = "";
-      if (Array.isArray(data) && data[0]?.generated_text) {
-        reply = data[0].generated_text.replace(/^User:.*?AI:/s, "").trim();
-      } else if (data?.generated_text) {
-        reply = data.generated_text;
-      } else if (data?.error) {
-        reply = `⚠️ Hugging Face error: ${data.error}`;
-      } else {
-        reply = "⚠️ Sorry, I couldn’t generate a response right now.";
-      }
+      const data = await hfResponse.json();
+      const reply =
+        data.reply ||
+        data.generated_text ||
+        "⚠️ Hugging Face Space returned no message.";
 
       return res.json({ reply });
-
     } catch (hfError) {
       console.error("🔥 Hugging Face fallback failed:", hfError.message);
       return res.status(500).json({
@@ -129,7 +122,8 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-// Start the server
+// ---------------------------
+// 🚀 Start the Server
+// ---------------------------
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
