@@ -2,43 +2,79 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const GenericModels = () => {
-  const [messages, setMessages] = useState([
-    { sender: "bot", text: "👋 Hi! I’ll help you figure out the right type of model for your project." },
-    { sender: "bot", text: "What type of output are you expecting?", options: [
-      "A number (e.g., prices, scores)",
-      "A category (e.g., yes/no, spam/not spam)",
-      "Groups/clusters (e.g., segmenting customers)",
-      "Actions over time (e.g., a game agent learning moves)"
-    ]}
-  ]);
   const navigate = useNavigate();
 
-  const handleOptionClick = (option) => {
-      handleUserMessage(option);
+  const [outputType, setOutputType] = useState("");
+  const [dataType, setDataType] = useState("");
+  const [datasetSize, setDatasetSize] = useState("");
 
+  const getRecommendation = () => {
+    if (!outputType || !dataType || !datasetSize) return null;
+
+    // Simple recommendation logic based on selections
+    if (outputType === "Number") {
+      if (dataType === "Tables") {
+        if (datasetSize === "Small") {
+          return {
+            model: "Linear Regression",
+            description: "A simple model for predicting numerical values from tabular data."
+          };
+        } else {
+          return {
+            model: "Gradient Boosting Machines",
+            description: "Powerful ensemble models for numerical prediction on larger datasets."
+          };
+        }
+      } else if (dataType === "Text") {
+        return {
+          model: "Recurrent Neural Networks",
+          description: "Models suited for sequential numerical predictions from text data."
+        };
+      } else {
+        return {
+          model: "Neural Networks",
+          description: "Flexible models for numeric output with various data types."
+        };
+      }
+    }
+
+    if (outputType === "Category") {
+      if (dataType === "Images") {
+        return {
+          model: "Convolutional Neural Networks",
+          description: "Effective for image classification tasks."
+        };
+      } else if (dataType === "Text") {
+        return {
+          model: "Transformer Models",
+          description: "State-of-the-art models for text classification."
+        };
+      } else {
+        return {
+          model: "Random Forest",
+          description: "Robust classifier for tabular and mixed data."
+        };
+      }
+    }
+
+    if (outputType === "Groups/Clusters") {
+      return {
+        model: "K-Means Clustering",
+        description: "Unsupervised method to segment data into groups."
+      };
+    }
+
+    if (outputType === "Actions over time") {
+      return {
+        model: "Reinforcement Learning Agents",
+        description: "Models that learn optimal actions through interaction over time."
+      };
+    }
+
+    return null;
   };
 
-  const handleUserMessage = async (userText) => {
-  const newUserMessage = { sender: "user", text: userText };
-  setMessages((prev) => [...prev, newUserMessage]);
-
-  try {
-    const res = await fetch("https://omahtechltd-github-io.onrender.com/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: userText }),
-    });
-    const data = await res.json();
-
-    const newBotMessage = { sender: "bot", text: data.reply };
-    setMessages((prev) => [...prev, newBotMessage]);
-  } catch (error) {
-    setMessages((prev) => [
-      ...prev,
-      { sender: "bot", text: "⚠️ Error: I couldn't respond right now. Try again." },
-    ]);
-  }
-};
+  const recommendation = getRecommendation();
 
   return (
     <section className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
@@ -50,44 +86,76 @@ const GenericModels = () => {
         models. Just pick the options below 👇 or skip straight to training.
       </p>
 
-      {/* Chat UI */}
-      <div className="w-full max-w-lg h-96 bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-2xl shadow-xl flex flex-col p-4 overflow-y-auto">
-        {messages.map((msg, index) => (
-          <div key={index} className="mb-3">
-            <div
-              className={`p-3 rounded-lg max-w-[85%] ${
-                msg.sender === "bot"
-                  ? "bg-green-600 text-white self-start"
-                  : "bg-blue-600 text-white self-end ml-auto"
-              }`}
-            >
-              {msg.text}
-            </div>
+      {/* Model Recommender Form */}
+      <form className="w-full max-w-lg bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-2xl shadow-xl p-6 flex flex-col gap-6">
+        <div>
+          <label className="block mb-2 font-semibold" htmlFor="outputType">
+            1. Type of output expected
+          </label>
+          <select
+            id="outputType"
+            value={outputType}
+            onChange={(e) => setOutputType(e.target.value)}
+            className="w-full p-2 rounded bg-gray-800 text-white"
+          >
+            <option value="">Select an option</option>
+            <option value="Number">A number (e.g., prices, scores)</option>
+            <option value="Category">A category (e.g., yes/no, spam/not spam)</option>
+            <option value="Groups/Clusters">Groups/clusters (e.g., segmenting customers)</option>
+            <option value="Actions over time">Actions over time (e.g., a game agent learning moves)</option>
+          </select>
+        </div>
 
-            {/* Render options as buttons */}
-            {msg.options && (
-              <div className="flex flex-col gap-2 mt-2">
-                {msg.options.map((opt, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleOptionClick(opt)}
-                    className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm text-left"
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            )}
+        <div>
+          <label className="block mb-2 font-semibold" htmlFor="dataType">
+            2. Type of data
+          </label>
+          <select
+            id="dataType"
+            value={dataType}
+            onChange={(e) => setDataType(e.target.value)}
+            className="w-full p-2 rounded bg-gray-800 text-white"
+          >
+            <option value="">Select an option</option>
+            <option value="Text">Text</option>
+            <option value="Images">Images</option>
+            <option value="Tables">Tables</option>
+            <option value="Mixed">Mixed</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block mb-2 font-semibold" htmlFor="datasetSize">
+            3. Dataset size
+          </label>
+          <select
+            id="datasetSize"
+            value={datasetSize}
+            onChange={(e) => setDatasetSize(e.target.value)}
+            className="w-full p-2 rounded bg-gray-800 text-white"
+          >
+            <option value="">Select an option</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </div>
+
+        {recommendation && (
+          <div className="bg-green-700 p-4 rounded-lg mt-4">
+            <h2 className="text-xl font-bold mb-2">Recommended Model:</h2>
+            <p className="font-semibold">{recommendation.model}</p>
+            <p className="mt-1 text-gray-200">{recommendation.description}</p>
           </div>
-        ))}
-      </div>
+        )}
+      </form>
 
       {/* Train Model Button — always visible */}
       <button
         onClick={() => navigate("/billing")}
         className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
       >
-         Train Model
+        Train Model
       </button>
     </section>
   );
