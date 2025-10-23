@@ -4,65 +4,67 @@ import { Link } from "react-router-dom";
 const Projects = () => {
   return (
     <section id="projects" className="py-16 px-4">
-      <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-        Projects
+      <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
+        Daily Machine Learning Models
       </h2>
+      <p className="text-center text-gray-300 mb-6">
+        Explore our featured AI models, updated regularly to inspire your next project.
+      </p>
 
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
 
-        {/* Oil & Gas */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Oil & Gas</h3>
+        {/* House Price Prediction (Regression) */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">House Price Prediction (Regression)</h3>
           <p className="text-gray-300 mb-4">
-            Predicting equipment failures and optimizing production using AI-driven insights.
+            Predict property prices using linear regression.
           </p>
           <Link
-            to="/projects/oil-and-gas"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+            to="/models/regression"
+            className="bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 hover:border-blue-500 transition duration-300"
           >
-            View Demo
+            Explore Model
           </Link>
         </div>
 
-        {/* Real Estate */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Real Estate</h3>
+        {/* Customer Churn Classifier (Classification) */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Customer Churn Classifier (Classification)</h3>
           <p className="text-gray-300 mb-4">
-            House price prediction and property valuation with machine learning.
+            Predict customer churn using Random Forest.
           </p>
           <Link
-            to="/projects/real-estate"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+            to="/models/classification"
+            className="bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 hover:border-blue-500 transition duration-300"
           >
-            View Demo
+            Explore Model
           </Link>
         </div>
 
-        {/* Agriculture */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Agriculture</h3>
+        {/* Iris Flower Clustering (Unsupervised) */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Iris Flower Clustering (Unsupervised)</h3>
           <p className="text-gray-300 mb-4">
-            Yield prediction and crop health monitoring for smarter farming.
+            Explore data clusters using K-Means.
           </p>
           <Link
-            to="/projects/agriculture"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
+            to="/models/clustering"
+            className="bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 hover:border-blue-500 transition duration-300"
           >
-            View Demo
+            Explore Model
           </Link>
         </div>
 
-        {/* Education */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl">
-          <h3 className="text-xl font-semibold mb-2 text-green-700">Education</h3>
+        {/* Tweet Sentiment Analyzer (NLP) */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between">
+          <h3 className="text-xl font-semibold mb-2 text-green-700">Tweet Sentiment Analyzer (NLP)</h3>
           <p className="text-gray-300 mb-4">
-            Predicting student outcomes to improve education strategies.
+            Detect sentiment (positive/negative) in text data.
           </p>
           <Link
-            to="/projects/education"
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium text-center inline-block"
-          >
-            View Demo
+            to="/models/nlp"
+className="bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 hover:border-blue-500 transition duration-300"          >
+            Explore Model
           </Link>
         </div>
 
@@ -80,7 +82,7 @@ className="
     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
     transition ease-in-out duration-300
   "
->    See More Projects
+>    View All Models
   </Link>
       </div>
     </section>
