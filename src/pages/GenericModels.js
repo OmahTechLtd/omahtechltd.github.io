@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import modelDetails from "../data/modelDetails.js";
 import { useNavigate } from "react-router-dom";
 
 const GenericModels = () => {
@@ -7,6 +8,8 @@ const GenericModels = () => {
   const [outputType, setOutputType] = useState("");
   const [dataType, setDataType] = useState("");
   const [datasetSize, setDatasetSize] = useState("");
+  const [selectedModel, setSelectedModel] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const getRecommendation = () => {
     if (!outputType || !dataType || !datasetSize) return null;
@@ -83,20 +86,22 @@ const GenericModels = () => {
       </h1>
       <p className="text-gray-300 max-w-2xl text-center mb-8">
         This assistant will guide researchers and students in selecting and training
-        models. Just pick the options below 👇 or skip straight to training.
+        models. Just pick the options below or skip straight to training.
       </p>
 
       {/* Model Recommender Form */}
-      <form className="w-full max-w-lg bg-gradient-to-r from-[#0f172a] to-[#1e293b] rounded-2xl shadow-xl p-6 flex flex-col gap-6">
-        <div>
-          <label className="block mb-2 font-semibold" htmlFor="outputType">
-            1. Type of output expected
-          </label>
+      <div className="w-full max-w-3xl bg-[#0b0f19]/80 backdrop-blur-lg border border-gray-700 rounded-2xl shadow-2xl p-8 flex flex-col gap-8">
+        {/* Output Type */}
+        <div className="bg-[#111827]/70 p-5 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
+            <span className="text-blue-400 font-bold">1.</span> Type of Output Expected
+          </h3>
+          <p className="text-gray-400 text-sm mb-3">What kind of result do you want to predict?</p>
           <select
             id="outputType"
             value={outputType}
             onChange={(e) => setOutputType(e.target.value)}
-            className="w-full p-2 rounded bg-gray-800 text-white"
+            className="w-full p-3 rounded-lg bg-[#0f172a] border border-gray-700 focus:border-blue-500 outline-none text-white transition-all"
           >
             <option value="">Select an option</option>
             <option value="Number">A number (e.g., prices, scores)</option>
@@ -106,15 +111,17 @@ const GenericModels = () => {
           </select>
         </div>
 
-        <div>
-          <label className="block mb-2 font-semibold" htmlFor="dataType">
-            2. Type of data
-          </label>
+        {/* Data Type */}
+        <div className="bg-[#111827]/70 p-5 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
+            <span className="text-blue-400 font-bold">2.</span> Type of Data
+          </h3>
+          <p className="text-gray-400 text-sm mb-3">What kind of data are you working with?</p>
           <select
             id="dataType"
             value={dataType}
             onChange={(e) => setDataType(e.target.value)}
-            className="w-full p-2 rounded bg-gray-800 text-white"
+            className="w-full p-3 rounded-lg bg-[#0f172a] border border-gray-700 focus:border-blue-500 outline-none text-white transition-all"
           >
             <option value="">Select an option</option>
             <option value="Text">Text</option>
@@ -124,15 +131,17 @@ const GenericModels = () => {
           </select>
         </div>
 
-        <div>
-          <label className="block mb-2 font-semibold" htmlFor="datasetSize">
-            3. Dataset size
-          </label>
+        {/* Dataset Size */}
+        <div className="bg-[#111827]/70 p-5 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300">
+          <h3 className="text-lg font-semibold flex items-center gap-2 mb-2">
+            <span className="text-blue-400 font-bold">3.</span> Dataset Size
+          </h3>
+          <p className="text-gray-400 text-sm mb-3">How large is your dataset?</p>
           <select
             id="datasetSize"
             value={datasetSize}
             onChange={(e) => setDatasetSize(e.target.value)}
-            className="w-full p-2 rounded bg-gray-800 text-white"
+            className="w-full p-3 rounded-lg bg-[#0f172a] border border-gray-700 focus:border-blue-500 outline-none text-white transition-all"
           >
             <option value="">Select an option</option>
             <option value="Small">Small</option>
@@ -141,15 +150,71 @@ const GenericModels = () => {
           </select>
         </div>
 
+        {/* Recommendation Result */}
         {recommendation && (
-          <div className="bg-green-700 p-4 rounded-lg mt-4">
-            <h2 className="text-xl font-bold mb-2">Recommended Model:</h2>
-            <p className="font-semibold">{recommendation.model}</p>
-            <p className="mt-1 text-gray-200">{recommendation.description}</p>
+          <div className="bg-gradient-to-r from-blue-900/40 to-green-900/40 p-5 rounded-xl border border-green-600 animate-pulse-slow">
+            <h2 className="text-xl font-bold mb-2 text-green-400">Recommended Model:</h2>
+            <p className="font-semibold text-white">{recommendation.model}</p>
+            <p className="mt-1 text-gray-300">{recommendation.description}</p>
+            <button
+              className="mt-4 px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-lg shadow transition"
+              onClick={() => {
+                console.log("📘 Opening modal for:", recommendation.model);
+                setSelectedModel(recommendation);
+                setShowModal(true);
+              }}
+            >
+              Learn More
+            </button>
           </div>
         )}
-      </form>
-
+      </div>
+{/* Phase 2 — Prebuilt Model Cards */}
+<div className="mt-12 w-full max-w-5xl">
+  <h2 className="text-2xl font-bold mb-6 text-center text-blue-400">
+    Prebuilt Model Options
+  </h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {[
+      {
+        title: "Regression Model",
+        desc: "Predict continuous outcomes like prices, sales, or scores.",
+      },
+      {
+        title: "Classification Model",
+        desc: "Classify data into categories such as spam detection or churn.",
+      },
+      {
+        title: "Clustering Model",
+        desc: "Group similar data points for insights or segmentation.",
+      },
+      {
+        title: "NLP/Text Model",
+        desc: "Analyze or generate text for sentiment, summaries, or chat.",
+      },
+      {
+        title: "Vision Model",
+        desc: "Identify patterns, objects, or scenes in images.",
+      },
+    ].map((card, index) => (
+      <div
+        key={index}
+        className="bg-[#111827]/80 border border-gray-700 hover:border-blue-500 transition-all duration-300 rounded-2xl p-6 shadow-lg hover:shadow-blue-900/50 flex flex-col justify-between"
+      >
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-2">{card.title}</h3>
+          <p className="text-gray-300 mb-4">{card.desc}</p>
+        </div>
+        <button
+          onClick={() => navigate("/billing")}
+          className="mt-auto bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
+        >
+          Train This Model
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
       {/* Train Model Button — always visible */}
       <button
         onClick={() => navigate("/billing")}
@@ -157,6 +222,40 @@ const GenericModels = () => {
       >
         Train Model
       </button>
+
+      {/* Modal for Model Details */}
+      {(
+        showModal && selectedModel && modelDetails[selectedModel.model] && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+            <div className="bg-[#111827] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-lg w-full text-white relative">
+              <h2 className="text-2xl font-bold mb-2 text-blue-400">{selectedModel.model}</h2>
+              <p className="mb-4 text-gray-300 italic">{selectedModel.description}</p>
+              <div className="mb-3">
+                <span className="font-semibold text-green-300">Use Case:</span>
+                <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].useCase}</p>
+              </div>
+              <div className="mb-3">
+                <span className="font-semibold text-green-300">Strengths:</span>
+                <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].strengths}</p>
+              </div>
+              <div className="mb-6">
+                <span className="font-semibold text-green-300">Sample Datasets:</span>
+                <ul className="list-disc list-inside ml-4 text-gray-200">
+                  {modelDetails[selectedModel.model].sampleDatasets.map((ds, idx) => (
+                    <li key={idx}>{ds}</li>
+                  ))}
+                </ul>
+              </div>
+              <button
+                className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )
+      )}
     </section>
   );
 };
