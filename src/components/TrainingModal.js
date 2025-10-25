@@ -47,7 +47,7 @@ export default function TrainingModal({ closeModal }) {
       <div className="bg-black rounded-lg shadow-lg ring-1 ring-white/10 max-w-md w-full p-6 relative">
         <button
           onClick={closeModal}
-          className="px-6 py-2 bg-black border border-white/20 rounded-lg text-white text-lg font-semibold shadow-[0_0_8px_rgba(255,255,255,0.2)] hover:shadow-[0_0_12px_rgba(255,255,255,0.3)] hover:scale-[1.03] transition-all duration-200"
+          className="px-2 py-0 bg-black border border-white/20 rounded-lg text-white text-lg font-semibold shadow-[0_0_8px_rgba(255,255,255,0.2)] hover:shadow-[0_0_12px_rgba(255,255,255,0.3)] hover:scale-[1.03] transition-all duration-200"
           aria-label="Close modal"
         >
           ×
