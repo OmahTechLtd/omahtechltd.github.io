@@ -168,6 +168,16 @@ const GenericModels = () => {
             </button>
           </div>
         )}
+        {/* Train Model Button — always visible */}
+      <button
+  onClick={() => {
+    setSelectedModel({ title: "Custom Model", desc: "User-defined model setup." });
+    setShowModal("setup");
+  }}
+  className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
+>
+  Train Model
+</button>
       </div>
 {/* Phase 2 — Prebuilt Model Cards */}
 <div className="mt-12 w-full max-w-5xl">
@@ -206,7 +216,10 @@ const GenericModels = () => {
           <p className="text-gray-300 mb-4">{card.desc}</p>
         </div>
         <button
-          onClick={() => navigate("/billing")}
+          onClick={() => {
+            setSelectedModel(card);
+            setShowModal("setup");
+          }}
           className="mt-auto bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
         >
           Train This Model
@@ -215,49 +228,146 @@ const GenericModels = () => {
     ))}
   </div>
 </div>
-      {/* Train Model Button — always visible */}
-      <button
-        onClick={() => navigate("/billing")}
-        className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
-      >
-        Train Model
-      </button>
+      
 
-      {/* Modal for Model Details */}
-      {(
-        showModal && selectedModel && modelDetails[selectedModel.model] && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-            <div className="bg-[#111827] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-lg w-full text-white relative">
-              <h2 className="text-2xl font-bold mb-2 text-blue-400">{selectedModel.model}</h2>
-              <p className="mb-4 text-gray-300 italic">{selectedModel.description}</p>
-              <div className="mb-3">
-                <span className="font-semibold text-green-300">Use Case:</span>
-                <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].useCase}</p>
-              </div>
-              <div className="mb-3">
-                <span className="font-semibold text-green-300">Strengths:</span>
-                <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].strengths}</p>
-              </div>
-              <div className="mb-6">
-                <span className="font-semibold text-green-300">Sample Datasets:</span>
-                <ul className="list-disc list-inside ml-4 text-gray-200">
-                  {modelDetails[selectedModel.model].sampleDatasets.map((ds, idx) => (
-                    <li key={idx}>{ds}</li>
-                  ))}
-                </ul>
-              </div>
-              <button
-                className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
-                onClick={() => setShowModal(false)}
-              >
-                Close
-              </button>
+      {/* Modal for Model Details (Learn More) */}
+      {showModal === true && selectedModel && modelDetails[selectedModel.model] && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+          <div className="bg-[#111827] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-lg w-full text-white relative">
+            <h2 className="text-2xl font-bold mb-2 text-blue-400">{selectedModel.model}</h2>
+            <p className="mb-4 text-gray-300 italic">{selectedModel.description}</p>
+            <div className="mb-3">
+              <span className="font-semibold text-green-300">Use Case:</span>
+              <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].useCase}</p>
             </div>
+            <div className="mb-3">
+              <span className="font-semibold text-green-300">Strengths:</span>
+              <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].strengths}</p>
+            </div>
+            <div className="mb-6">
+              <span className="font-semibold text-green-300">Sample Datasets:</span>
+              <ul className="list-disc list-inside ml-4 text-gray-200">
+                {modelDetails[selectedModel.model].sampleDatasets.map((ds, idx) => (
+                  <li key={idx}>{ds}</li>
+                ))}
+              </ul>
+            </div>
+            <button
+              className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
+              onClick={() => setShowModal(false)}
+            >
+              Close
+            </button>
           </div>
-        )
+        </div>
+      )}
+
+      {/* Modal for Model Setup before Billing (Flow B) */}
+      {showModal === "setup" && selectedModel && (
+        <ModelSetupModal
+          model={selectedModel}
+          onClose={() => setShowModal(false)}
+          onProceed={() => {
+            setShowModal(false);
+            navigate("/billing");
+          }}
+        />
       )}
     </section>
   );
 };
 
 export default GenericModels;
+// Model Setup Modal Component for training configuration 
+const ModelSetupModal = ({ model, onClose, onProceed }) => {
+  const [datasetLink, setDatasetLink] = useState("");
+  const [epochs, setEpochs] = useState(10);
+  const [outputFormat, setOutputFormat] = useState("CSV");
+  // Optionally, you can add validation, but keeping simple for now
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+      <div className="bg-[#181e2a] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-md w-full text-white relative">
+<h2 className="text-2xl font-bold mb-4 text-blue-400">
+  Train: {model.title || model.model || "Custom Model"}
+</h2>        <form
+          className="flex flex-col gap-5"
+          onSubmit={e => {
+            e.preventDefault();
+            onProceed();
+          }}
+        >
+          <div>
+            <label className="block text-sm font-semibold mb-1 text-gray-300">
+    Dataset Source
+  </label>
+  <p className="text-xs text-gray-400 mb-2">
+    Upload a dataset file (CSV/XLSX) or provide an online link.
+  </p>
+
+  {/* File Upload Option */}
+  <input
+    type="file"
+    accept=".csv, .xlsx"
+    className="w-full px-3 py-2 mb-3 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+    onChange={(e) => console.log("📁 Selected file:", e.target.files[0])}
+  />
+<p className="text-xs text-gray-400 mb-2 text-center">
+    OR
+  </p>
+  {/* Link Option */}
+  <input
+    type="url"
+    placeholder="https://your-dataset-link.com"
+    className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+    value={datasetLink}
+    onChange={(e) => setDatasetLink(e.target.value)}
+  />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="epochs">
+              Number of Epochs
+            </label>
+            <input
+              id="epochs"
+              type="number"
+              min={1}
+              max={1000}
+              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+              value={epochs}
+              onChange={e => setEpochs(Number(e.target.value))}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="outputFormat">
+              Output Format
+            </label>
+            <select
+              id="outputFormat"
+              value={outputFormat}
+              onChange={e => setOutputFormat(e.target.value)}
+              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+              required
+            >
+              <option value="CSV">CSV</option>
+              <option value="JSON">JSON</option>
+              <option value="Model File">Model File</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            className="mt-2 bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
+          >
+            Proceed to Billing
+          </button>
+        </form>
+        <button
+          className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
+          onClick={onClose}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
