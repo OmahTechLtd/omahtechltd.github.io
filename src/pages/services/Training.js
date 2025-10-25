@@ -1,7 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaGlobeAfrica, FaChalkboardTeacher, FaTools, FaRocket } from "react-icons/fa";
+import TrainingModal from "../../components/TrainingModal";
 
 const Training = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    trainingType: "Individual",
+    message: "",
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setIsSubmitted(false);
+    setFormData({
+      name: "",
+      email: "",
+      trainingType: "Individual",
+      message: "",
+    });
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
+
+
   return (
     <section className="min-h-screen bg-black text-white py-20 px-6">
       {/* Hero Section */}
@@ -17,16 +53,12 @@ Train With Us        </h1>
           and create world-class innovations.
         </p>
         <div className="mt-8">
-          <a
-            href="/contact"
-            className="relative inline-block px-6 py-3 bg-black rounded-lg text-white text-lg font-semibold
-              shadow-[0_0_6px_rgba(59,130,246,0.5),0_0_8px_rgba(99,102,241,0.5),0_0_10px_rgba(34,197,94,0.5)]
-              hover:shadow-[0_0_8px_rgba(59,130,246,0.8),0_0_10px_rgba(99,102,241,0.8),0_0_12px_rgba(34,197,94,0.8)]
-              hover:scale-105 transition-transform before:absolute before:-inset-0.5 before:rounded-lg
-              before:bg-gradient-to-r before:from-blue-500 before:via-indigo-600 before:to-green-500 before:z-[-1]"
+          <button
+            onClick={openModal}
+            className="bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 hover:border-blue-500 transition duration-300"
           >
             Enroll Now
-          </a>
+          </button>
         </div>
       </div>
 
@@ -74,6 +106,16 @@ Train With Us        </h1>
         </div>
       </div>
 
+      {isModalOpen && (
+        <TrainingModal
+          isSubmitted={isSubmitted}
+          closeModal={closeModal}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          formData={formData}
+        />
+      )}
+
       {/* Final Call to Action
       <div className="text-center mt-16">
         <a
@@ -92,3 +134,4 @@ Train With Us        </h1>
 };
 
 export default Training;
+
