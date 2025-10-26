@@ -283,17 +283,45 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [datasetLink, setDatasetLink] = useState("");
   const [epochs, setEpochs] = useState(10);
   const [outputFormat, setOutputFormat] = useState("CSV");
+  const [fileInput, setFileInput] = useState(null);
   // Optionally, you can add validation, but keeping simple for now
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
       <div className="bg-[#181e2a] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-md w-full text-white relative">
 <h2 className="text-2xl font-bold mb-4 text-blue-400">
   Train: {model.title || model.model || "Custom Model"}
-</h2>        <form
+</h2>
+        <form
           className="flex flex-col gap-5"
-          onSubmit={e => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            onProceed();
+
+            const formData = new FormData();
+            formData.append("modelName", model.title || model.model || "Custom Model");
+            formData.append("datasetLink", datasetLink);
+            formData.append("epochs", epochs);
+            formData.append("outputFormat", outputFormat);
+
+            if (fileInput) {
+              formData.append("datasetFile", fileInput);
+            }
+
+            try {
+              const res = await fetch("http://localhost:5000/training-setup", {
+                method: "POST",
+                body: formData,
+              });
+
+              if (res.ok) {
+                alert("Training setup submitted successfully!");
+                onProceed(); // navigates to billing
+              } else {
+                alert("Failed to submit training setup. Please try again.");
+              }
+            } catch (err) {
+              console.error("Error submitting training setup:", err);
+              alert("Error submitting training setup.");
+            }
           }}
         >
           <div>
@@ -309,7 +337,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
     type="file"
     accept=".csv, .xlsx"
     className="w-full px-3 py-2 mb-3 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-    onChange={(e) => console.log("📁 Selected file:", e.target.files[0])}
+    onChange={(e) => setFileInput(e.target.files[0])}
   />
 <p className="text-xs text-gray-400 mb-2 text-center">
     OR
