@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import Subscriber from "./models/Subscriber.js";
-import OpenAI from "openai";
+import nodemailer from "nodemailer"; // For backend email notification
 
 dotenv.config();
 
@@ -11,9 +11,9 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://omahtech.co",            // ✅ Production domain
-      "https://www.omahtech.co",        // Optional www
-      "http://localhost:3000",          // ✅ Local testing
+      "https://omahtech.co",
+      "https://www.omahtech.co",
+      "http://localhost:3000",
     ],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
@@ -22,23 +22,27 @@ app.use(
 );
 app.use(express.json());
 
-// Connect to MongoDB Atlas
+// ---------------------------
+//  Connect to MongoDB
+// ---------------------------
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Connected to MongoDB Atlas"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log(" Connected to MongoDB Atlas"))
+  .catch((err) => console.error(" MongoDB connection error:", err));
 
-// Root route
+// ---------------------------
+//  Root route
+// ---------------------------
 app.get("/", (req, res) => {
-  res.send("Server is live ✅");
+  res.send("Server is live ");
 });
 
 // ---------------------------
-// 📩 Subscribe Route
+//  Subscribe Route
 // ---------------------------
 app.post("/subscribe", async (req, res) => {
   const { email } = req.body;
-  console.log("📩 Incoming email:", email);
+  console.log(" Incoming email:", email);
 
   if (!email) {
     return res.status(400).json({ message: "Email is required" });
@@ -47,83 +51,77 @@ app.post("/subscribe", async (req, res) => {
   try {
     const newSubscriber = new Subscriber({ email });
     await newSubscriber.save();
-    console.log("✅ Email saved successfully");
+    console.log(" Email saved successfully");
     res.status(200).json({ message: "Subscribed successfully" });
   } catch (error) {
-    console.error("❌ Error saving subscriber:", error);
+    console.error(" Error saving subscriber:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
 // ---------------------------
-// 🤖 Chatbot Route
+//  Training Setup Route
 // ---------------------------
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+app.post("/training-setup", async (req, res) => {
+  const { name, email, trainingType, message } = req.body;
 
-app.post("/chat", async (req, res) => {
-  const { message } = req.body;
-
-  if (!message || message.trim() === "") {
-    return res.status(400).json({ reply: "⚠️ Please enter a message." });
+  if (!name || !email) {
+    return res.status(400).json({ message: "Name and email are required." });
   }
 
   try {
-    // Try OpenAI first
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: "You are OmahTech’s friendly and helpful AI assistant." },
-        { role: "user", content: message },
-      ],
+    //  Save to MongoDB
+    const Training = mongoose.model(
+      "Training",
+      new mongoose.Schema({
+        name: String,
+        email: String,
+        trainingType: String,
+        message: String,
+        date: { type: Date, default: Date.now },
+      })
+    );
+    await new Training({ name, email, trainingType, message }).save();
+
+    console.log(" Training info saved to MongoDB");
+
+    //  Send email notification (to your admin inbox)
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER, // your Gmail
+        pass: process.env.EMAIL_PASS, // your Gmail App Password
+      },
     });
 
-    const reply =
-      completion.choices?.[0]?.message?.content?.trim() ||
-      "⚠️ No response received from OpenAI.";
-    return res.json({ reply });
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_RECEIVER, // your email
+      subject: " New Training Enrollment",
+      text: `New training enrollment received:
 
-  } catch (openaiError) {
-    console.error("⚠️ OpenAI failed:", openaiError.message);
+Name: ${name}
+Email: ${email}
+Training Type: ${trainingType}
+Message: ${message || "N/A"}
 
-    // ---------------------------
-    // 🧠 Fallback to Hugging Face Space
-    // ---------------------------
-    try {
-      const hfResponse = await fetch(
-        "https://veraeze-omahtech-chatbot.hf.space/chat", // Your Hugging Face Space URL
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message }),
-        }
-      );
+Check MongoDB for details.`,
+    };
 
-      if (!hfResponse.ok) {
-        const text = await hfResponse.text();
-        console.error("❌ HF Space response error:", text);
-        throw new Error(`Hugging Face returned ${hfResponse.status}`);
-      }
+    await transporter.sendMail(mailOptions);
+    console.log(" Notification email sent to admin.");
 
-      const data = await hfResponse.json();
-      const reply =
-        data.reply ||
-        data.generated_text ||
-        "⚠️ Hugging Face Space returned no message.";
-
-      return res.json({ reply });
-    } catch (hfError) {
-      console.error("🔥 Hugging Face fallback failed:", hfError.message);
-      return res.status(500).json({
-        reply: "⚠️ Both OpenAI and Hugging Face failed to respond.",
-      });
-    }
+    res.status(200).json({
+      message: "Training setup saved and email sent successfully!",
+    });
+  } catch (error) {
+    console.error("Error saving training setup:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
 // ---------------------------
-// 🚀 Start the Server
+//  Start the Server
 // ---------------------------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

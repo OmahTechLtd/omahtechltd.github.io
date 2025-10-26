@@ -220,8 +220,8 @@ const GenericModels = () => {
             setSelectedModel(card);
             setShowModal("setup");
           }}
-          className="mt-auto bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
-        >
+          className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
+>
           Train This Model
         </button>
       </div>
@@ -358,7 +358,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
             type="submit"
             className="mt-2 bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
           >
-            Proceed to Billing
+          Complete Setup
           </button>
         </form>
         <button
