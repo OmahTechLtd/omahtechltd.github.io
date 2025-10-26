@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import Subscriber from "./models/Subscriber.js";
-import nodemailer from "nodemailer"; // For backend email notification
+import trainingSetupRoutes from "./routes/trainingSetup.js";
 
 dotenv.config();
 
@@ -21,6 +21,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use("/training-setup", trainingSetupRoutes); // for training routes
 
 // ---------------------------
 //  Connect to MongoDB
@@ -59,66 +60,6 @@ app.post("/subscribe", async (req, res) => {
   }
 });
 
-// ---------------------------
-//  Training Setup Route
-// ---------------------------
-app.post("/training-setup", async (req, res) => {
-  const { name, email, trainingType, message } = req.body;
-
-  if (!name || !email) {
-    return res.status(400).json({ message: "Name and email are required." });
-  }
-
-  try {
-    //  Save to MongoDB
-    const Training = mongoose.model(
-      "Training",
-      new mongoose.Schema({
-        name: String,
-        email: String,
-        trainingType: String,
-        message: String,
-        date: { type: Date, default: Date.now },
-      })
-    );
-    await new Training({ name, email, trainingType, message }).save();
-
-    console.log(" Training info saved to MongoDB");
-
-    //  Send email notification (to your admin inbox)
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER, // your Gmail
-        pass: process.env.EMAIL_PASS, // your Gmail App Password
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_RECEIVER, // your email
-      subject: " New Training Enrollment",
-      text: `New training enrollment received:
-
-Name: ${name}
-Email: ${email}
-Training Type: ${trainingType}
-Message: ${message || "N/A"}
-
-Check MongoDB for details.`,
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log(" Notification email sent to admin.");
-
-    res.status(200).json({
-      message: "Training setup saved and email sent successfully!",
-    });
-  } catch (error) {
-    console.error("Error saving training setup:", error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
 
 // ---------------------------
 //  Start the Server

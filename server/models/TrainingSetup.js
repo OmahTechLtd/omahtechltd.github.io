@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const trainingSchema = new mongoose.Schema({
+const trainingSetupSchema = new mongoose.Schema({
   modelName: String,
   datasetLink: String,
   fileName: String,
@@ -9,4 +9,4 @@ const trainingSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Training", trainingSchema);
+export default mongoose.model("TrainingSetup", trainingSetupSchema);
