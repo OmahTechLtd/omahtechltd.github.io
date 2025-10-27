@@ -159,9 +159,12 @@ const GenericModels = () => {
             <button
               className="mt-4 px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-lg shadow transition"
               onClick={() => {
-                console.log("📘 Opening modal for:", recommendation.model);
-                setSelectedModel(recommendation);
-                setShowModal(true);
+                // ensure selectedModel always has a `model` key used by modelDetails
+                setSelectedModel({
+                  ...recommendation,
+                  model: recommendation.model || recommendation.title,
+                });
+                setShowModal("learn");
               }}
             >
               Learn More
@@ -171,7 +174,7 @@ const GenericModels = () => {
         {/* Train Model Button — always visible */}
       <button
   onClick={() => {
-    setSelectedModel({ title: "Custom Model", desc: "User-defined model setup." });
+    setSelectedModel({ title: "Custom Model", desc: "User-defined model setup.", model: "Custom Model" });
     setShowModal("setup");
   }}
   className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
@@ -217,7 +220,7 @@ const GenericModels = () => {
         </div>
         <button
           onClick={() => {
-            setSelectedModel(card);
+            setSelectedModel({ ...card, model: card.title });
             setShowModal("setup");
           }}
           className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
@@ -231,36 +234,61 @@ const GenericModels = () => {
       
 
       {/* Modal for Model Details (Learn More) */}
-      {showModal === true && selectedModel && modelDetails[selectedModel.model] && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-          <div className="bg-[#111827] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-lg w-full text-white relative">
-            <h2 className="text-2xl font-bold mb-2 text-blue-400">{selectedModel.model}</h2>
-            <p className="mb-4 text-gray-300 italic">{selectedModel.description}</p>
-            <div className="mb-3">
-              <span className="font-semibold text-green-300">Use Case:</span>
-              <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].useCase}</p>
+      {showModal === 'learn' && selectedModel && (() => {
+        const modelKey = selectedModel.model || selectedModel.title;
+        const details = modelDetails[modelKey];
+        if (!details) return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+            <div className="bg-[#111827] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-lg w-full text-white relative">
+              <h2 className="text-2xl font-bold mb-2 text-blue-400">Information not available</h2>
+              <p className="text-gray-300">We don't have detailed information for this model yet.</p>
+              <button
+                className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
+                onClick={() => { setShowModal(false); setSelectedModel(null); }}
+              >
+                Close
+              </button>
             </div>
-            <div className="mb-3">
-              <span className="font-semibold text-green-300">Strengths:</span>
-              <p className="ml-2 text-gray-200">{modelDetails[selectedModel.model].strengths}</p>
-            </div>
-            <div className="mb-6">
-              <span className="font-semibold text-green-300">Sample Datasets:</span>
-              <ul className="list-disc list-inside ml-4 text-gray-200">
-                {modelDetails[selectedModel.model].sampleDatasets.map((ds, idx) => (
-                  <li key={idx}>{ds}</li>
-                ))}
-              </ul>
-            </div>
-            <button
-              className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
-              onClick={() => setShowModal(false)}
-            >
-              Close
-            </button>
           </div>
-        </div>
-      )}
+        );
+
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+            <div className="bg-[#111827] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-lg w-full text-white relative">
+              <h2 className="text-2xl font-bold mb-2 text-blue-400">{modelKey}</h2>
+              <p className="mb-4 text-gray-300 italic">{selectedModel.description || details.short || details.description}</p>
+
+              <div className="mb-3">
+                <span className="font-semibold text-green-300">Use Case:</span>
+                <p className="ml-2 text-gray-200">{details.useCase || '—'}</p>
+              </div>
+
+              <div className="mb-3">
+                <span className="font-semibold text-green-300">Strengths:</span>
+                <p className="ml-2 text-gray-200">{details.strengths || '—'}</p>
+              </div>
+
+              {Array.isArray(details.sampleDatasets) && (
+                <div className="mb-6">
+                  <span className="font-semibold text-green-300">Sample Datasets:</span>
+                  <ul className="list-disc list-inside ml-4 text-gray-200">
+                    {details.sampleDatasets.map((ds, idx) => (
+                      <li key={idx}>{ds}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <button
+                className="absolute top-4 right-4 text-gray-400 hover:text-white bg-[#1e293b] px-3 py-1 rounded-lg border border-blue-700"
+                onClick={() => { setShowModal(false); setSelectedModel(null); }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Modal for Model Setup before Billing (Flow B) */}
       {showModal === "setup" && selectedModel && (

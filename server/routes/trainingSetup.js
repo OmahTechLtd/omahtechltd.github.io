@@ -13,8 +13,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // POST route to handle training setup submission
-router.post("/", upload.single("file"), async (req, res) => {
-  try {
+router.post("/", upload.single("datasetFile"), async (req, res) => {
+    try {
+      console.log("📥 Incoming training setup:", req.body);
+      console.log("📎 Uploaded file:", req.file);
     const { modelName, datasetLink, epochs, outputFormat } = req.body;
     const fileName = req.file ? req.file.filename : null;
 
