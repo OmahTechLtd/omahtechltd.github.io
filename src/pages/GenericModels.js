@@ -335,10 +335,10 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
             }
 
             try {
-              const API_BASE_URL =
-                import.meta.env.MODE === "development"
-                  ? "http://localhost:5000"
-                  : "https://omahtechltd-github-io.onrender.com"; 
+              const isLocal = window.location.hostname === "localhost";
+              const API_BASE_URL = isLocal
+                ? "http://localhost:5000"
+                : "https://omahtechltd-github-io.onrender.com";
 
               const res = await fetch(`${API_BASE_URL}/training-setup`, {
                 method: "POST",

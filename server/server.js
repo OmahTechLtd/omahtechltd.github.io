@@ -11,18 +11,25 @@ import fs from "fs";
 dotenv.config();
 
 const app = express();
-app.use(
-  cors({
-    origin: [
-      "https://omahtech.co",
-      "https://www.omahtech.co",
-      "http://localhost:3000",
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    "https://omahtech.co",
+    "https://www.omahtech.co",
+    "http://localhost:3000",
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
@@ -77,5 +84,5 @@ app.post("/subscribe", async (req, res) => {
 // ---------------------------
 //  Start the Server
 // ---------------------------
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
