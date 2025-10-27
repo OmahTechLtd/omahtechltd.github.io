@@ -4,6 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import Subscriber from "./models/Subscriber.js";
 import trainingSetupRoutes from "./routes/trainingSetup.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
 
 dotenv.config();
 
@@ -21,6 +24,16 @@ app.use(
   })
 );
 app.use(express.json());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ensure uploads folder exists
+if (!fs.existsSync(path.join(__dirname, "uploads"))) {
+  fs.mkdirSync(path.join(__dirname, "uploads"));
+}
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/training-setup", trainingSetupRoutes); // for training routes
 
 // ---------------------------
