@@ -337,7 +337,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
             try {
               const isLocal = window.location.hostname === "localhost";
               const API_BASE_URL = isLocal
-                ? "http://localhost:5000"
+                ? "http://localhost:5050"
                 : "https://omahtechltd-github-io.onrender.com";
 
               const res = await fetch(`${API_BASE_URL}/training-setup`, {
