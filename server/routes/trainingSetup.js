@@ -1,7 +1,8 @@
 import express from "express";
 import multer from "multer";
 import TrainingSetup from "../models/TrainingSetup.js";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
 
 const router = express.Router();
 
@@ -30,31 +31,24 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
 
     await newTraining.save();
 
-    // Send email notification
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    // Send email notification using Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_RECEIVER,
-      subject: "New Model Training Submission",
-      text: `New training setup received:\n\nModel: ${modelName}\nDataset: ${
-        datasetLink || "File upload"
-      }\nEpochs: ${epochs}\nFormat: ${outputFormat}\n\nFile: ${fileName || "N/A"}`,
-    };
-
-    await transporter.sendMail(mailOptions);
+await resend.emails.send({
+  from: "vera@omahtech.co",
+  to: process.env.EMAIL_RECEIVER,
+  subject: "New Model Training Submission",
+  text: `New training setup received:\n\nModel: ${modelName}\nDataset: ${
+    datasetLink || "File upload"
+  }\nEpochs: ${epochs}\nFormat: ${outputFormat}\n\nFile: ${fileName || "N/A"}`,
+});
 
     res.status(200).json({ message: "Training setup saved and email sent" });
   } catch (error) {
-    console.error("Error saving training setup:", error);
-    res.status(500).json({ message: "Failed to save training setup" });
-  }
+  console.error("❌ Error saving training setup or sending email:");
+  console.error(error.stack || error.message || error);
+  res.status(500).json({ message: "Failed to save training setup", error: error.message });
+}
 });
 
 export default router;
