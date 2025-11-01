@@ -315,6 +315,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [uploading, setUploading] = useState(false);
   const [uploadComplete, setUploadComplete] = useState(false);
   const [problemStatement, setProblemStatement] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   // Handler for file input change
   const handleFileChange = (e) => {
@@ -339,6 +340,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
           className="flex flex-col gap-5"
           onSubmit={async (e) => {
             e.preventDefault();
+            setSubmitting(true);
 
             const formData = new FormData();
             formData.append("modelName", model.title || model.model || "Custom Model");
@@ -364,13 +366,16 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
 
               if (res.ok) {
                 alert("Training setup submitted successfully!");
+                setSubmitting(false);
                 onProceed(); // navigates to billing
               } else {
                 alert("Failed to submit training setup. Please try again.");
+                setSubmitting(false);
               }
             } catch (err) {
               console.error("Error submitting training setup:", err);
               alert("Error submitting training setup.");
+              setSubmitting(false);
             }
           }}
         >
@@ -412,17 +417,23 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
           {/* Brief Summary Section */}
           <div>
             <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="problemStatement">
-              Brief Summary (max 200 words)
+              Brief Summary (required, max 1200 characters ≈ 200 words)
             </label>
             <textarea
               id="problemStatement"
               maxLength={1200}
               rows={4}
-              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-              placeholder="Describe your problem and what you hope to achieve. (Max 200 words)"
+              required
+              className={`w-full px-3 py-2 rounded-lg bg-[#232d3b] border ${
+                problemStatement.trim() === "" ? "border-red-500" : "border-gray-700"
+              } focus:border-blue-500 outline-none text-white`}
+              placeholder="Describe your problem and what you hope to achieve (required)"
               value={problemStatement}
               onChange={e => setProblemStatement(e.target.value)}
             />
+            {problemStatement.trim() === "" && (
+              <p className="text-red-400 text-sm mt-1">Please provide a brief summary before proceeding.</p>
+            )}
             <div className="text-xs text-gray-400 text-right">{problemStatement.length}/1200</div>
           </div>
           <div>
@@ -456,12 +467,43 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
               <option value="Model File">Model File</option>
             </select>
           </div>
+          {/* Submit Button */}
           <button
             type="submit"
-            className="mt-2 bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
-            disabled={uploading}
+            disabled={uploading || submitting}
+            className={`mt-2 px-4 py-2 rounded-lg text-white font-medium transition flex items-center justify-center ${
+              (uploading || submitting)
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-gradient-to-r from-green-500 to-blue-600 hover:from-blue-600 hover:to-green-500 active:scale-95"
+            }`}
           >
-            Complete Setup
+            {submitting ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 mr-2 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+                Submitting...
+              </>
+            ) : (
+              "Complete Setup"
+            )}
           </button>
         </form>
         <button
