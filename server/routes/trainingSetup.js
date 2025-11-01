@@ -14,11 +14,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // POST route to handle training setup submission
+// POST route to handle training setup submission
 router.post("/", upload.single("datasetFile"), async (req, res) => {
-    try {
-      console.log("📥 Incoming training setup:", req.body);
-      console.log("📎 Uploaded file:", req.file);
-    const { modelName, datasetLink, epochs, outputFormat } = req.body;
+  try {
+    console.log("📥 Incoming training setup:", req.body);
+    console.log("📎 Uploaded file:", req.file);
+    const { modelName, datasetLink, epochs, outputFormat, problemStatement } = req.body;
     const fileName = req.file ? req.file.filename : null;
 
     const newTraining = new TrainingSetup({
@@ -27,28 +28,37 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
       fileName,
       epochs,
       outputFormat,
+      problemStatement, // new field
     });
 
     await newTraining.save();
 
     // Send email notification using Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
-await resend.emails.send({
-  from: "vera@omahtech.co",
-  to: process.env.EMAIL_RECEIVER,
-  subject: "New Model Training Submission",
-  text: `New training setup received:\n\nModel: ${modelName}\nDataset: ${
-    datasetLink || "File upload"
-  }\nEpochs: ${epochs}\nFormat: ${outputFormat}\n\nFile: ${fileName || "N/A"}`,
-});
+    await resend.emails.send({
+      from: "vera@omahtech.co",
+      to: process.env.EMAIL_RECEIVER,
+      subject: "New Model Training Submission",
+      text: `New training setup received:
+
+Model: ${modelName}
+Dataset: ${datasetLink || "File upload"}
+File: ${fileName || "N/A"}
+Epochs: ${epochs}
+Output Format: ${outputFormat}
+
+🧠 Problem Statement:
+${problemStatement || "No problem statement provided."}
+`,
+    });
 
     res.status(200).json({ message: "Training setup saved and email sent" });
   } catch (error) {
-  console.error("❌ Error saving training setup or sending email:");
-  console.error(error.stack || error.message || error);
-  res.status(500).json({ message: "Failed to save training setup", error: error.message });
-}
+    console.error("❌ Error saving training setup or sending email:");
+    console.error(error.stack || error.message || error);
+    res.status(500).json({ message: "Failed to save training setup", error: error.message });
+  }
 });
 
 export default router;

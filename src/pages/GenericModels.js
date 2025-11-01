@@ -312,13 +312,29 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [epochs, setEpochs] = useState(10);
   const [outputFormat, setOutputFormat] = useState("CSV");
   const [fileInput, setFileInput] = useState(null);
-  // Optionally, you can add validation, but keeping simple for now
+  const [uploading, setUploading] = useState(false);
+  const [uploadComplete, setUploadComplete] = useState(false);
+  const [problemStatement, setProblemStatement] = useState("");
+
+  // Handler for file input change
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setFileInput(e.target.files[0]);
+      setUploading(true);
+      setUploadComplete(false);
+      setTimeout(() => {
+        setUploading(false);
+        setUploadComplete(true);
+      }, 1500);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
       <div className="bg-[#181e2a] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-md w-full text-white relative">
-<h2 className="text-2xl font-bold mb-4 text-blue-400">
-  Train: {model.title || model.model || "Custom Model"}
-</h2>
+        <h2 className="text-2xl font-bold mb-4 text-blue-400">
+          Train: {model.title || model.model || "Custom Model"}
+        </h2>
         <form
           className="flex flex-col gap-5"
           onSubmit={async (e) => {
@@ -329,6 +345,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
             formData.append("datasetLink", datasetLink);
             formData.append("epochs", epochs);
             formData.append("outputFormat", outputFormat);
+            formData.append("problemStatement", problemStatement);
 
             if (fileInput) {
               formData.append("datasetFile", fileInput);
@@ -359,30 +376,54 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
         >
           <div>
             <label className="block text-sm font-semibold mb-1 text-gray-300">
-    Dataset Source
-  </label>
-  <p className="text-xs text-gray-400 mb-2">
-    Upload a dataset file (CSV/XLSX) or provide an online link.
-  </p>
+              Dataset Source{" "}
+              <span className="inline-block align-middle ml-1">
+                {uploading ? (
+                  <span title="Uploading..." className="animate-pulse">⏳</span>
+                ) : uploadComplete ? (
+                  <span title="Upload complete">✅</span>
+                ) : null}
+              </span>
+            </label>
+            <p className="text-xs text-gray-400 mb-2">
+              Upload a dataset file (CSV/XLSX) or provide an online link.
+            </p>
 
-  {/* File Upload Option */}
-  <input
-    type="file"
-    accept=".csv, .xlsx"
-    className="w-full px-3 py-2 mb-3 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-    onChange={(e) => setFileInput(e.target.files[0])}
-  />
-<p className="text-xs text-gray-400 mb-2 text-center">
-    OR
-  </p>
-  {/* Link Option */}
-  <input
-    type="url"
-    placeholder="https://your-dataset-link.com"
-    className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-    value={datasetLink}
-    onChange={(e) => setDatasetLink(e.target.value)}
-  />
+            {/* File Upload Option */}
+            <input
+              type="file"
+              accept=".csv, .xlsx"
+              className="w-full px-3 py-2 mb-3 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+              onChange={handleFileChange}
+              disabled={uploading}
+            />
+            <p className="text-xs text-gray-400 mb-2 text-center">
+              OR
+            </p>
+            {/* Link Option */}
+            <input
+              type="url"
+              placeholder="https://your-dataset-link.com"
+              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+              value={datasetLink}
+              onChange={(e) => setDatasetLink(e.target.value)}
+            />
+          </div>
+          {/* Brief Summary Section */}
+          <div>
+            <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="problemStatement">
+              Brief Summary (max 200 words)
+            </label>
+            <textarea
+              id="problemStatement"
+              maxLength={1200}
+              rows={4}
+              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
+              placeholder="Describe your problem and what you hope to achieve. (Max 200 words)"
+              value={problemStatement}
+              onChange={e => setProblemStatement(e.target.value)}
+            />
+            <div className="text-xs text-gray-400 text-right">{problemStatement.length}/1200</div>
           </div>
           <div>
             <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="epochs">
@@ -418,8 +459,9 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
           <button
             type="submit"
             className="mt-2 bg-gradient-to-r from-green-500 to-blue-600 px-4 py-2 rounded-lg text-white font-medium hover:opacity-90 transition"
+            disabled={uploading}
           >
-          Complete Setup
+            Complete Setup
           </button>
         </form>
         <button

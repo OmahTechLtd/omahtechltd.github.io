@@ -6,6 +6,7 @@ const trainingSetupSchema = new mongoose.Schema({
   fileName: String,
   epochs: Number,
   outputFormat: String,
+  problemStatement: { type: String, maxlength: 200 }, // 🆕 Add this line
   createdAt: { type: Date, default: Date.now },
 });
 
