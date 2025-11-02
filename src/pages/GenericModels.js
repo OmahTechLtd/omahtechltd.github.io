@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import modelDetails from "../data/modelDetails.js";
 import { useNavigate } from "react-router-dom";
+import { useNavigate as useNavigateModal } from "react-router-dom";
 
 const GenericModels = () => {
   const navigate = useNavigate();
@@ -316,6 +317,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [uploadComplete, setUploadComplete] = useState(false);
   const [problemStatement, setProblemStatement] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigateModal();
 
   // Handler for file input change
   const handleFileChange = (e) => {
@@ -367,7 +369,17 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
               if (res.ok) {
                 alert("Training setup submitted successfully!");
                 setSubmitting(false);
-                onProceed(); // navigates to billing
+                navigate("/billing", {
+                  state: {
+                    modelName: model.title || model.model || "Custom Model",
+                    datasetSize: datasetLink
+                      ? "Link"
+                      : (fileInput ? `${(fileInput.size / 1024).toFixed(1)} KB` : "Unknown"),
+                    outputFormat,
+                    epochs,
+                    problemStatement
+                  }
+                });
               } else {
                 alert("Failed to submit training setup. Please try again.");
                 setSubmitting(false);
