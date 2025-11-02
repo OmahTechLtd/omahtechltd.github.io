@@ -309,7 +309,6 @@ const GenericModels = () => {
 export default GenericModels;
 // Model Setup Modal Component for training configuration 
 const ModelSetupModal = ({ model, onClose, onProceed }) => {
-  const [datasetLink, setDatasetLink] = useState("");
   const [epochs, setEpochs] = useState(10);
   const [outputFormat, setOutputFormat] = useState("CSV");
   const [fileInput, setFileInput] = useState(null);
@@ -317,12 +316,21 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [uploadComplete, setUploadComplete] = useState(false);
   const [problemStatement, setProblemStatement] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [datasetCategory, setDatasetCategory] = useState(""); // Small, Medium, Large
   const navigate = useNavigateModal();
 
   // Handler for file input change
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setFileInput(e.target.files[0]);
+      const file = e.target.files[0];
+      setFileInput(file);
+      // Determine dataset size in MB and set category
+      const sizeMB = file.size / (1024 * 1024);
+      let category = "";
+      if (sizeMB <= 5) category = "Small";
+      else if (sizeMB > 5 && sizeMB <= 50) category = "Medium";
+      else category = "Large";
+      setDatasetCategory(category);
       setUploading(true);
       setUploadComplete(false);
       setTimeout(() => {
@@ -346,14 +354,13 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
 
             const formData = new FormData();
             formData.append("modelName", model.title || model.model || "Custom Model");
-            formData.append("datasetLink", datasetLink);
             formData.append("epochs", epochs);
             formData.append("outputFormat", outputFormat);
             formData.append("problemStatement", problemStatement);
-
             if (fileInput) {
               formData.append("datasetFile", fileInput);
             }
+            formData.append("datasetCategory", datasetCategory);
 
             try {
               const isLocal = window.location.hostname === "localhost";
@@ -372,9 +379,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
                 navigate("/billing", {
                   state: {
                     modelName: model.title || model.model || "Custom Model",
-                    datasetSize: datasetLink
-                      ? "Link"
-                      : (fileInput ? `${(fileInput.size / 1024).toFixed(1)} KB` : "Unknown"),
+                    datasetCategory,
                     outputFormat,
                     epochs,
                     problemStatement
@@ -403,7 +408,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
               </span>
             </label>
             <p className="text-xs text-gray-400 mb-2">
-              Upload a dataset file (CSV/XLSX) or provide an online link.
+              Upload a dataset file (CSV/XLSX). Dataset size will be categorized automatically.
             </p>
 
             {/* File Upload Option */}
@@ -414,17 +419,13 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
               onChange={handleFileChange}
               disabled={uploading}
             />
-            <p className="text-xs text-gray-400 mb-2 text-center">
-              OR
-            </p>
-            {/* Link Option */}
-            <input
-              type="url"
-              placeholder="https://your-dataset-link.com"
-              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-              value={datasetLink}
-              onChange={(e) => setDatasetLink(e.target.value)}
-            />
+            {fileInput && (
+              <div className="text-xs text-gray-400 mt-1">
+                File: <span className="text-green-300">{fileInput.name}</span>{" "}
+                ({(fileInput.size / (1024 * 1024)).toFixed(2)} MB) — Category:{" "}
+                <span className="text-blue-300">{datasetCategory || "Unknown"}</span>
+              </div>
+            )}
           </div>
           {/* Brief Summary Section */}
           <div>
