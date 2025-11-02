@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Billing = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const baseCosts = {
     small: 70000,
@@ -18,6 +19,12 @@ const Billing = () => {
   });
   const [termsAccepted, setTermsAccepted] = useState(false);
 
+  useEffect(() => {
+    if (location.state?.datasetSize) {
+      setSelectedSize(location.state.datasetSize);
+    }
+  }, [location.state]);
+
   const addonCosts = {
     dashboard: 80000,
     optimization: 50000,
@@ -27,10 +34,6 @@ const Billing = () => {
   const handleAddonChange = (e) => {
     const { name, checked } = e.target;
     setAddons((prev) => ({ ...prev, [name]: checked }));
-  };
-
-  const handleSizeChange = (e) => {
-    setSelectedSize(e.target.value);
   };
 
   const totalCost =
@@ -62,10 +65,10 @@ const Billing = () => {
               name="size"
               value="small"
               checked={selectedSize === "small"}
-              onChange={handleSizeChange}
+              disabled
               className="accent-green-400"
             />
-            <span>Small - ₦70,000</span>
+            <span className={selectedSize === "small" ? "text-green-400" : "text-gray-400"}>Small - ₦70,000</span>
           </label>
           <label className="flex items-center space-x-3 cursor-pointer">
             <input
@@ -73,10 +76,10 @@ const Billing = () => {
               name="size"
               value="medium"
               checked={selectedSize === "medium"}
-              onChange={handleSizeChange}
+              disabled
               className="accent-green-400"
             />
-            <span>Medium - ₦130,000</span>
+            <span className={selectedSize === "medium" ? "text-green-400" : "text-gray-400"}>Medium - ₦130,000</span>
           </label>
           <label className="flex items-center space-x-3 cursor-pointer">
             <input
@@ -84,10 +87,10 @@ const Billing = () => {
               name="size"
               value="large"
               checked={selectedSize === "large"}
-              onChange={handleSizeChange}
+              disabled
               className="accent-green-400"
             />
-            <span>Large - ₦250,000</span>
+            <span className={selectedSize === "large" ? "text-green-400" : "text-gray-400"}>Large - ₦250,000</span>
           </label>
         </div>
 

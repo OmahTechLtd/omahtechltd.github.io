@@ -374,21 +374,25 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
               });
 
               if (res.ok) {
+                const data = await res.json();
+                const datasetSize = data.datasetSize || datasetCategory;
+
                 alert("Training setup submitted successfully!");
                 setSubmitting(false);
-                navigate("/billing", {
-                  state: {
-                    modelName: model.title || model.model || "Custom Model",
-                    datasetCategory,
-                    outputFormat,
-                    epochs,
-                    problemStatement
-                  }
-                });
-              } else {
-                alert("Failed to submit training setup. Please try again.");
-                setSubmitting(false);
+
+              navigate("/billing", {
+                state: {
+                  modelName: model.title || model.model || "Custom Model",
+                  datasetSize,
+                  outputFormat,
+                  epochs,
+                  problemStatement
               }
+  });
+} else {
+  alert("Failed to submit training setup. Please try again.");
+  setSubmitting(false);
+}
             } catch (err) {
               console.error("Error submitting training setup:", err);
               alert("Error submitting training setup.");
