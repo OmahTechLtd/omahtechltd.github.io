@@ -22,6 +22,11 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
     const { modelName, datasetLink, epochs, outputFormat, problemStatement } = req.body;
     const fileName = req.file ? req.file.filename : null;
 
+    const fileSizeMB = req.file ? req.file.size / (1024 * 1024) : 0;
+    let datasetSizeLabel = "small";
+    if (fileSizeMB > 5 && fileSizeMB <= 50) datasetSizeLabel = "medium";
+    else if (fileSizeMB > 50) datasetSizeLabel = "large";
+
     const newTraining = new TrainingSetup({
       modelName,
       datasetLink,
@@ -29,6 +34,7 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
       epochs,
       outputFormat,
       problemStatement, // new field
+      datasetSize: datasetSizeLabel,
     });
 
     await newTraining.save();
@@ -53,7 +59,7 @@ ${problemStatement || "No problem statement provided."}
 `,
     });
 
-    res.status(200).json({ message: "Training setup saved and email sent" });
+    res.status(200).json({ message: "Training setup saved and email sent", datasetSize: datasetSizeLabel });
   } catch (error) {
     console.error("❌ Error saving training setup or sending email:");
     console.error(error.stack || error.message || error);
