@@ -22,6 +22,8 @@ import Billing from "./pages/Billing";
 import NotFound from "./pages/NotFound";
 import AiConsulting from "./pages/services/AiConsulting";
 import Training from "./pages/services/Training";
+import PaymentSuccess from "./pages/PaymentSuccess";
+
 
 
 function App() {
@@ -50,6 +52,7 @@ function App() {
           <Route path="/models/generic" element={<GenericModels />} />
           <Route path="/models/custom" element={<CustomModels />} />
           <Route path="/billing" element={<Billing />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/services/ai-consulting" element={<AiConsulting />} />
           <Route path="/services/training" element={<Training />} />
 
