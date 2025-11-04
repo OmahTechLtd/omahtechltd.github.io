@@ -52,18 +52,29 @@ const Billing = () => {
     console.log("Validating amount before initializing Paystack:", totalCost > 0);
 
     const handler = window.PaystackPop.setup({
-      key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,      email:
-        (location.state && location.state.email) || "vera@omahtech.co",
-      amount: totalCost * 100, // convert to kobo
-      currency: "NGN",
-      callback: (response) => {
-        // Payment successful
-        navigate("/payment-success", {
-          state: { amount: totalCost, addons, selectedSize },
-        });
+  key: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
+  email: (location.state && location.state.email) || "vera@omahtech.co",
+  amount: totalCost * 100,
+  currency: "NGN",
+  metadata: {
+    trainingId: location.state?.trainingId || "unknown",
+    datasetSize: selectedSize,
+    addons,
+    totalCost,
+  },
+  callback: (response) => {
+    navigate("/payment-success", {
+      state: {
+        amount: totalCost,
+        addons,
+        selectedSize,
+        reference: response.reference,
+        trainingId: location.state?.trainingId || "unknown",
       },
-      onClose: () => alert("Payment cancelled"),
     });
+  },
+  onClose: () => alert("Payment cancelled"),
+});
 
     handler.openIframe();
   };

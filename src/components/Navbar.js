@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import logoPart1 from '../assets/logo.png';
 import logoPart2 from '../assets/logoname.png';
 import { Link } from "react-router-dom"; 
@@ -7,6 +7,42 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const menuRef = useRef(null);
+  const searchRef = useRef(null);
+
+  const keywordMap = {
+    about: { label: "About", link: "/#about" },
+    services: { label: "Services", link: "/#services" },
+    consultation: { label: "Consultation", link: "/ai-consulting" },
+    models: { label: "Models", link: "/models" },
+    training: { label: "Training", link: "/training" },
+    billing: { label: "Billing", link: "/billing" },
+    projects: { label: "Projects", link: "/#projects" },
+    contact: { label: "Contact", link: "/#contact" }
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(event.target) &&
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
+        setMenuOpen(false);
+        setSearchOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const filteredItems = Object.keys(keywordMap)
+    .filter(key => key.toLowerCase().includes(searchQuery.toLowerCase()))
+    .map(key => keywordMap[key]);
 
   return (
     <nav className="bg-black/90 backdrop-blur-md shadow-md fixed w-full top-0 left-0 z-50 h-12 px-4 flex items-center justify-between">
@@ -22,7 +58,7 @@ export default function Navbar() {
       {/* Desktop Right Section */}
       <div className="hidden md:flex items-center space-x-4">
         {/* Search Icon */}
-        <div className="relative">
+        <div className="relative" ref={searchRef}>
           <button 
             onClick={() => setSearchOpen(!searchOpen)} 
             className="text-white hover:text-green-400 transition"
@@ -39,13 +75,32 @@ export default function Navbar() {
                 type="text" 
                 placeholder="Search docs..." 
                 className="w-full bg-gray-800 text-white px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
+              <ul className="mt-2 max-h-40 overflow-auto">
+                {filteredItems.length > 0 ? (
+                  filteredItems.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        to={item.link}
+                        className="block px-2 py-1 hover:bg-gray-800 rounded cursor-pointer"
+                        onClick={() => setSearchOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-gray-400 px-2 py-1">No results found</li>
+                )}
+              </ul>
             </div>
           )}
         </div>
 
         {/* Hamburger Icon for Dropdown */}
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
           <button 
             onClick={() => setMenuOpen(!menuOpen)} 
             className="text-white hover:text-green-400 transition flex items-center"

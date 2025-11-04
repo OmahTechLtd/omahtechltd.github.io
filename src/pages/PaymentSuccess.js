@@ -45,15 +45,9 @@ const PaymentSuccess = () => {
         <div className="flex justify-center gap-6">
           <button
             onClick={() => navigate("/")}
-            className="bg-gradient-to-r from-green-500 to-blue-600 px-6 py-3 rounded-lg text-white font-semibold hover:opacity-90 transition"
-          >
-            Return Home
-          </button>
-          <button
-            onClick={() => console.log("View Dashboard clicked")}
             className="bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-lg text-white font-semibold transition"
           >
-            View Dashboard
+            Return Home
           </button>
         </div>
       </div>

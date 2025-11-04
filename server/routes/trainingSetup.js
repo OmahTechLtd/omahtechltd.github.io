@@ -19,7 +19,7 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
   try {
     console.log("📥 Incoming training setup:", req.body);
     console.log("📎 Uploaded file:", req.file);
-    const { modelName, datasetLink, epochs, outputFormat, problemStatement } = req.body;
+    const { modelName, epochs, outputFormat, problemStatement } = req.body; // Removed datasetLink from destructuring
     const fileName = req.file ? req.file.filename : null;
 
     const fileSizeMB = req.file ? req.file.size / (1024 * 1024) : 0;
@@ -27,14 +27,17 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
     if (fileSizeMB > 5 && fileSizeMB <= 50) datasetSizeLabel = "medium";
     else if (fileSizeMB > 50) datasetSizeLabel = "large";
 
+    // Generate unique trainingId
+    const trainingId = `TSET-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
     const newTraining = new TrainingSetup({
       modelName,
-      datasetLink,
       fileName,
       epochs,
       outputFormat,
       problemStatement, // new field
       datasetSize: datasetSizeLabel,
+      trainingId, // Added trainingId to saved data
     });
 
     await newTraining.save();
@@ -46,10 +49,9 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
       from: "vera@omahtech.co",
       to: process.env.EMAIL_RECEIVER,
       subject: "New Model Training Submission",
-      text: `New training setup received:
+      text: `Training ID: ${trainingId}
 
 Model: ${modelName}
-Dataset: ${datasetLink || "File upload"}
 File: ${fileName || "N/A"}
 Epochs: ${epochs}
 Output Format: ${outputFormat}
@@ -59,9 +61,9 @@ ${problemStatement || "No problem statement provided."}
 `,
     });
 
-    res.status(200).json({ message: "Training setup saved and email sent", datasetSize: datasetSizeLabel });
+    res.status(200).json({ message: "Training setup saved and email sent", datasetSize: datasetSizeLabel, trainingId }); // Added trainingId to response
   } catch (error) {
-    console.error("❌ Error saving training setup or sending email:");
+    console.error(" Error saving training setup or sending email:");
     console.error(error.stack || error.message || error);
     res.status(500).json({ message: "Failed to save training setup", error: error.message });
   }
