@@ -46,7 +46,7 @@ router.post("/", upload.single("datasetFile"), async (req, res) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: "vera@omahtech.co",
+      from: "veraezeagu25@gmail.com",
       to: process.env.EMAIL_RECEIVER,
       subject: "New Model Training Submission",
       text: `Training ID: ${trainingId}
@@ -56,7 +56,7 @@ File: ${fileName || "N/A"}
 Epochs: ${epochs}
 Output Format: ${outputFormat}
 
-🧠 Problem Statement:
+Problem Statement:
 ${problemStatement || "No problem statement provided."}
 `,
     });

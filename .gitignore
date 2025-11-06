@@ -9,6 +9,7 @@
 
 # datasets
 /uploads
+/csv
 
 # production
 /build
