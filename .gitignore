@@ -10,9 +10,13 @@
 # datasets
 /uploads
 /csv
+.csv
 
 # production
 /build
+
+#models
+.pkl
 
 # misc
 .DS_Store
