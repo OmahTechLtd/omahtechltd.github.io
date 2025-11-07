@@ -10,3 +10,6 @@ This unsupervised learning model uses **Isolation Forest** to detect potential f
 
 ### Evaluation Summary
 Classification report generated
+
+Model deployed on Hugging Face:
+🔗 https://huggingface.co/spaces/Veraeze/credit_card_anomaly_demo

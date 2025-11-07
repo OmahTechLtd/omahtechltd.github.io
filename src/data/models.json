@@ -1,0 +1,18 @@
+[
+  {
+    "id": "model-1",
+    "title": "Employee Attrition Predictor",
+    "type": "Supervised Learning",
+    "description": "Predicts whether an employee is likely to leave a company based on HR data.",
+    "link": "https://huggingface.co/spaces/Veraeze/employee-attrition-demo",
+    "date": "2025-11-07"
+  },
+  {
+    "id": "model-2",
+    "title": "Credit Card Fraud Detection",
+    "type": "Unsupervised Learning",
+    "description": "Detects suspicious transactions in credit card datasets using Random Forest + SMOTE.",
+    "link": "https://huggingface.co/spaces/Veraeze/credit_card_anomaly_demo",
+    "date": "2025-11-07"
+  }
+]

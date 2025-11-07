@@ -29,3 +29,19 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore model and dataset files
+*.pkl
+*.csv
+*.xlsx
+*.json
+*.zip
+*.h5
+*.pt
+*.npy
+*.npz
+*.sav
+*.joblib
+
+# Ignore notebooks if they’re big
+*.ipynb_checkpoints/

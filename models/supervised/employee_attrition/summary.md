@@ -19,3 +19,9 @@
 - `metrics.json` — Performance metrics  
 - `eda_*.png` — Visualization charts  
 - `summary.md` — Model summary and insights
+
+Model deployed on Hugging Face:
+🔗 https://huggingface.co/spaces/Veraeze/employee-attrition-demo
+
+Dataset: IBM HR Analytics Employee Attrition Dataset
+Model Type: Supervised (Random Forest)
