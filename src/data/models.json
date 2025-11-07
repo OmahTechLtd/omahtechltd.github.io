@@ -1,18 +1,47 @@
 [
   {
-    "id": "model-1",
-    "title": "Employee Attrition Predictor",
-    "type": "Supervised Learning",
-    "description": "Predicts whether an employee is likely to leave a company based on HR data.",
+    "id": 1,
+    "title": "Employee Attrition Prediction",
+    "type": "Supervised (Random Forest)",
+    "description": "Predicts whether an employee will leave using HR analytics data (IBM HR Analytics Employee Attrition Dataset). Key factors: job satisfaction, monthly income, age, department, and work-life balance.",
+    "tags": ["Supervised", "Classification", "HR Analytics"],
     "link": "https://huggingface.co/spaces/Veraeze/employee-attrition-demo",
-    "date": "2025-11-07"
+    "metrics": {
+      "accuracy": 0.83,
+      "precision": 0.38,
+      "recall": 0.11,
+      "f1_score": 0.17
+    },
+    "notes": "Employees with low job satisfaction or low monthly income are more likely to leave. Younger employees show higher attrition.",
+    "files": [
+      "model.pkl",
+      "metrics.json",
+      "eda_*.png",
+      "summary.md"
+    ]
   },
   {
-    "id": "model-2",
-    "title": "Credit Card Fraud Detection",
-    "type": "Unsupervised Learning",
-    "description": "Detects suspicious transactions in credit card datasets using Random Forest + SMOTE.",
+    "id": 2,
+    "title": "Credit Card Anomaly Detection",
+    "type": "Unsupervised (Isolation Forest)",
+    "description": "Detects potential fraudulent credit card transactions using Isolation Forest. Dataset contains anonymized features (V1..V28), Time, Amount, and Class.",
+    "tags": ["Unsupervised", "Anomaly Detection", "Finance"],
     "link": "https://huggingface.co/spaces/Veraeze/credit_card_anomaly_demo",
-    "date": "2025-11-07"
+    "dataset": {
+      "shape": [283726, 31],
+      "columns": ["Time","V1","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","V12","V13","V14","V15","V16","V17","V18","V19","V20","V21","V22","V23","V24","V25","V26","V27","V28","Amount","Class"]
+    },
+    "metrics": {
+      "contamination": "1%",
+      "roc_auc": 0.9829340395415341,
+      "confusion_matrix": [
+        [56807, 57],
+        [13, 85]
+      ],
+      "precision_class_1": 0.5985915492957746,
+      "recall_class_1": 0.8673469387755102,
+      "f1_class_1": 0.7083333333333334
+    },
+    "notes": "Anomaly detector tuned for high recall on fraudulent cases while keeping false positives low."
   }
 ]
