@@ -10,6 +10,12 @@ function Footer() {
         <a href="mailto:info@omahtech.co" className="hover:underline">info@omahtech.co</a>
       </div>
 
+      {/* Company Address and Phone */}
+      <div className="text-center mb-4">
+        <p>SUITE C97/420, CITISCAPE SHARIFF MALL, AMINU KANO CRESCENT WUSE 2, ABUJA, FCT, NIGERIA, Abuja, Federal Capital Territory</p>
+        <p>Phone: +234 702 567 4599</p>
+      </div>
+
       {/* Social Icons */}
       <div className="flex flex-wrap justify-center gap-6 mb-4">
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white text-2xl">
