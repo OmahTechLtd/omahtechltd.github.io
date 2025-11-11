@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -23,6 +23,8 @@ import NotFound from "./pages/NotFound";
 import AiConsulting from "./pages/services/AiConsulting";
 import Training from "./pages/services/Training";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import ModelDetail from "./pages/ModelDetail";
+
 
 
 
@@ -56,7 +58,7 @@ function App() {
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/services/ai-consulting" element={<AiConsulting />} />
           <Route path="/services/training" element={<Training />} />
-
+          <Route path="/models/:id" element={<ModelDetail />} />
           {/* Project demo pages */}
           <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />
           <Route path="/projects/real-estate" element={<RealEstateProject />} />
