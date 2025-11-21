@@ -24,13 +24,19 @@ const Projects = () => {
     arrows: false,
     pauseOnHover: false,
     responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 1,
+    },
+  },
+  {
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 1,
+    },
+  },
+],
   };
 
   return (
