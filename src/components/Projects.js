@@ -17,7 +17,7 @@ const Projects = () => {
     dots: true,
     infinite: true,
     speed: 800,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -25,34 +25,18 @@ const Projects = () => {
     pauseOnHover: false,
     responsive: [
   {
+    breakpoint: 2000, // desktops
+    settings: { slidesToShow: 2 }
+  },
+  {
     breakpoint: 1024,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    },
+    settings: { slidesToShow: 1 }
   },
   {
     breakpoint: 768,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    },
-  },
-  {
-    breakpoint: 600,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    },
-  },
-  {
-    breakpoint: 480,
-    settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    },
-  },
-],
+    settings: { slidesToShow: 1 }
+  }
+]
   };
 
   return (
