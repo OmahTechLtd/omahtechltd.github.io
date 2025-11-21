@@ -180,7 +180,7 @@ const GenericModels = () => {
   }}
   className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
 >
-  Train Model
+  Request Consultation
 </button>
       </div>
 {/* Phase 2 — Prebuilt Model Cards */}
@@ -225,8 +225,8 @@ const GenericModels = () => {
             setShowModal("setup");
           }}
           className="mt-6 bg-gradient-to-r from-green-500 to-[#1e293b] hover:opacity-90 px-6 py-3 rounded-lg font-semibold shadow-lg"
->
-          Train This Model
+        >
+          Request Consultation
         </button>
       </div>
     ))}
@@ -298,7 +298,7 @@ const GenericModels = () => {
           onClose={() => setShowModal(false)}
           onProceed={() => {
             setShowModal(false);
-            navigate("/billing");
+            alert("Your request has been submitted. We will reach out to book a consultation.");
           }}
         />
       )}
@@ -307,10 +307,8 @@ const GenericModels = () => {
 };
 
 export default GenericModels;
-// Model Setup Modal Component for training configuration 
+// Model Setup Modal Component for consultation request
 const ModelSetupModal = ({ model, onClose, onProceed }) => {
-  const [epochs, setEpochs] = useState(10);
-  const [outputFormat, setOutputFormat] = useState("CSV");
   const [fileInput, setFileInput] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadComplete, setUploadComplete] = useState(false);
@@ -344,62 +342,18 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
       <div className="bg-[#181e2a] border border-blue-700 rounded-2xl shadow-2xl p-8 max-w-md w-full text-white relative">
         <h2 className="text-2xl font-bold mb-4 text-blue-400">
-          Train: {model.title || model.model || "Custom Model"}
+          Consultation Request: {model.title || model.model || "Custom Model"}
         </h2>
         <form
           className="flex flex-col gap-5"
-          onSubmit={async (e) => {
+          onSubmit={(e) => {
             e.preventDefault();
             setSubmitting(true);
-
-            const formData = new FormData();
-            formData.append("modelName", model.title || model.model || "Custom Model");
-            formData.append("epochs", epochs);
-            formData.append("outputFormat", outputFormat);
-            formData.append("problemStatement", problemStatement);
-            if (fileInput) {
-              formData.append("datasetFile", fileInput);
-            }
-            formData.append("datasetCategory", datasetCategory);
-
-            try {
-              const isLocal = window.location.hostname === "localhost";
-              const API_BASE_URL = isLocal
-                ? "http://localhost:5050"
-                : "https://omahtechltd-github-io.onrender.com";
-
-              const res = await fetch(`${API_BASE_URL}/training-setup`, {
-                method: "POST",
-                body: formData,
-              });
-
-              if (res.ok) {
-                const data = await res.json();
-                const datasetSize = data.datasetSize || datasetCategory;
-                const trainingId = data.trainingId; // NEW: capture ID from backend
-
-                alert("Training setup submitted successfully!");
-                setSubmitting(false);
-
-                navigate("/billing", {
-                  state: {
-                    modelName: model.title || model.model || "Custom Model",
-                    datasetSize,
-                    outputFormat,
-                    epochs,
-                    problemStatement,
-                    trainingId, // pass ID to billing page
-                  }
-                });
-              } else {
-                alert("Failed to submit training setup. Please try again.");
-                setSubmitting(false);
-              }
-            } catch (err) {
-              console.error("Error submitting training setup:", err);
-              alert("Error submitting training setup.");
+            setTimeout(() => {
               setSubmitting(false);
-            }
+              alert("Your consultation request has been received. We will contact you shortly.");
+              onProceed();
+            }, 1200);
           }}
         >
           <div>
@@ -414,7 +368,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
               </span>
             </label>
             <p className="text-xs text-gray-400 mb-2">
-              Upload a dataset file (CSV/XLSX). Dataset size will be categorized automatically.
+              Upload a dataset file if you want us to review it during consultation.
             </p>
 
             {/* File Upload Option */}
@@ -455,37 +409,6 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
             )}
             <div className="text-xs text-gray-400 text-right">{problemStatement.length}/1200</div>
           </div>
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="epochs">
-              Number of Epochs
-            </label>
-            <input
-              id="epochs"
-              type="number"
-              min={1}
-              max={1000}
-              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-              value={epochs}
-              onChange={e => setEpochs(Number(e.target.value))}
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-300" htmlFor="outputFormat">
-              Output Format
-            </label>
-            <select
-              id="outputFormat"
-              value={outputFormat}
-              onChange={e => setOutputFormat(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[#232d3b] border border-gray-700 focus:border-blue-500 outline-none text-white"
-              required
-            >
-              <option value="CSV">CSV</option>
-              <option value="JSON">JSON</option>
-              <option value="Model File">Model File</option>
-            </select>
-          </div>
           {/* Submit Button */}
           <button
             type="submit"
@@ -521,7 +444,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
                 Submitting...
               </>
             ) : (
-              "Complete Setup"
+              "Submit Consultation Request"
             )}
           </button>
         </form>
