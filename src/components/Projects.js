@@ -42,7 +42,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-16 px-4">
       <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-        Daily Machine Learning Models
+        Featured Machine Learning Models
       </h2>
       <p className="text-center text-gray-300 mb-8">
         Explore our featured AI models, updated regularly to inspire your next project.

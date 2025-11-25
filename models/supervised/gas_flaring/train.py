@@ -25,6 +25,7 @@ DATA_PATH = BASE_DIR / "Annual Gas Production.csv"
 MODEL_PATH = BASE_DIR / "model.pkl"
 METRICS_PATH = BASE_DIR / "metrics.json"
 SUMMARY_PATH = BASE_DIR / "summary.md"
+SCALER_PATH = BASE_DIR / "scaler.pkl"
 
 # =============== LOAD DATA ===============
 df = pd.read_csv(DATA_PATH)
@@ -148,6 +149,7 @@ plt.savefig(BASE_DIR / "eda_predicted_vs_actual.png")
 
 # =============== SAVE MODEL AND METRICS ===============
 joblib.dump(model, MODEL_PATH)
+joblib.dump(scaler, SCALER_PATH)
 
 metrics = {
     "r2_score": round(r2, 3),

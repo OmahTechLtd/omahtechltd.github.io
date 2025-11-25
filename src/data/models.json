@@ -51,5 +51,40 @@
       { "src": "/images/unsupervised/credit_card_anomaly/eda_confusion_matrix.png", "caption": "Confusion Matrix" }
     ],
     "huggingface_link": "https://huggingface.co/spaces/Veraeze/credit_card_anomaly_demo"
-  }
+  },
+  {
+  "id": "gas_flaring_prediction",
+  "title": "Gas Flaring Prediction Model",
+  "description": "Predict the total volume of gas flared (MMSCF) in Nigeria using historical gas production and utilization data.",
+  "summary": "This project predicts the amount of gas flared based on multi-year Nigerian gas production data. By analyzing production, export sales, domestic usage, and seasonal trends, the model helps policymakers and energy companies identify key drivers of gas flaring and optimize strategies to minimize environmental impact.",
+  "algorithm": "Random Forest Regressor",
+  "dataset": "Annual Gas Production Data (2020–2025) from Nigeria",
+  "features": [
+    "total_gas_production_mmscf",
+    "export_sales_mmscf",
+    "domestic_sales_mmscf",
+    "field_use_mmscf",
+    "months"
+  ],
+  "tools": ["Python", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn", "Joblib"],
+  "findings": [
+    "Gas flaring is strongly correlated with total gas production and export sales.",
+    "Domestic consumption and field utilization significantly reduce total gas flaring.",
+    "Seasonal variations exist, with higher flaring observed in the early months of the year.",
+    "Feature importance analysis highlights production volume and export sales as the most critical predictors."
+  ],
+  "metrics": {
+    "r2_score": 0.501,
+    "mae": 1470.535,
+    "rmse": 1983.821
+  },
+  "eda_charts": [
+    { "src": "/images/supervised/gas_flaring/eda_flaring_trend.png", "caption": "Monthly Gas Flaring Trends by Year" },
+    { "src": "/images/supervised/gas_flaring/eda_production_vs_flaring.png", "caption": "Total Gas Production vs Gas Flaring" },
+    { "src": "/images/supervised/gas_flaring/eda_correlation_heatmap.png", "caption": "Correlation Heatmap of Gas Variables" },
+    { "src": "/images/supervised/gas_flaring/eda_feature_importance.png", "caption": "Feature Importance for Gas Flaring Prediction" },
+    { "src": "/images/supervised/gas_flaring/eda_predicted_vs_actual.png", "caption": "Actual vs Predicted Gas Flaring" }
+  ],
+  "huggingface_link": "https://huggingface.co/spaces/Veraeze/gas_flaring_prediction"
+}
 ]

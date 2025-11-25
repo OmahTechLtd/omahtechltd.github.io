@@ -29,6 +29,13 @@ export default function ModelsShowcase() {
             metric: "ROC-AUC: 0.98",
             demoUrl: "https://huggingface.co/spaces/Veraeze/credit_card_anomaly_demo",
           },
+          {
+            title: "Gas Flaring Prediction",
+            description: "Predict total gas flared (MMSCF) using historical Nigerian gas production data.",
+            type: "Supervised",
+            metric: "R² Score: 0.501",
+            demoUrl: "https://huggingface.co/spaces/Veraeze/gas_flaring_prediction",
+        },
         ]);
       });
   }, []);
