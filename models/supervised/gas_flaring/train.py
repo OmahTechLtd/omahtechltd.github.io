@@ -2,8 +2,7 @@
 GAS FLARING PREDICTION MODEL
 Goal: Predict Total Gas Flared (MMSCF) using other production and utilization variables.
 
-This script follows the same structure as the Employee Attrition model,
-but applies regression instead of classification.
+
 """
 
 # =============== IMPORT LIBRARIES ===============
