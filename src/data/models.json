@@ -86,5 +86,37 @@
     { "src": "/images/supervised/gas_flaring/eda_predicted_vs_actual.png", "caption": "Actual vs Predicted Gas Flaring" }
   ],
   "huggingface_link": "https://huggingface.co/spaces/Veraeze/gas_flaring_prediction"
+},
+{
+    "id": "amine_system_anomaly",
+    "title": "Amine System Anomaly Detection Model",
+    "description": "Detect unusual or degrading behaviour in an industrial amine regeneration system.",
+    "summary": "This project uses Isolation Forest to detect anomalies in amine system operating behaviour. It identifies unusual operating points that may indicate foaming, fouling, flooding, or solvent degradation.",
+    "algorithm": "Isolation Forest",
+    "dataset": "Industrial Amine System Operating Data (49,915 samples)",
+    "features": [
+      "total_heat_duty_kw",
+      "lean_amine_flow_kg_hr",
+      "rich_amine_loading",
+      "stripper_pressure_kpa",
+      "dea7_molar_flow"
+    ],
+    "tools": ["Python", "Pandas", "Scikit-learn", "Seaborn", "Matplotlib", "Joblib"],
+    "findings": [
+      "Most operating points fall within normal behaviour, with approximately 2.87 percent flagged as anomalies.",
+      "Anomalous points often align with extreme values in heat duty or flow rate, suggesting potential operational issues.",
+      "The model highlights clusters of unusual events that can help engineers identify degradation or fouling early."
+    ],
+    "metrics": {
+      "total_samples": 49915,
+      "normal_points": 48482,
+      "anomaly_points": 1433,
+      "anomaly_percentage": 0.0287
+    },
+    "eda_charts": [
+      { "src": "/images/unsupervised/amine_system/eda_anomaly_distribution.png", "caption": "Normal vs Anomalous Points" },
+      { "src": "/images/unsupervised/amine_system/eda_correlation_heatmap.png", "caption": "Correlation Heatmap of Amine System Variables" }
+    ],
+    "huggingface_link": "https://huggingface.co/spaces/Veraeze/amine_system_performance"
 }
 ]

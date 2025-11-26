@@ -36,6 +36,13 @@ export default function ModelsShowcase() {
             metric: "R² Score: 0.501",
             demoUrl: "https://huggingface.co/spaces/Veraeze/gas_flaring_prediction",
         },
+        {
+            title: "Amine System Anomaly Detection",
+            description: "Detect abnormal operational behavior in an amine regeneration system.",
+            type: "Unsupervised",
+            metric: "Anomaly %: 2.87%",
+            demoUrl: "https://huggingface.co/spaces/Veraeze/amine_system_anomaly"
+        },
         ]);
       });
   }, []);
