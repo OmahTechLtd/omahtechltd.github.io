@@ -40,7 +40,7 @@ const settings = {
   };
     return (
         <section id="ai-solutions-lab" className="py-16 px-4">
-      <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 via-pink-400 to-red-500 bg-clip-text text-transparent text-center">
+      <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
         AI Solutions Lab
       </h2>
       <p className="text-center text-gray-300 mb-8">

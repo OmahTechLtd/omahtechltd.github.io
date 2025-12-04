@@ -25,6 +25,7 @@ import AiConsulting from "./pages/services/AiConsulting";
 import Training from "./pages/services/Training";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ModelDetail from "./pages/ModelDetail";
+import AIAgents from "./pages/AIAgents";
 
 
 
@@ -53,6 +54,7 @@ function App() {
           />
 
           {/* Services pages */}
+          <Route path="/agents" element={<AIAgents />} />
           <Route path="/models" element={<GenericModels />} />
           <Route path="/models/generic" element={<GenericModels />} />
           <Route path="/models/custom" element={<CustomModels />} />
