@@ -1,0 +1,52 @@
+[
+    {
+    "id": "automl_agent",
+    "title": "AutoML Agent",
+    "description": "An AI agent that automates the full machine learning pipeline, from data preprocessing to model training, evaluation, and selection, enabling quick experimentation with datasets.",
+    "summary": "The AutoML Agent allows users to upload datasets or select preloaded sample datasets, preprocesses the data, trains multiple ML models, evaluates performance, generates EDA charts, and selects the best-performing model. It includes a Streamlit dashboard for dataset management, progress monitoring, and result visualization.",
+    "features": [
+      "Upload or use sample datasets",
+      "Automatic preprocessing",
+      "Trains multiple models",
+      "Generates EDA charts",
+      "Evaluates model performance",
+      "Selects best model",
+      "Interactive dashboard with progress"
+    ],
+    "tools": [
+      "Python 3",
+      "pandas, numpy",
+      "scikit-learn",
+      "matplotlib, seaborn",
+      "joblib",
+      "Streamlit"
+    ],
+    "streamlit_link": ""
+  },
+    {
+    "id": "research_summarizer_agent",
+    "title": "Research Scraper & Summarizer Agent",
+    "description": "An AI agent that autonomously searches, scrapes, and summarizes information from multiple websites, generating concise insights for a given research topic.",
+    "summary": "The Research Scraper & Summarizer Agent takes a user-provided topic, decides how to search online, scrapes content from multiple sources, summarizes it using AI models, and saves a structured report. It integrates a clean agent architecture and uses real-world industry tools.",
+    "features": [
+      "Autonomous web scraping",
+      "AI summarization",
+      "Structured reports",
+      "User-defined topics",
+      "Modular agent workflow"
+    ],
+    "tools": [
+      "Python 3",
+      "Playwright",
+      "BeautifulSoup4",
+      "requests",
+      "Transformers (HuggingFace)",
+      "Torch",
+      "LangChain",
+      "python-dotenv",
+      "pandas",
+      "Streamlit"
+    ],
+    "streamlit_link": ""
+  }
+]
