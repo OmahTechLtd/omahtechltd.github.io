@@ -6,8 +6,11 @@ import trainingSetupRoutes from "./routes/trainingSetup.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+import { Resend } from "resend";
 
 dotenv.config();
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const app = express();
 app.use((req, res, next) => {
@@ -79,6 +82,53 @@ app.post("/subscribe", async (req, res) => {
   }
 });
 
+// ---------------------------
+//  Consultation Route (Resend)
+// ---------------------------
+app.post("/consultation", async (req, res) => {
+  try {
+    const {
+      model,
+      dataset_category,
+      problem_statement,
+      file_name,
+      source,
+      timestamp
+    } = req.body;
+
+    if (!problem_statement || problem_statement.trim() === "") {
+      return res.status(400).json({ message: "Problem statement is required" });
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: "OmahTech AI <onboarding@resend.dev>",
+      to: process.env.EMAIL_RECEIVER,
+      subject: `New AI Consultation Request – ${model || "Custom Model"}`,
+      html: `
+        <h2>New Consultation Request</h2>
+        <p><strong>Model Type:</strong> ${model || "N/A"}</p>
+        <p><strong>Dataset Category:</strong> ${dataset_category || "N/A"}</p>
+        <p><strong>File Name:</strong> ${file_name || "None"}</p>
+        <p><strong>Source:</strong> ${source || "Website"}</p>
+        <p><strong>Time:</strong> ${timestamp || new Date().toISOString()}</p>
+        <hr />
+        <h3>Problem Statement</h3>
+        <p>${problem_statement}</p>
+      `
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return res.status(500).json({ message: "Failed to send email via Resend" });
+    }
+
+    res.status(200).json({ message: "Consultation request sent successfully", data });
+
+  } catch (err) {
+    console.error("Server error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 // ---------------------------
 //  Start the Server
