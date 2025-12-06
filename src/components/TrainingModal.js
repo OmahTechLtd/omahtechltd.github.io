@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 
 export default function TrainingModal({ closeModal }) {
   const [formData, setFormData] = useState({
@@ -18,28 +17,44 @@ export default function TrainingModal({ closeModal }) {
       [e.target.name]: e.target.value,
     });
   };
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    emailjs
-      .send(
-        "service_qivxk34",
-        "template_u4y05zm",
-        formData,
-        "tefVZMAa7f6_ULKWs"
-      )
-      .then(
-        (result) => {
-          console.log("Email sent successfully:", result.text);
-          setIsSubmitted(true);
-        },
-        (error) => {
-          console.error("Email sending failed:", error.text);
-          alert("Failed to send. Please try again.");
+
+    try {
+      const payload = {
+        ...formData,
+        source: "AI Training",
+        timestamp: new Date().toISOString(),
+      };
+
+      const response = await fetch(
+        "https://omahtechltd-github-io.onrender.com/consultation",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         }
-      )
-      .finally(() => setLoading(false));
+      );
+
+      if (!response.ok) {
+        throw new Error("Server error while submitting training request");
+      }
+
+      const result = await response.json();
+      console.log("Training request sent:", result);
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Training request failed:", error);
+      alert("Failed to send. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

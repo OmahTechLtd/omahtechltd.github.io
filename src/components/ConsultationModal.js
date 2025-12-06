@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,38 +7,54 @@ export default function ConsultationModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .sendForm(
-        "service_qivxk34",    //  EmailJS Service ID
-        "template_u4y05zm",   //  Template ID
-        e.target,
-        "tefVZMAa7f6_ULKWs"   //  Public Key
-      )
-      .then(
-        () => {
-          toast.success("Consultation request sent successfully!", {
-            position: "top-right",
-            autoClose: 4000,
-            theme: "dark",
-          });
-          setLoading(false);
-          e.target.reset();
-          onClose(); 
-        },
-        (error) => {
-          console.error("EmailJS Error:", error);
-          toast.error("Failed to send. Please try again later.", {
-            position: "top-right",
-            autoClose: 4000,
-            theme: "dark",
-          });
-          setLoading(false);
+    const formData = new FormData(e.target);
+
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      company: formData.get("company"),
+      message: formData.get("message"),
+      source: "AI Consulting",
+      timestamp: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch(
+        "https://omahtechltd-github-io.onrender.com/consultation",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
         }
       );
+
+      if (!response.ok) throw new Error("Submission failed");
+
+      toast.success("Consultation request sent successfully!", {
+        position: "top-right",
+        autoClose: 4000,
+        theme: "dark",
+      });
+
+      e.target.reset();
+      onClose();
+
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Failed to send. Please try again later.", {
+        position: "top-right",
+        autoClose: 4000,
+        theme: "dark",
+      });
+    }
+
+    setLoading(false);
   };
 
   return (

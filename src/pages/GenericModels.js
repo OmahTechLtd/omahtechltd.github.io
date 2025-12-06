@@ -346,14 +346,49 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
         </h2>
         <form
           className="flex flex-col gap-5"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
+
+            if (!problemStatement || problemStatement.trim() === "") {
+              alert("Please provide a brief summary before submitting.");
+              return;
+            }
+
             setSubmitting(true);
-            setTimeout(() => {
+
+            try {
+              const payload = {
+                model: model.title || model.model || "Custom Model",
+                dataset_category: datasetCategory || "Not selected",
+                problem_statement: problemStatement,
+                file_name: fileInput ? fileInput.name : "No file provided",
+                source: "AI Models Consultation",
+                timestamp: new Date().toISOString()
+              };
+
+              const response = await fetch("https://omahtechltd-github-io.onrender.com/consultation", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+              });
+
+              if (!response.ok) {
+                throw new Error("Server error while submitting consultation");
+              }
+
+              const result = await response.json();
+
+              alert(" Your consultation request has been sent successfully!");
               setSubmitting(false);
-              alert("Your consultation request has been received. We will contact you shortly.");
               onProceed();
-            }, 1200);
+
+            } catch (error) {
+              console.error("Error submitting consultation:", error);
+              setSubmitting(false);
+              alert("❌ Something went wrong. Please try again.");
+            }
           }}
         >
           <div>
