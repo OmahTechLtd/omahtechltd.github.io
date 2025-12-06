@@ -101,7 +101,7 @@ app.post("/consultation", async (req, res) => {
     }
 
     const { data, error } = await resend.emails.send({
-      from: "OmahTech AI <onboarding@resend.dev>",
+      from: process.env.EMAIL_SENDER,
       to: process.env.EMAIL_RECEIVER,
       subject: `New AI Consultation Request – ${model || "Custom Model"}`,
       html: `
