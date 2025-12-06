@@ -21,7 +21,7 @@
       "joblib",
       "Streamlit"
     ],
-    "streamlit_link": ""
+    "streamlit_link": "https://veraeze-automl-agent-dashboard-k0hqfu.streamlit.app"
   },
     {
     "id": "research_summarizer_agent",
@@ -47,6 +47,6 @@
       "pandas",
       "Streamlit"
     ],
-    "streamlit_link": ""
+    "streamlit_link": "https://veraeze-ai-research-agent-dashboard-mthjim.streamlit.app"
   }
 ]
