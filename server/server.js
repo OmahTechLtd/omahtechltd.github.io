@@ -83,9 +83,9 @@ app.post("/subscribe", async (req, res) => {
 });
 
 // ---------------------------
-//  Consultation Route (Resend)
+//  Researcher Consultation Route (Resend)
 // ---------------------------
-app.post("/consultation", async (req, res) => {
+app.post("/researcher", async (req, res) => {
   try {
     const {
       model,
@@ -103,7 +103,7 @@ app.post("/consultation", async (req, res) => {
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_SENDER,
       to: process.env.EMAIL_RECEIVER,
-      subject: `New AI Consultation Request – ${model || "Custom Model"}`,
+      subject: `New Researcher Consultation Request – ${model || "Custom Model"}`,
       html: `
         <h2>New Consultation Request</h2>
         <p><strong>Model Type:</strong> ${model || "N/A"}</p>
@@ -114,6 +114,54 @@ app.post("/consultation", async (req, res) => {
         <hr />
         <h3>Problem Statement</h3>
         <p>${problem_statement}</p>
+      `
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return res.status(500).json({ message: "Failed to send email via Resend" });
+    }
+
+    res.status(200).json({ message: "Consultation request sent successfully", data });
+
+  } catch (err) {
+    console.error("Server error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// ---------------------------
+//  Organization Consultation Route (Resend)
+// ---------------------------
+app.post("/organization", async (req, res) => {
+  try {
+    const {
+      name,
+      email,
+      company,
+      message,
+      source,
+      timestamp
+    } = req.body;
+
+    if (!message || message.trim() === "") {
+      return res.status(400).json({ message: "Problem statement is required" });
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: process.env.EMAIL_SENDER,
+      to: process.env.EMAIL_RECEIVER,
+      subject: `New Organization Consultation Request – ${model || "Custom Model"}`,
+      html: `
+        <h2>New Consultation Request</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Source:</strong> ${source || "Website"}</p>
+        <p><strong>Time:</strong> ${timestamp || new Date().toISOString()}</p>
+        <hr />
+        <h3>Message</h3>
+        <p>${message}</p>
       `
     });
 

@@ -17,14 +17,14 @@ export default function ConsultationModal({ isOpen, onClose }) {
       name: formData.get("name"),
       email: formData.get("email"),
       company: formData.get("company"),
-      problemStatement: formData.get("message"),
+      message: formData.get("message"),
       source: "AI Consulting",
       timestamp: new Date().toISOString()
     };
 
     try {
       const response = await fetch(
-        "https://omahtechltd-github-io.onrender.com/consultation",
+        "https://omahtechltd-github-io.onrender.com/organization",
         {
           method: "POST",
           headers: {

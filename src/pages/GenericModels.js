@@ -366,7 +366,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
                 timestamp: new Date().toISOString()
               };
 
-              const response = await fetch("https://omahtechltd-github-io.onrender.com/consultation", {
+              const response = await fetch("https://omahtechltd-github-io.onrender.com/researcher", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
