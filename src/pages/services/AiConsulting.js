@@ -114,7 +114,7 @@ export default function AiConsulting() {
         </div>
       </section>
 
-      {/* ✅ Insert Consultation Modal Here */}
+      {/*  Insert Consultation Modal Here */}
       <ConsultationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -151,7 +151,7 @@ app.post("/organization", async (req, res) => {
     const { data, error } = await resend.emails.send({
       from: process.env.EMAIL_SENDER,
       to: process.env.EMAIL_RECEIVER,
-      subject: `New Organization Consultation Request – ${model || "Custom Model"}`,
+      subject: `New Organization Consultation Request – ${company || "Custom Model"}`,
       html: `
         <h2>New Consultation Request</h2>
         <p><strong>Name:</strong> ${name}</p>
@@ -171,6 +171,54 @@ app.post("/organization", async (req, res) => {
     }
 
     res.status(200).json({ message: "Consultation request sent successfully", data });
+
+  } catch (err) {
+    console.error("Server error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// ---------------------------
+//  Training Route (Resend)
+// ---------------------------
+app.post("/training", async (req, res) => {
+  try {
+    const {
+      name,
+      email,
+      trainingType,
+      message,
+      source,
+      timestamp
+    } = req.body;
+
+    if (!message || message.trim() === "") {
+      return res.status(400).json({ message: "Message is required" });
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: process.env.EMAIL_SENDER,
+      to: process.env.EMAIL_RECEIVER,
+      subject: `New Training Request – ${trainingType}`,
+      html: `
+        <h2>New Training Request</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Training Type:</strong> ${trainingType}</p>
+        <p><strong>Source:</strong> ${source || "Website"}</p>
+        <p><strong>Time:</strong> ${timestamp || new Date().toISOString()}</p>
+        <hr />
+        <h3>Message</h3>
+        <p>${message}</p>
+      `
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return res.status(500).json({ message: "Failed to send email via Resend" });
+    }
+
+    res.status(200).json({ message: "Training request sent successfully", data });
 
   } catch (err) {
     console.error("Server error:", err);

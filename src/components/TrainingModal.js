@@ -31,7 +31,7 @@ export default function TrainingModal({ closeModal }) {
       };
 
       const response = await fetch(
-        "https://omahtechltd-github-io.onrender.com/consultation",
+        "https://omahtechltd-github-io.onrender.com/training",
         {
           method: "POST",
           headers: {
