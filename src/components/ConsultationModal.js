@@ -17,7 +17,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
       name: formData.get("name"),
       email: formData.get("email"),
       company: formData.get("company"),
-      message: formData.get("message"),
+      problemStatement: formData.get("message"),
       source: "AI Consulting",
       timestamp: new Date().toISOString()
     };
