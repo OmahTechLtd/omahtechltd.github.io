@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import modelDetails from "../data/modelDetails.js";
 import { useNavigate } from "react-router-dom";
 import { useNavigate as useNavigateModal } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const GenericModels = () => {
   const navigate = useNavigate();
@@ -307,6 +309,8 @@ const GenericModels = () => {
 };
 
 export default GenericModels;
+
+
 // Model Setup Modal Component for consultation request
 const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [fileInput, setFileInput] = useState(null);
@@ -350,7 +354,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
             e.preventDefault();
 
             if (!problemStatement || problemStatement.trim() === "") {
-              alert("Please provide a brief summary before submitting.");
+              alert(" Please provide a brief summary before submitting.");
               return;
             }
 
@@ -380,14 +384,27 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
 
               const result = await response.json();
 
+              toast.success("Your consultation request has been sent successfully!", {
+                position: "top-right",
+                autoClose: 4000,
+                theme: "dark",
+              });
+
               alert(" Your consultation request has been sent successfully!");
               setSubmitting(false);
               onProceed();
 
             } catch (error) {
               console.error("Error submitting consultation:", error);
+
+              toast.error(" Something went wrong. Please try again.", {
+                position: "top-right",
+                autoClose: 4000,
+                theme: "dark",
+              });
+
               setSubmitting(false);
-              alert("❌ Something went wrong. Please try again.");
+              alert(" Something went wrong. Please try again.");
             }
           }}
         >
