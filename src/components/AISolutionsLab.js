@@ -52,7 +52,7 @@ const settings = {
           {agents.map((agent) => (
             <div key={agent.id} className="px-4">
                 <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 border border-gray-800">
-                    <h3 className="text-xl font-semibold mb-2 text-purple-400">{agent.title}</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-green-400">{agent.title}</h3>
                     <p className="text-gray-300 mb-4 text-sm">{agent.description}</p>
             <Link
                 to={`/agents/${agent.id}`}
