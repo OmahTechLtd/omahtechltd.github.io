@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import agentsData from "../data/agents.json";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -54,12 +53,14 @@ const settings = {
                 <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 border border-gray-800">
                     <h3 className="text-xl font-semibold mb-2 text-green-400">{agent.title}</h3>
                     <p className="text-gray-300 mb-4 text-sm">{agent.description}</p>
-            <Link
-                to={`/agents/${agent.id}`}
+            <a
+                href={agent.streamlit_link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 transition duration-300"
             >
                 Explore Agent
-            </Link>
+            </a>
                 </div>
             </div>
           ))}

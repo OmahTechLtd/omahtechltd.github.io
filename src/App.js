@@ -54,7 +54,7 @@ function App() {
           />
 
           {/* Services pages */}
-          <Route path="/agents" element={<AIAgents />} />
+          {/* <Route path="/agents" element={<AIAgents />} /> */}
           <Route path="/models" element={<GenericModels />} />
           <Route path="/models/generic" element={<GenericModels />} />
           <Route path="/models/custom" element={<CustomModels />} />
