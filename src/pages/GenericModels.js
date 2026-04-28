@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import modelDetails from "../data/modelDetails.js";
-import { useNavigate } from "react-router-dom";
-import { useNavigate as useNavigateModal } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+// import { useNavigate as useNavigateModal } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -382,8 +382,8 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
                 throw new Error("Server error while submitting consultation");
               }
 
-              const result = await response.json();
-
+              await response.json();
+              
               toast.success("Your consultation request has been sent successfully!", {
                 position: "top-right",
                 autoClose: 4000,
