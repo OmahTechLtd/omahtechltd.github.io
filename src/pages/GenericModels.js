@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const GenericModels = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [outputType, setOutputType] = useState("");
   const [dataType, setDataType] = useState("");
@@ -319,7 +319,7 @@ const ModelSetupModal = ({ model, onClose, onProceed }) => {
   const [problemStatement, setProblemStatement] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [datasetCategory, setDatasetCategory] = useState(""); // Small, Medium, Large
-  const navigate = useNavigateModal();
+  // const navigate = useNavigateModal();
 
   // Handler for file input change
   const handleFileChange = (e) => {

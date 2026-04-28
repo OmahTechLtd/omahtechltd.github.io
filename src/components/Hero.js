@@ -6,9 +6,9 @@ export default function Hero() {
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState('');
 
-  const handleJoinCommunity = () => {
-    setShowPopup(true);
-  };
+  // const handleJoinCommunity = () => {
+  //   setShowPopup(true);
+  // };
 
   const handleSubmit = async () => {
     // Email validation regex (simple version)

@@ -25,7 +25,6 @@ import AiConsulting from "./pages/services/AiConsulting";
 import Training from "./pages/services/Training";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ModelDetail from "./pages/ModelDetail";
-import AIAgents from "./pages/AIAgents";
 
 
 
