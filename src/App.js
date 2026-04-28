@@ -10,7 +10,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import AISolutionsLab from "./components/AISolutionsLab";
+// import AISolutionsLab from "./components/AISolutionsLab";
 
 // Pages
 import GenericModels from "./pages/GenericModels";
@@ -45,7 +45,7 @@ function App() {
                 <Hero />
                 <About />
                 <Services />
-                <AISolutionsLab />
+                {/* <AISolutionsLab /> */}
                 <Projects />
                 <Contact />
               </>
