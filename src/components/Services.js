@@ -56,8 +56,7 @@ const Services = () => {
             <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">ML Training</h3>
             <p className="text-gray-300">
-              Self-paced, pre-recorded courses that take you from zero to building real machine learning models. Taught by someone who builds ML systems for real businesses. Beginner and Intermediate levels available.
-            </p>
+Self-paced, pre-recorded courses designed to take you from zero to building real machine learning models. Practical, structured, and built around the same techniques our team uses on live business projects. Beginner and Intermediate levels available.            </p>
           </div>
           <a href="#contact" className="mt-6 bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-medium text-center text-white transition block">
             Join Waitlist
