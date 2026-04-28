@@ -39,7 +39,7 @@ const Services = () => {
         {/* ML Project Implementation */}
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
-            <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-2 block">For Final Year Students</span>
+            <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-2 block">For Researchers & Students</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">ML Project Implementation</h3>
             <p className="text-gray-300">
               We handle the technical build of your ML project and deliver a clean, working implementation with an interactive dashboard. You understand your results, present with confidence, and submit work that stands out.
