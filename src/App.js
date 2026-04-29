@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,9 +10,6 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-// import AISolutionsLab from "./components/AISolutionsLab";
-
-// Pages
 import GenericModels from "./pages/GenericModels";
 import CustomModels from "./pages/CustomModels";
 import OilAndGasProject from "./pages/OilAndGasProject";
@@ -26,34 +23,27 @@ import Training from "./pages/services/Training";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ModelDetail from "./pages/ModelDetail";
 
-
-
-
 function App() {
+  const [selectedService, setSelectedService] = useState(null);
+
   return (
     <Router>
       <div className="bg-black text-white min-h-screen">
         <Navbar />
         <ScrollToTop />
-
         <Routes>
-          {/* Home page with sections */}
           <Route
             path="/"
             element={
               <>
                 <Hero />
                 <About />
-                <Services />
-                {/* <AISolutionsLab /> */}
+                <Services onServiceSelect={setSelectedService} />
                 <Projects />
-                <Contact />
+                <Contact selectedService={selectedService} />
               </>
             }
           />
-
-          {/* Services pages */}
-          {/* <Route path="/agents" element={<AIAgents />} /> */}
           <Route path="/models" element={<GenericModels />} />
           <Route path="/models/generic" element={<GenericModels />} />
           <Route path="/models/custom" element={<CustomModels />} />
@@ -62,20 +52,15 @@ function App() {
           <Route path="/services/ai-consulting" element={<AiConsulting />} />
           <Route path="/services/training" element={<Training />} />
           <Route path="/models/:id" element={<ModelDetail />} />
-          {/* Project demo pages */}
           <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />
           <Route path="/projects/real-estate" element={<RealEstateProject />} />
           <Route path="/projects/agriculture" element={<AgricultureProject />} />
           <Route path="/projects/education" element={<EducationProject />} />
-
-          {/* not found 404 page*/}
           <Route path="*" element={<NotFound />} />
         </Routes>
-
         <Footer />
       </div>
       <ToastContainer position="top-right" autoClose={4000} theme="dark" />
-
     </Router>
   );
 }

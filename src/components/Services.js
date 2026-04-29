@@ -1,6 +1,15 @@
 import React from "react";
 
-const Services = () => {
+const Services = ({ onServiceSelect }) => {
+
+  const handleSelect = (serviceKey) => {
+    onServiceSelect(serviceKey);
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="services" className="py-16 px-4">
       <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
@@ -17,9 +26,12 @@ const Services = () => {
               We analyze your business data and build intelligent systems that help you predict outcomes, spot risks early, and make faster decisions. From customer behavior to sales forecasting to fraud detection.
             </p>
           </div>
-          <a href="#contact" className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block">
+          <button
+            onClick={() => handleSelect("ai-data-solutions")}
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
             Get Started
-          </a>
+          </button>
         </div>
 
         {/* AI Strategy & Advisory */}
@@ -31,9 +43,12 @@ const Services = () => {
               A focused working session where we assess your business, identify where AI creates the most value, and give you a clear, practical roadmap. You leave with direction, not just information.
             </p>
           </div>
-          <a href="#contact" className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block">
+          <button
+            onClick={() => handleSelect("ai-strategy-advisory")}
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
             Book a Session
-          </a>
+          </button>
         </div>
 
         {/* ML Project Implementation */}
@@ -45,9 +60,12 @@ const Services = () => {
               We handle the technical build of your ML project and deliver a clean, working implementation with an interactive dashboard. You understand your results, present with confidence, and submit work that stands out.
             </p>
           </div>
-          <a href="#contact" className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block">
+          <button
+            onClick={() => handleSelect("ml-project-implementation")}
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
             Get Started
-          </a>
+          </button>
         </div>
 
         {/* ML Training */}
@@ -56,11 +74,15 @@ const Services = () => {
             <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">ML Training</h3>
             <p className="text-gray-300">
-Self-paced, pre-recorded courses designed to take you from zero to building real machine learning models. Practical, structured, and built around the same techniques our team uses on live business projects. Beginner and Intermediate levels available.            </p>
+              Self-paced, pre-recorded courses designed to take you from zero to building real machine learning models. Practical, structured, and built around the same techniques our team uses on live business projects. Beginner and Intermediate levels available.
+            </p>
           </div>
-          <a href="#contact" className="mt-6 bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-medium text-center text-white transition block">
+          <button
+            onClick={() => handleSelect("ml-training")}
+            className="mt-6 bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
             Join Waitlist
-          </a>
+          </button>
         </div>
 
       </div>
