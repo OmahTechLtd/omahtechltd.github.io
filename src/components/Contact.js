@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaLinkedin, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xrernvro";
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${process.env.REACT_APP_FORMSPREE_ID}`;
 
 const serviceConfig = {
   "ai-data-solutions": {

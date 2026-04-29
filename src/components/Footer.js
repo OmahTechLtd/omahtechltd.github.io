@@ -5,19 +5,6 @@ function Footer() {
     <footer className="bg-[#0b0b0b] text-gray-400 py-16 px-6 border-t border-white/10 mt-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-8 text-center md:text-left">
 
-        {/* Contact Emails */}
-        {/* <div className="space-y-3">
-          <h3 className="text-xl font-semibold text-white mb-2 tracking-wide">Contact</h3>
-          <a href="mailto:admin@omahtech.co" className="hover:text-green-400 transition text-sm">
-            admin@omahtech.co
-          </a>
-          <br />
-          <a href="mailto:info@omahtech.co" className="hover:text-green-400 transition text-sm">
-            info@omahtech.co
-          </a>
-        </div> */}
-
-        {/* Address */}
         <div className="space-y-3">
           <h3 className="text-xl font-semibold text-white mb-2 tracking-wide">Head Office</h3>
           <p className="text-sm leading-relaxed">
@@ -27,8 +14,16 @@ function Footer() {
           </p>
         </div>
 
-        {/* Socials */}
-        <div className="space-y-4 flex flex-col items-center md:items-end">
+        <div className="flex flex-col items-center md:items-start space-y-3">
+          <h3 className="text-xl font-semibold text-white mb-2 tracking-wide">Quick Links</h3>
+          <a href="/" className="text-sm hover:text-green-400 transition">Home</a>
+          <a href="/#about" className="text-sm hover:text-green-400 transition">About</a>
+          <a href="/#services" className="text-sm hover:text-green-400 transition">Services</a>
+          <a href="/#projects" className="text-sm hover:text-green-400 transition">Our Work</a>
+          <a href="/#contact" className="text-sm hover:text-green-400 transition">Contact</a>
+        </div>
+
+        <div className="flex flex-col items-center md:items-end space-y-4">
           <h3 className="text-xl font-semibold text-white tracking-wide">Follow Us</h3>
           <div className="flex gap-6 text-3xl">
             <a
@@ -39,7 +34,6 @@ function Footer() {
             >
               <FaLinkedin />
             </a>
-
             <a
               href="https://x.com/OmahTechLtd"
               target="_blank"
@@ -48,7 +42,6 @@ function Footer() {
             >
               <FaTwitter />
             </a>
-
             <a
               href="https://instagram.com/omah.tech"
               target="_blank"
@@ -62,10 +55,8 @@ function Footer() {
 
       </div>
 
-      {/* Divider */}
       <div className="border-t border-white/10 mt-14 mb-10"></div>
 
-      {/* Policy */}
       <div className="flex justify-center">
         <a
           href="/docs/Company Policy.pdf"
@@ -77,7 +68,6 @@ function Footer() {
         </a>
       </div>
 
-      {/* Copyright */}
       <p className="mt-6 text-center text-gray-500 text-xs tracking-wide">
         © {new Date().getFullYear()} Omah Tech Ltd. All rights reserved.
       </p>
