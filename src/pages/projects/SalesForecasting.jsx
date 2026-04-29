@@ -86,12 +86,12 @@ const SalesForecasting = () => {
           <p className="text-gray-400 mb-6">
             We build forecasting dashboards tailored to your sales data, your industry, and the questions your business actually needs to answer.
           </p>
-          <Link
-            to="/#contact"
+          <a
+            href="/#services"
             className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition"
           >
             Talk to Us
-          </Link>
+          </a>
         </div>
 
         <div className="mt-8 text-center">

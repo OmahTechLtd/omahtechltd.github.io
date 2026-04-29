@@ -72,12 +72,12 @@ const AmineEnergy = () => {
           <p className="text-gray-400 mb-6">
             We build predictive tools for oil and gas processes using your operational data or simulation outputs.
           </p>
-          <Link
-            to="/#contact"
+          <a
+            href="/#services"
             className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition"
           >
             Talk to Us
-          </Link>
+          </a>
         </div>
 
         <div className="mt-8 text-center">
