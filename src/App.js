@@ -26,6 +26,7 @@ import AmineAnomaly from "./pages/projects/AmineAnomaly";
 import AmineEnergy from "./pages/projects/AmineEnergy";
 import CrudeOilProduction from "./pages/projects/CrudeOilProduction";
 import SalesForecasting from "./pages/projects/SalesForecasting";
+import Testimonials from './components/Testimonials';
 
 function App() {
   const [selectedService, setSelectedService] = useState(null);
@@ -44,6 +45,7 @@ function App() {
                 <About />
                 <Services onServiceSelect={setSelectedService} />
                 <Projects />
+                <Testimonials />
                 <Contact selectedService={selectedService} />
               </>
             }
