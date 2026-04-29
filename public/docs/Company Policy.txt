@@ -1,0 +1,71 @@
+OmahTech Company Policy
+
+1. About OmahTech
+
+OmahTech is an AI and machine learning company registered in Nigeria, with offices in Lagos and Abuja.
+We build data-driven systems and decision-support tools that help businesses operate more intelligently,
+researchers produce stronger work, and individuals develop practical AI skills. Everything we build is
+grounded in technical rigour, commercial relevance, and a commitment to responsible practice.
+
+2. Data Privacy and Handling
+
+We treat data shared with us as a professional responsibility. Any business, project, or personal data
+provided to OmahTech in the course of an engagement is used solely for the purpose of delivering the
+agreed service. We do not sell, share, or repurpose client data without explicit written consent.
+
+We comply with the Nigeria Data Protection Act (NDPA) and apply equivalent standards of care to clients
+in other jurisdictions. Data collected through our website contact forms is used only to respond to
+enquiries and is not retained beyond the period necessary to fulfill that purpose.
+
+3. Confidentiality
+
+Client information, project details, datasets, and business context shared with OmahTech are treated as
+confidential. We do not discuss, publish, or reference client work publicly without prior consent. Where
+a project is used as a case study or portfolio reference, we will seek explicit approval from the client
+before doing so.
+
+4. Ethical AI Practice
+
+We build AI systems that are fit for purpose, interpretable where it matters, and honest about their
+limitations. We do not build systems designed to deceive, discriminate, or cause harm. Where a model or
+tool has limitations that are material to how it is used, we communicate those limitations clearly to the
+client as part of delivery.
+
+We take bias seriously. Before deploying any model in a decision-making context, we assess it for
+unintended patterns that could produce unfair or misleading outputs.
+
+5. Intellectual Property
+
+Unless otherwise agreed in writing, intellectual property developed by OmahTech in the course of a
+client engagement belongs to the client upon full payment. Code, models, and documentation produced for
+a specific project are delivered to the client and are theirs to use, modify, and build upon.
+
+OmahTech retains the right to use general methodologies, frameworks, and non-proprietary techniques
+developed during engagements in future work.
+
+6. Delivery and Support
+
+We are committed to delivering work that meets the agreed scope, quality standard, and timeline. Where
+delays or changes arise, we communicate proactively and work with the client to find a practical path
+forward.
+
+For questions, issues, or follow-up support after delivery, clients can reach us at admin@omahtech.co.
+We aim to respond to all enquiries within two business days.
+
+7. Disclaimer
+
+AI and machine learning systems produce outputs based on patterns in data. While we design and test our
+models carefully, no model is infallible. Outputs should be treated as decision-support tools, not
+final authorities. Clients are responsible for applying appropriate human judgment before acting on
+model outputs in high-stakes or regulated contexts.
+
+By engaging OmahTech for any service, you acknowledge that AI-driven systems carry inherent uncertainty
+and agree to use the tools and outputs we deliver responsibly.
+
+8. Updates to This Policy
+
+This policy reflects OmahTech's current commitments and practices. As the company grows and the
+regulatory landscape evolves, we will update this document accordingly. Material changes will be
+communicated to active clients.
+
+Last updated: April 2026
