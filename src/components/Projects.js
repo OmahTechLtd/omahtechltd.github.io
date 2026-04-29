@@ -1,79 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import modelsData from "../data/models.json";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
+const caseStudies = [
+  {
+    id: "oil-and-gas",
+    tag: "Oil & Gas",
+    tagColor: "text-blue-400",
+    title: "Amine System Anomaly Detection",
+    outcome: "Flagged early signs of equipment degradation before they became operational failures.",
+    description:
+      "We built a machine learning model that monitors amine system behaviour in real time and automatically flags unusual operating conditions — foaming, fouling, flooding, and solvent degradation — giving engineers more time to respond and less time reacting.",
+    stat: "2.87% of operating points flagged as anomalies across 49,915 data samples",
+    link: "/projects/oil-and-gas",
+  },
+  {
+    id: "gas-flaring",
+    tag: "Oil & Gas",
+    tagColor: "text-blue-400",
+    title: "Gas Flaring Prediction Model",
+    outcome: "Predicted flaring volumes across Nigerian oil fields using five years of operational data.",
+    description:
+      "Using historical data from 2020 to 2025, we trained a predictive model that estimates gas flaring output based on field-level operational inputs. The result is a tool that helps operators anticipate flaring levels and plan accordingly — a capability with direct regulatory and cost implications.",
+    stat: "Built on Nigerian oil and gas data across multiple field types",
+    link: "/projects/oil-and-gas",
+  },
+  {
+    id: "sales-forecasting",
+    tag: "Retail & Business",
+    tagColor: "text-orange-400",
+    title: "Sales Forecasting Dashboard",
+    outcome: "Gave a retail business a 12-month forward view of expected revenue by product category.",
+    description:
+      "We built an interactive forecasting dashboard that takes historical sales data and generates a 12-month projection with confidence ranges. Business owners can upload their own data, explore seasonal trends, and walk into planning conversations with numbers they can defend.",
+    stat: "12-month forecast with high and low estimate ranges, built on 4 years of transaction data",
+    link: "/projects/real-estate",
+  },
+];
 
 const Projects = () => {
-  const [models, setModels] = useState([]);
-
-  useEffect(() => {
-    const latestModels = modelsData.slice(-4).reverse();
-    setModels(latestModels);
-  }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 800,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
-    pauseOnHover: false,
-    responsive: [
-  {
-    breakpoint: 2000, // desktops
-    settings: { slidesToShow: 2 }
-  },
-  {
-    breakpoint: 1024,
-    settings: { slidesToShow: 1 }
-  },
-  {
-    breakpoint: 768,
-    settings: { slidesToShow: 1 }
-  }
-]
-  };
-
   return (
     <section id="projects" className="py-16 px-4">
       <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-        Featured Machine Learning Models
+        Our Work
       </h2>
-      <p className="text-center text-gray-300 mb-8">
-        Explore our featured AI models, updated regularly to inspire your next project.
+      <p className="text-center text-gray-400 mb-12 max-w-xl mx-auto">
+        A look at some of the problems we have solved and the tools we have built.
       </p>
 
-      <div className="max-w-6xl mx-auto px-4">
-        <Slider {...settings}>
-          {models.map((model) => (
-            <div key={model.id} className="px-4">
-              <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] p-8 rounded-xl shadow-xl min-h-[250px] flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 border border-gray-800">
-                <h3 className="text-xl font-semibold mb-2 text-green-400">{model.title}</h3>
-                <p className="text-gray-300 mb-4 text-sm">{model.description}</p>
-        <Link
-            to={`/models/${model.id}`}
-            className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block w-fit self-start border border-gray-600 transition duration-300"
-        >
-          Explore Model
-        </Link>
-              </div>
+      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-4">
+        {caseStudies.map((study) => (
+          <div
+            key={study.id}
+            className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] p-8 rounded-xl shadow-xl border border-gray-800 flex flex-col justify-between hover:border-green-800 transition duration-300"
+          >
+            <div>
+              <span className={`text-xs font-semibold uppercase tracking-widest mb-2 block ${study.tagColor}`}>
+                {study.tag}
+              </span>
+              <h3 className="text-xl font-semibold mb-3 text-green-400">{study.title}</h3>
+              <p className="text-white text-sm font-medium mb-3">{study.outcome}</p>
+              <p className="text-gray-400 text-sm mb-4">{study.description}</p>
+              <p className="text-gray-500 text-xs italic">{study.stat}</p>
             </div>
-          ))}
-        </Slider>
-      </div>
-
-      <div className="mt-10 text-center">
-        <Link
-          to="/models"
-          className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-gray-900 border border-gray-700 hover:border-blue-500 transition duration-300"
-        >
-          View All Models
-        </Link>
+            <Link
+              to={study.link}
+              className="mt-6 bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg font-medium text-center inline-block border border-gray-600 transition duration-300"
+            >
+              View Project
+            </Link>
+          </div>
+        ))}
       </div>
     </section>
   );
