@@ -3,37 +3,48 @@ import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
-    id: "oil-and-gas",
+    id: "amine-anomaly",
     tag: "Oil & Gas",
     tagColor: "text-blue-400",
     title: "Amine System Anomaly Detection",
     outcome: "Flagged early signs of equipment degradation before they became operational failures.",
     description:
-      "We built a machine learning model that monitors amine system behaviour in real time and automatically flags unusual operating conditions including foaming, fouling, flooding, and solvent degradation. Engineers get more time to respond and less time reacting.",
+      "We built a machine learning model that monitors amine system behaviour and automatically flags unusual operating conditions including foaming, fouling, flooding, and solvent degradation. Engineers get more time to respond and less time reacting.",
     stat: "2.87% of operating points flagged as anomalies across 49,915 data samples",
-    link: "/projects/oil-and-gas",
+    link: "/projects/amine-anomaly",
   },
   {
-    id: "gas-flaring",
+    id: "amine-energy",
     tag: "Oil & Gas",
     tagColor: "text-blue-400",
-    title: "Gas Flaring Prediction Model",
-    outcome: "Predicted flaring volumes across Nigerian oil fields using five years of operational data.",
+    title: "Amine System Energy Optimisation",
+    outcome: "Predicted optimal reboiler duty to cut energy use without compromising gas treatment performance.",
     description:
-      "Using historical data from 2020 to 2025, we trained a predictive model that estimates gas flaring output based on field-level operational inputs. The result is a tool that helps operators anticipate flaring levels and plan accordingly, with direct implications for regulatory compliance and cost management.",
-    stat: "Built on Nigerian oil and gas data across multiple field types",
-    link: "/projects/oil-and-gas",
+      "Using simulation data from an industrial amine regeneration system, we trained a model that recommends the most energy-efficient reboiler settings for a given set of operating conditions. The result is a decision-support tool that helps operators reduce energy costs while maintaining acid gas removal targets.",
+    stat: "Built on Aspen HYSYS simulation data from an industrial amine regeneration system",
+    link: "/projects/amine-energy",
+  },
+  {
+    id: "crude-oil-production",
+    tag: "Oil & Gas",
+    tagColor: "text-blue-400",
+    title: "Crude Oil Production Anomaly Detection",
+    outcome: "Identified four high-confidence anomaly periods in Nigeria's national production record using a four-model consensus framework.",
+    description:
+      "We applied four independent anomaly detection methods to 71 months of national crude oil and condensate production data from NUPRC. By requiring agreement across models before flagging a month, we reduced false positives and identified production events with structural significance.",
+    stat: "71 months of national production data, January 2020 to November 2025",
+    link: "/projects/crude-oil-production",
   },
   {
     id: "sales-forecasting",
     tag: "Retail & Business",
     tagColor: "text-orange-400",
     title: "Sales Forecasting Dashboard",
-    outcome: "Gave a retail business a 12-month forward view of expected revenue by product category.",
+    outcome: "Gave a retail business a 12-month forward view of expected revenue with confidence ranges.",
     description:
-      "We built an interactive forecasting dashboard that takes historical sales data and generates a 12-month projection with confidence ranges. Business owners can upload their own data, explore seasonal trends, and walk into planning conversations with numbers they can defend.",
-    stat: "12-month forecast with high and low estimate ranges, built on 4 years of transaction data",
-    link: "/projects/real-estate",
+      "We built an interactive forecasting dashboard that takes historical sales data and generates a 12-month projection with high and low estimate ranges. Business owners can upload their own data, explore seasonal trends, and walk into planning conversations with numbers they can defend.",
+    stat: "12-month forecast built on 4 years of transaction data across multiple product categories",
+    link: "/projects/sales-forecasting",
   },
 ];
 
@@ -46,8 +57,7 @@ const Projects = () => {
       <p className="text-center text-gray-400 mb-12 max-w-xl mx-auto">
         A look at some of the problems we have solved and the tools we have built.
       </p>
-
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-4">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 px-4">
         {caseStudies.map((study) => (
           <div
             key={study.id}

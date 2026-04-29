@@ -6,7 +6,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-8 text-center md:text-left">
 
         {/* Contact Emails */}
-        <div className="space-y-3">
+        {/* <div className="space-y-3">
           <h3 className="text-xl font-semibold text-white mb-2 tracking-wide">Contact</h3>
           <a href="mailto:admin@omahtech.co" className="hover:text-green-400 transition text-sm">
             admin@omahtech.co
@@ -15,7 +15,7 @@ function Footer() {
           <a href="mailto:info@omahtech.co" className="hover:text-green-400 transition text-sm">
             info@omahtech.co
           </a>
-        </div>
+        </div> */}
 
         {/* Address */}
         <div className="space-y-3">

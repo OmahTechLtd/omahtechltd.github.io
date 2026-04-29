@@ -22,6 +22,10 @@ import AiConsulting from "./pages/services/AiConsulting";
 import Training from "./pages/services/Training";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ModelDetail from "./pages/ModelDetail";
+import AmineAnomaly from "./pages/projects/AmineAnomaly";
+import AmineEnergy from "./pages/projects/AmineEnergy";
+import CrudeOilProduction from "./pages/projects/CrudeOilProduction";
+import SalesForecasting from "./pages/projects/SalesForecasting";
 
 function App() {
   const [selectedService, setSelectedService] = useState(null);
@@ -56,6 +60,10 @@ function App() {
           <Route path="/projects/real-estate" element={<RealEstateProject />} />
           <Route path="/projects/agriculture" element={<AgricultureProject />} />
           <Route path="/projects/education" element={<EducationProject />} />
+          <Route path="/projects/amine-anomaly" element={<AmineAnomaly />} />
+          <Route path="/projects/amine-energy" element={<AmineEnergy />} />
+          <Route path="/projects/crude-oil-production" element={<CrudeOilProduction />} />
+          <Route path="/projects/sales-forecasting" element={<SalesForecasting />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
