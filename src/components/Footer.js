@@ -59,12 +59,10 @@ function Footer() {
 
       <div className="flex justify-center">
         <a
-          href="/docs/Company Policy.txt"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-green-400 transition underline text-sm"
+        href="/company-policy"
+        className="hover:text-green-400 transition underline text-sm"
         >
-          Company Policy
+  Company Policy
         </a>
       </div>
 
