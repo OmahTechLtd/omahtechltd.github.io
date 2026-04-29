@@ -9,7 +9,8 @@ const caseStudies = [
     title: "Amine System Anomaly Detection",
     outcome: "Flagged early signs of equipment degradation before they became operational failures.",
     description:
-      "We built a machine learning model that monitors amine system behaviour in real time and automatically flags unusual operating conditions including foaming, fouling, flooding, and solvent degradation. Engineers get more time to respond and less time reacting."    stat: "2.87% of operating points flagged as anomalies across 49,915 data samples",
+      "We built a machine learning model that monitors amine system behaviour in real time and automatically flags unusual operating conditions including foaming, fouling, flooding, and solvent degradation. Engineers get more time to respond and less time reacting.",
+    stat: "2.87% of operating points flagged as anomalies across 49,915 data samples",
     link: "/projects/oil-and-gas",
   },
   {
@@ -19,7 +20,8 @@ const caseStudies = [
     title: "Gas Flaring Prediction Model",
     outcome: "Predicted flaring volumes across Nigerian oil fields using five years of operational data.",
     description:
-      "Using historical data from 2020 to 2025, we trained a predictive model that estimates gas flaring output based on field-level operational inputs. The result is a tool that helps operators anticipate flaring levels and plan accordingly, with direct implications for regulatory compliance and cost management."    stat: "Built on Nigerian oil and gas data across multiple field types",
+      "Using historical data from 2020 to 2025, we trained a predictive model that estimates gas flaring output based on field-level operational inputs. The result is a tool that helps operators anticipate flaring levels and plan accordingly, with direct implications for regulatory compliance and cost management.",
+    stat: "Built on Nigerian oil and gas data across multiple field types",
     link: "/projects/oil-and-gas",
   },
   {
