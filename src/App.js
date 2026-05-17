@@ -13,12 +13,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import GenericModels from "./pages/GenericModels";
 import CustomModels from "./pages/CustomModels";
 import OilAndGasProject from "./pages/OilAndGasProject";
-import RealEstateProject from "./pages/RealEstateProject";
-import AgricultureProject from "./pages/AgricultureProject";
-import EducationProject from "./pages/EducationProject";
 import Billing from "./pages/Billing";
 import NotFound from "./pages/NotFound";
-import AiConsulting from "./pages/services/AiConsulting";
 import Training from "./pages/services/Training";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import ModelDetail from "./pages/ModelDetail";
@@ -56,13 +52,9 @@ function App() {
           <Route path="/models/custom" element={<CustomModels />} />
           <Route path="/billing" element={<Billing />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
-          <Route path="/services/ai-consulting" element={<AiConsulting />} />
           <Route path="/services/training" element={<Training />} />
           <Route path="/models/:id" element={<ModelDetail />} />
           <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />
-          <Route path="/projects/real-estate" element={<RealEstateProject />} />
-          <Route path="/projects/agriculture" element={<AgricultureProject />} />
-          <Route path="/projects/education" element={<EducationProject />} />
           <Route path="/projects/amine-anomaly" element={<AmineAnomaly />} />
           <Route path="/projects/amine-energy" element={<AmineEnergy />} />
           <Route path="/projects/crude-oil-production" element={<CrudeOilProduction />} />
