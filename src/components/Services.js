@@ -51,50 +51,35 @@ const Services = ({ onServiceSelect }) => {
           </button>
         </div>
 
-        {/* ML Project Implementation - full width */}
-        <div className="md:col-span-2 bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+        {/* ML Project Implementation */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-2 block">For Researchers & Students</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">ML Project Implementation</h3>
-            <p className="text-gray-300 max-w-2xl">
+            <p className="text-gray-300">
               We handle the technical build of your ML project and deliver a clean, working implementation with an interactive dashboard. You understand your results, present with confidence, and submit work that stands out.
             </p>
           </div>
           <button
             onClick={() => handleSelect("ml-project-implementation")}
-            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block md:w-48"
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
           >
             Get Started
           </button>
         </div>
 
-        {/* AI Tools Training */}
+        {/* Training Programmes */}
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
-            <h3 className="text-xl font-semibold mb-3 text-green-400">AI Tools Training</h3>
-            <p className="text-gray-300 mb-3">
-              A 5-week practical programme for everyday professionals who want to use AI tools confidently. No technical background required. Learn by doing from week one.
+            <h3 className="text-xl font-semibold mb-3 text-green-400">Training Programmes</h3>
+            <p className="text-gray-300">
+              Two structured programmes built for beginners. Learn to use AI tools confidently in everyday life and business, or go deeper and start building real machine learning models from scratch. Practical, structured, and designed around real outcomes.
             </p>
-            <p className="text-green-400 font-semibold text-sm">₦150,000 &nbsp;·&nbsp; First cohort pricing</p>
-          </div>
-          <button
-            onClick={() => handleSelect("ai-tools-training")}
-            className="mt-6 bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
-          >
-            Join Waitlist
-          </button>
-        </div>
-
-        {/* ML Training */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
-            <h3 className="text-xl font-semibold mb-3 text-green-400">ML Training</h3>
-            <p className="text-gray-300 mb-3">
-              An 8-week beginner programme that takes you from zero to building real machine learning models. Practical, structured, and built around the same techniques used on live industry projects.
-            </p>
-            <p className="text-green-400 font-semibold text-sm">₦250,000 &nbsp;·&nbsp; First cohort pricing</p>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <span className="text-xs font-semibold text-green-400 border border-green-400/30 px-3 py-1 rounded-full">AI Tools Training — 5 Weeks</span>
+              <span className="text-xs font-semibold text-blue-400 border border-blue-400/30 px-3 py-1 rounded-full">ML Training — 8 Weeks</span>
+            </div>
           </div>
           <button
             onClick={() => handleSelect("ml-training")}
