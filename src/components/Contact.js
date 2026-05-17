@@ -23,7 +23,7 @@ const serviceConfig = {
     fields: "project",
   },
   "ml-training": {
-    title: "Training Programmes — Join the Waitlist",
+    title: "Training Programmes: Join the Waitlist",
     subtitle: "Be the first to know when we launch.",
     cta: "Join Waitlist",
     fields: "training",
@@ -177,8 +177,8 @@ export default function Contact({ selectedService }) {
             <label className={labelClass}>Which programme are you interested in?</label>
             <select name="programme" required onChange={handleChange} className={inputClass}>
               <option value="">Select a programme</option>
-              <option>AI Tools Training — Beginner (5 Weeks)</option>
-              <option>Machine Learning Training — Beginner (8 Weeks)</option>
+              <option>AI Tools Training, Beginner (5 Weeks)</option>
+              <option>Machine Learning Training, Beginner (8 Weeks)</option>
             </select>
           </div>
           <div>
