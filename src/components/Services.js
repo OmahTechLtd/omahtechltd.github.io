@@ -51,20 +51,38 @@ const Services = ({ onServiceSelect }) => {
           </button>
         </div>
 
-        {/* ML Project Implementation */}
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+        {/* ML Project Implementation - full width */}
+        <div className="md:col-span-2 bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-2 block">For Researchers & Students</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">ML Project Implementation</h3>
-            <p className="text-gray-300">
+            <p className="text-gray-300 max-w-2xl">
               We handle the technical build of your ML project and deliver a clean, working implementation with an interactive dashboard. You understand your results, present with confidence, and submit work that stands out.
             </p>
           </div>
           <button
             onClick={() => handleSelect("ml-project-implementation")}
-            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block md:w-48"
           >
             Get Started
+          </button>
+        </div>
+
+        {/* AI Tools Training */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">AI Tools Training</h3>
+            <p className="text-gray-300 mb-3">
+              A 5-week practical programme for everyday professionals who want to use AI tools confidently. No technical background required. Learn by doing from week one.
+            </p>
+            <p className="text-green-400 font-semibold text-sm">₦150,000 &nbsp;·&nbsp; First cohort pricing</p>
+          </div>
+          <button
+            onClick={() => handleSelect("ai-tools-training")}
+            className="mt-6 bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
+            Join Waitlist
           </button>
         </div>
 
@@ -73,9 +91,10 @@ const Services = ({ onServiceSelect }) => {
           <div>
             <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">ML Training</h3>
-            <p className="text-gray-300">
-              Self-paced, pre-recorded courses designed to take you from zero to building real machine learning models. Practical, structured, and built around the same techniques our team uses on live business projects. Beginner and Intermediate levels available.
+            <p className="text-gray-300 mb-3">
+              An 8-week beginner programme that takes you from zero to building real machine learning models. Practical, structured, and built around the same techniques used on live industry projects.
             </p>
+            <p className="text-green-400 font-semibold text-sm">₦250,000 &nbsp;·&nbsp; First cohort pricing</p>
           </div>
           <button
             onClick={() => handleSelect("ml-training")}
