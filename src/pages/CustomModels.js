@@ -1,136 +1,97 @@
-import React, { useState } from "react";
-import ConsultationModal from "../components/ConsultationModal";
+import React from "react";
 
-const CustomModels = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Services = ({ onServiceSelect }) => {
+
+  const handleSelect = (serviceKey) => {
+    onServiceSelect(serviceKey);
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <section className="bg-[#0b0b0b] text-gray-200 min-h-screen px-6 py-20 flex flex-col items-center">
-      
-      {/* === HERO SECTION === */}
-      <div className="text-center max-w-3xl mb-16">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-teal-400 bg-clip-text text-transparent mb-4">
-          Custom AI Models
-        </h1>
-        <p className="text-gray-400 text-lg">
-          We design, train, and deploy enterprise-grade machine learning models
-          that turn your business data into intelligent decisions.  
-        </p>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="group relative inline-flex items-center justify-center rounded-lg px-0 py-0 mt-8"
-        >
-          <span className="absolute inset-0 -z-10 rounded-lg bg-gradient-to-r from-blue-500 via-indigo-500 to-green-500 opacity-40 blur-xl transition-opacity group-hover:opacity-60"></span>
-          <span className="rounded-lg bg-black/60 px-8 py-3 font-medium ring-1 ring-white/10 cursor-pointer">
-            Book a consultation
-          </span>
-        </button>
-      </div>
+    <section id="services" className="py-16 px-4">
+      <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
+        Services
+      </h2>
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
 
-      {/* === OUR APPROACH === */}
-      <div className="max-w-5xl w-full grid md:grid-cols-4 gap-8 mb-20 text-center">
-        {[
-          {
-            title: "Discovery & Strategy",
-            desc: "We align AI goals with your business objectives to ensure measurable impact.",
-          },
-          {
-            title: "Data & Engineering",
-            desc: "From collection to cleaning, we prepare robust data pipelines for model training.",
-          },
-          {
-            title: "Model Development",
-            desc: "We build, test, and fine-tune advanced ML models tailored to your unique challenges.",
-          },
-          {
-            title: "Deployment & MLOps",
-            desc: "We deploy scalable, monitored AI solutions that grow with your infrastructure.",
-          },
-        ].map((step, i) => (
-          <div
-            key={i}
-            className="bg-gradient-to-br from-[#111111] to-[#1c1c1c] p-6 rounded-xl shadow-lg hover:shadow-2xl transition"
-          >
-            <h3 className="text-green-500 font-semibold text-lg mb-2">
-              {step.title}
-            </h3>
-            <p className="text-gray-400 text-sm">{step.desc}</p>
+        {/* AI & Data Solutions */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 block">For Businesses</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">AI & Data Solutions</h3>
+            <p className="text-gray-300">
+              We analyze your business data and build intelligent systems that help you predict outcomes, spot risks early, and make faster decisions. From customer behavior to sales forecasting to fraud detection.
+            </p>
           </div>
-        ))}
-      </div>
-
-      {/* === CAPABILITIES === */}
-      <div className="max-w-5xl w-full mb-20 text-center">
-        <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-          What We Build
-        </h2>
-        <div className="flex flex-wrap justify-center gap-4">
-          {[
-            "Predictive Analytics",
-            "Natural Language Processing",
-            "Computer Vision",
-            "Recommendation Systems",
-            "Intelligent Automation",
-            "Data Forecasting",
-          ].map((cap, i) => (
-            <span
-              key={i}
-              className="px-5 py-2 bg-[#1a1a1a] rounded-full border border-gray-700 text-sm hover:border-teal-500 transition"
-            >
-              {cap}
-            </span>
-          ))}
+          <button
+            onClick={() => handleSelect("ai-data-solutions")}
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
+            Get Started
+          </button>
         </div>
-      </div>
 
-      {/* === TECH STACK === */}
-      <div className="max-w-5xl w-full mb-20 text-center">
-        <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-teal-400 to-blue-400 bg-clip-text text-transparent">
-          Our Technology Stack
-        </h2>
-        <p className="text-gray-400 mb-6">
-          We leverage industry-standard frameworks and cloud platforms for performance and scalability.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          {[
-            "TensorFlow",
-            "PyTorch",
-            "Scikit-Learn",
-            "Hugging Face",
-            "LangChain",
-            "OpenAI API",
-            "AWS Sagemaker",
-            "Azure ML",
-          ].map((tech, i) => (
-            <span
-              key={i}
-              className="px-5 py-2 bg-[#1a1a1a] rounded-full border border-gray-700 text-sm hover:border-blue-500 transition"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* AI Strategy & Advisory */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-2 block">For Business Leaders</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">AI Strategy & Advisory</h3>
+            <p className="text-gray-300">
+              A focused working session where we assess your business, identify where AI creates the most value, and give you a clear, practical roadmap. You leave with direction, not just information.
+            </p>
+          </div>
+          <button
+            onClick={() => handleSelect("ai-strategy-advisory")}
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
+            Book a Session
+          </button>
         </div>
-      </div>
 
-      {/* === CTA SECTION === */}
-      <div className="max-w-3xl text-center bg-gradient-to-br from-[#101010] to-[#1a1a1a] p-10 rounded-2xl shadow-lg border border-gray-800">
-        <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
-          Let’s Build Something Smart Together
-        </h3>
-        <p className="text-gray-400 mb-6">
-          Ready to bring AI into your workflow? Share your goals and we’ll help you design
-          the perfect intelligent system for your business.
-        </p>
-        <button className="px-8 py-3 rounded-lg bg-gradient-to-r from-green-600 to-teal-700 hover:opacity-90 transition font-semibold">
-          Start Your Project
-        </button>
+        {/* ML Project Implementation */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-2 block">For Researchers & Students</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">ML Project Implementation</h3>
+            <p className="text-gray-300">
+              We handle the technical build of your ML project and deliver a clean, working implementation with an interactive dashboard. You understand your results, present with confidence, and submit work that stands out.
+            </p>
+          </div>
+          <button
+            onClick={() => handleSelect("ml-project-implementation")}
+            className="mt-6 bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
+            Get Started
+          </button>
+        </div>
+
+        {/* Training Programmes */}
+        <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">Training Programmes</h3>
+            <p className="text-gray-300">
+              Two structured programmes built for beginners. Learn to use AI tools confidently in everyday life and business, or go deeper and start building real machine learning models from scratch. Practical, structured, and designed around real outcomes.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <span className="text-xs font-semibold text-green-400 border border-green-400/30 px-3 py-1 rounded-full">AI Tools Training — 5 Weeks</span>
+              <span className="text-xs font-semibold text-blue-400 border border-blue-400/30 px-3 py-1 rounded-full">ML Training — 8 Weeks</span>
+            </div>
+          </div>
+          <button
+            onClick={() => handleSelect("ml-training")}
+            className="mt-6 bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg font-medium text-center text-white transition block w-full"
+          >
+            Join Waitlist
+          </button>
+        </div>
+
       </div>
-      <ConsultationModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </section>
   );
 };
 
-export default CustomModels;
+export default Services;
