@@ -14,10 +14,10 @@ export default function Navbar() {
   const keywordMap = {
     about: { label: "About", link: "/#about" },
     services: { label: "Services", link: "/#services" },
-    consultation: { label: "Consultation", link: "/ai-consulting" },
-    models: { label: "Models", link: "/models" },
-    training: { label: "Training", link: "/training" },
-    billing: { label: "Billing", link: "/billing" },
+    // consultation: { label: "Consultation", link: "/ai-consulting" },
+    // models: { label: "Models", link: "/models" },
+    // training: { label: "Training", link: "/training" },
+    // billing: { label: "Billing", link: "/billing" },
     projects: { label: "Projects", link: "/#projects" },
     contact: { label: "Contact", link: "/#contact" }
   };
