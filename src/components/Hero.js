@@ -51,11 +51,12 @@ const response = await fetch('https://omahtechltd-github-io.onrender.com/subscri
 
       <div className="relative z-10 max-w-4xl pb-8 pt-12 md:pt-16">
        <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-500 via-indigo-600 to-green-500 bg-clip-text text-transparent drop-shadow-lg">
-We help businesses make smarter decisions using AI
+We help oil and gas operators get more from their assets using data and AI
 
 </h1>
         <p className="text-lg md:text-2xl text-gray-200 mb-8 animate-fadeIn">
-From predicting risk to understanding customer behavior, we build intelligent data systems that give your business a real competitive edge. Based in Nigeria, working across Africa.</p>
+From production monitoring to equipment performance to regulatory reporting, we build data systems grounded in how the industry actually works. We understand the engineering because we come from it. Based in Nigeria, working across Africa.
+</p>
         
         <div className="flex justify-center gap-4">
           <a
