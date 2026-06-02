@@ -23,7 +23,7 @@ const Services = ({ onServiceSelect }) => {
             <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 block">For Businesses</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">AI & Data Solutions</h3>
             <p className="text-gray-300">
-              We analyze your business data and build intelligent systems that help you predict outcomes, spot risks early, and make faster decisions. From customer behavior to sales forecasting to fraud detection.
+              We build data systems tailored to your operational environment. For oil and gas operators, this means production monitoring, equipment anomaly detection, well performance analysis, and tools that help you meet regulatory reporting requirements. For businesses in other sectors, it means forecasting, risk modeling, and data infrastructure that supports faster, more confident decisions.
             </p>
           </div>
           <button
@@ -40,7 +40,7 @@ const Services = ({ onServiceSelect }) => {
             <span className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-2 block">For Business Leaders</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">AI Strategy & Advisory</h3>
             <p className="text-gray-300">
-              A focused working session where we assess your business, identify where AI creates the most value, and give you a clear, practical roadmap. You leave with direction, not just information.
+              A focused working session for operators and business leaders who want to know where data and AI can make a real difference in their operations. We look at your current data environment, identify the areas with the most impact, and give you a clear, practical plan. This is especially useful for operators building out their technical functions who want to move forward without guessing. You leave with direction, not just information.
             </p>
           </div>
           <button
