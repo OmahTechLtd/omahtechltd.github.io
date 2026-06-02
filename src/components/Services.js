@@ -23,7 +23,7 @@ const Services = ({ onServiceSelect }) => {
             <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 block">For Businesses</span>
             <h3 className="text-xl font-semibold mb-3 text-green-400">AI & Data Solutions</h3>
             <p className="text-gray-300">
-              We build data systems tailored to your operational environment. For oil and gas operators, this means production monitoring, equipment anomaly detection, well performance analysis, and tools that help you meet regulatory reporting requirements. For businesses in other sectors, it means forecasting, risk modeling, and data infrastructure that supports faster, more confident decisions.
+  We build data systems tailored to your operational environment. For oil and gas operators, this means production monitoring, equipment anomaly detection, well performance analysis, and tools that help you meet regulatory reporting requirements.
             </p>
           </div>
           <button
