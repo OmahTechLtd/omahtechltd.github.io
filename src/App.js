@@ -18,6 +18,7 @@ import AmineAnomaly from "./pages/projects/AmineAnomaly";
 import AmineEnergy from "./pages/projects/AmineEnergy";
 import CrudeOilProduction from "./pages/projects/CrudeOilProduction";
 import SalesForecasting from "./pages/projects/SalesForecasting";
+import TerminalProductionForecast from "./pages/projects/TerminalProductionForecast";
 import Testimonials from './components/Testimonials';
 import CompanyPolicy from "./pages/CompanyPolicy";
 
