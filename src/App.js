@@ -50,6 +50,7 @@ function App() {
           <Route path="/projects/amine-energy" element={<AmineEnergy />} />
           <Route path="/projects/crude-oil-production" element={<CrudeOilProduction />} />
           <Route path="/projects/sales-forecasting" element={<SalesForecasting />} />
+          <Route path="/projects/terminal-production-forecast" element={<TerminalProductionForecast />} />
           <Route path="/company-policy" element={<CompanyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
