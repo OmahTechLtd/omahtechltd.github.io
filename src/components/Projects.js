@@ -36,15 +36,15 @@ const caseStudies = [
     link: "/projects/crude-oil-production",
   },
   {
-    id: "sales-forecasting",
-    tag: "Retail & Business",
-    tagColor: "text-orange-400",
-    title: "Sales Forecasting Dashboard",
-    outcome: "Gave a retail business a 12-month forward view of expected revenue with confidence ranges.",
+    id: "terminal-production-forecast",
+    tag: "Oil & Gas",
+    tagColor: "text-blue-400",
+    title: "Terminal-Level Production Decline Analysis and Forecasting",
+    outcome: "Forecasted monthly crude oil and condensate production across 30 Nigerian export terminals and classified each terminal's trajectory using 76 months of NUPRC data.",
     description:
-      "We built an interactive forecasting dashboard that takes historical sales data and generates a 12-month projection with high and low estimate ranges. Business owners can upload their own data, explore seasonal trends, and walk into planning conversations with numbers they can defend.",
-    stat: "12-month forecast built on 4 years of transaction data across multiple product categories",
-    link: "/projects/sales-forecasting",
+      "We built a dual-model forecasting system using Prophet and XGBoost to project production volumes at the terminal level across Nigeria's upstream export infrastructure. Each terminal is classified as Growing, Recovering, Stable, or Declining based on its trend trajectory, giving operators and investors a portfolio-level view of where Nigerian production is headed.",
+    stat: "76 months of terminal-level data across 30 terminals, January 2020 to April 2026",
+    link: "/projects/terminal-production-forecast",
   },
 ];
 
