@@ -35,6 +35,7 @@ const TerminalProductionForecast = () => {
 
         <div className="space-y-12">
 
+          {/* THE PROBLEM */}
           <div>
             <h2 className="text-2xl font-semibold text-green-400 mb-4">The Problem</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
@@ -45,35 +46,89 @@ const TerminalProductionForecast = () => {
             </p>
           </div>
 
+          {/* THE DATA */}
           <div>
             <h2 className="text-2xl font-semibold text-green-400 mb-4">The Data</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The dataset covers January 2020 to April 2026, a span of 76 months across 30 active export terminals and 31 terminals in total. Data was sourced directly from NUPRC's public production reports and processed from annual Excel workbooks and published PDF reports. Each record captures crude oil and condensate volumes at the terminal level on a monthly frequency, with volumes reported in barrels.
+              The dataset covers January 2020 to April 2026, a span of 76 months across 30 active export terminals. Data was sourced directly from NUPRC's public production reports and processed from annual Excel workbooks and published PDF reports. Each record captures crude oil and condensate volumes at the terminal level on a monthly frequency, with volumes reported in barrels.
             </p>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The dataset spans Nigeria's most volatile production period in recent history. It begins at a pre-OPEC-cut peak in January 2020, runs through the COVID-19 demand collapse, the severe pipeline vandalism crisis of 2021 to 2023, and into the ongoing recovery of 2024 to 2026. The range between the production floor (34.12 million barrels in September 2022) and the opening peak (65.95 million barrels in January 2020) is nearly 32 million barrels, a measure of how dramatically Nigerian production has swung within a single dataset.
+              The dataset spans Nigeria's most volatile production period in recent history. It begins at a pre-OPEC-cut peak in January 2020, runs through the COVID-19 demand collapse, the severe pipeline vandalism crisis of 2021 to 2023, and into the ongoing recovery of 2024 to 2026. The range between the production floor of 34.12 million barrels in September 2022 and the opening peak of 65.95 million barrels in January 2020 is nearly 32 million barrels, a measure of how dramatically Nigerian production has swung across the analysis period.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Three new terminals enter the dataset during this period: NEMBE from January 2023, UTAPATE from January 2024, and CAWTHORNE from January 2026. Their ramp-up trajectories are treated separately in the analysis and represent the most recent wave of upstream investment in Nigeria's producing regions.
             </p>
           </div>
 
+          {/* EDA CHARTS */}
+          <div>
+            <h2 className="text-2xl font-semibold text-green-400 mb-4">What the Data Shows</h2>
+            <p className="text-gray-300 leading-relaxed mb-6">
+              Before any model was built, six years of production data were analysed across all terminals to understand the structure of the series, identify structural breaks, and examine how terminals relate to one another. Three charts from that analysis are presented below.
+            </p>
+
+            <div className="space-y-10">
+
+              <div>
+                <div className="bg-[#111111] border border-gray-800 rounded-xl overflow-hidden mb-3">
+                  <img
+                    src="/charts/chart1_national_total.png"
+                    alt="Nigeria national crude oil and condensate production January 2020 to April 2026"
+                    className="w-full"
+                  />
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Nigeria's total crude oil and condensate production from January 2020 to April 2026. The series opens at its 76-month peak of 65.95 million barrels, falls sharply through the OPEC+ cut in May 2020, deteriorates further during the pipeline vandalism crisis, and reaches its absolute floor of 34.12 million barrels in September 2022 before recovering toward OPEC quota compliance by 2025 and 2026.
+                </p>
+              </div>
+
+              <div>
+                <div className="bg-[#111111] border border-gray-800 rounded-xl overflow-hidden mb-3">
+                  <img
+                    src="/charts/chart3_tier1_trends.png"
+                    alt="Production trends for Nigeria's seven major export terminals"
+                    className="w-full"
+                  />
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Production trends for the seven major terminals averaging above 3 million barrels per month. The chart reveals three distinct behaviours operating simultaneously: disruption and recovery at Forcados and Bonny, steady reservoir decline at Agbami and Egina, and relative stability at Escravos and Qua Iboe. Any analysis that treats Nigerian production as a single aggregate number misses this structural divergence.
+                </p>
+              </div>
+
+              <div>
+                <div className="bg-[#111111] border border-gray-800 rounded-xl overflow-hidden mb-3">
+                  <img
+                    src="/charts/chart_residual_scatter.png"
+                    alt="Actual versus predicted production by terminal tier, XGBoost test set 2024"
+                    className="w-full"
+                  />
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Actual versus predicted production across all three terminal tiers on the held-out 2024 test set. Points clustering tightly along the diagonal indicate accurate predictions. R-squared values of 0.983 for major terminals, 0.992 for mid-tier terminals, and 0.966 for small terminals confirm the model is capturing the production dynamics across the full portfolio.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          {/* WHAT WE BUILT */}
           <div>
             <h2 className="text-2xl font-semibold text-green-400 mb-4">What We Built</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
-              We built a dual-model forecasting system that runs Prophet and XGBoost in parallel on each terminal's production history. Running two models rather than one serves a specific purpose: where both models agree, the forecast is reliable. Where they diverge, the disagreement itself is informative and the uncertainty interval widens accordingly. The comparison between model outputs is reported as part of the results rather than hidden.
+              We built a dual-model forecasting system that runs Prophet and XGBoost in parallel on each terminal's production history. Running two models rather than one serves a specific purpose: where both models agree, the forecast is reliable. Where they diverge, the disagreement itself is informative and the uncertainty interval widens accordingly.
             </p>
             <p className="text-gray-300 leading-relaxed mb-4">
-              Prophet handles the trend and changepoint detection. Nigerian production is not a smooth series. It contains eight documented structural anomalies across 76 months, including the May 2020 OPEC cut, the February and April 2022 crisis events, the April 2023 production floor, and two significant February disruptions in 2024 and 2025. Rather than letting the model discover these retrospectively, we passed the known changepoint dates explicitly into Prophet's configuration. This makes the model more accurate and more transparent about what it is accounting for.
+              Prophet handles trend and changepoint detection. Nigerian production contains ten documented structural anomalies across 76 months, including the May 2020 OPEC cut, the February and April 2022 crisis events, and the September 2022 production floor. These were passed as explicit changepoints rather than leaving the algorithm to discover them retrospectively, making the model more accurate and more transparent about what it is accounting for.
             </p>
             <p className="text-gray-300 leading-relaxed mb-4">
-              XGBoost does not understand time natively, so we built the temporal structure into the features: lagged production values at one month, three months, and twelve months; rolling mean and standard deviation across three-month and twelve-month windows; month-over-month and year-over-year percentage changes; a month-of-year indicator; and a February-specific binary variable. The February dummy was added after the exploratory analysis confirmed below-average production in February across five consecutive years from 2022 to 2026, a pattern consistent enough to treat as a structural feature rather than coincidence.
+              XGBoost was trained on all terminals simultaneously using 17 engineered features including lag values at one, three, six, and twelve months; rolling averages and standard deviations; month-over-month and year-over-year change features; and a February-specific binary variable confirmed by five consecutive years of anomalous February underperformance. Training one model across the full terminal portfolio allows XGBoost to learn shared production patterns that a per-terminal model cannot access.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              Both models were trained on January 2020 to December 2023 data and evaluated on the 2024 holdout period before generating forecasts for 2025 and 2026. Performance is reported using MAE, RMSE, and MAPE on the held-out test set, not on training data.
+              Both models were trained on January 2021 to December 2023 data, drawing on 2020 production history through the lag feature structure, and evaluated on the 2024 holdout period before generating forecasts through December 2026. Because NUPRC data is available through April 2026, model projections for 2025 and early 2026 can be compared directly against what actually occurred, providing a stronger validation than most published forecasting research can offer.
             </p>
           </div>
 
+          {/* TERMINAL CLASSIFICATION */}
           <div>
             <h2 className="text-2xl font-semibold text-green-400 mb-4">Terminal Classification</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
@@ -81,70 +136,117 @@ const TerminalProductionForecast = () => {
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="bg-[#111111] border border-gray-800 rounded-xl p-5">
-                <p className="text-green-400 font-semibold mb-2">Growing</p>
-                <p className="text-gray-400 text-sm">Terminals showing a sustained upward trend in recent production. Includes UTAPATE, NEMBE, CAWTHORNE, and UGO OCHA, all of which represent new capacity added to Nigeria's upstream portfolio.</p>
+                <p className="text-green-400 font-semibold mb-2">Growing — 7 terminals</p>
+                <p className="text-gray-400 text-sm">Terminals showing a sustained upward trend in recent production. Includes UTAPATE, NEMBE, CAWTHORNE, ANYALA MADU, UGO OCHA, TULJA-OKWUIBOME, and OTAKPIPO, representing a mix of new entrants and established terminals building volume.</p>
               </div>
               <div className="bg-[#111111] border border-gray-800 rounded-xl p-5">
-                <p className="text-blue-400 font-semibold mb-2">Recovering</p>
-                <p className="text-gray-400 text-sm">Terminals that experienced significant production drops during the crisis period and have since rebuilt output. Forcados is the most significant example, having returned to near pre-crisis levels by early 2026.</p>
+                <p className="text-blue-400 font-semibold mb-2">Recovering — 11 terminals</p>
+                <p className="text-gray-400 text-sm">Terminals that experienced significant production drops during the crisis period and have since rebuilt output. Forcados is the most significant, having returned to near pre-crisis levels by early 2026 and representing the strongest single-terminal recovery in the dataset.</p>
               </div>
               <div className="bg-[#111111] border border-gray-800 rounded-xl p-5">
-                <p className="text-yellow-400 font-semibold mb-2">Stable</p>
-                <p className="text-gray-400 text-sm">Terminals producing within a consistent band with no clear directional trend. Includes ESCRAVOS, QUA IBOE, BONGA, and ERHA, whose production rhythms are governed by scheduling and maintenance rather than disruption or decline.</p>
+                <p className="text-yellow-400 font-semibold mb-2">Stable — 2 terminals</p>
+                <p className="text-gray-400 text-sm">Terminals producing within a consistent band with no clear directional trend. ESCRAVOS and YOHO, whose production rhythms are governed by scheduling and maintenance rather than disruption or structural change.</p>
               </div>
               <div className="bg-[#111111] border border-gray-800 rounded-xl p-5">
-                <p className="text-red-400 font-semibold mb-2">Declining</p>
+                <p className="text-red-400 font-semibold mb-2">Declining — 8 terminals</p>
                 <p className="text-gray-400 text-sm">Terminals on a sustained downward trend consistent with natural reservoir depletion. AGBAMI and EGINA are the clearest examples, both showing steady volume reduction since 2020 with no operational disruption to account for it.</p>
               </div>
             </div>
           </div>
 
+          {/* MODEL RESULTS */}
           <div>
-            <h2 className="text-2xl font-semibold text-green-400 mb-4">Key Findings</h2>
+            <h2 className="text-2xl font-semibold text-green-400 mb-4">Model Results</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The exploratory analysis surfaces several findings that go beyond what is visible in national aggregates. Nigeria's production is not driven by a single uniform force. The seven major terminals behave in at least three distinct ways simultaneously: disruption and recovery at Forcados and Bonny, steady reservoir decline at Agbami and Egina, and relative stability at Escravos and Qua Iboe. Any policy or investment discussion that treats Nigerian production as a single number misses the structural divergence happening within the portfolio.
+              XGBoost outperforms Prophet on every terminal in the held-out 2024 evaluation set. The overall mean MAPE for XGBoost is 7.88 percent against 88.90 percent for Prophet. The median MAPE is 4.46 percent for XGBoost, meaning more than half of all terminal predictions are within 4.5 percent of the actual figure. XGBoost meets the 15 percent accuracy target on 22 of 26 terminals evaluated.
             </p>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The correlation analysis identifies a tightly coupled group of maturing deepwater terminals, including AGBAMI, EGINA, AKPO, ANTAN, OKORO, BRASS, and EBOK, whose production volumes move together because they share a common driver: reservoir depletion. This is not a coincidence or an artefact of the data. These fields are in natural decline and their forecasts reflect that reality.
+              Prophet's underperformance is structural rather than incidental. Nigerian oil production is event-driven: structural breaks, force majeure events, and policy changes dominate the signal. Prophet is designed for series where smooth trend and repeating seasonality are the primary drivers. XGBoost's pattern-matching approach, trained across all terminals simultaneously, is better suited to this data.
             </p>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The most important positive finding is the strength of the Forcados recovery. By early 2026, Forcados was approaching or exceeding its pre-crisis production levels, which represents a genuine infrastructure and security improvement in one of Nigeria's most strategically significant export corridors. When combined with the ramp-up of UTAPATE and NEMBE, the data supports a cautiously optimistic near-term production outlook, provided the security environment holds.
+              The residual analysis confirms the model carries no systematic national-level bias. The mean residual across all 321 test observations is negative 0.002 million barrels, effectively zero. Serial correlation in the residuals is negligible across all terminal tiers, confirming the model has captured the temporal structure of the production series and what remains is genuine unpredictability.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              Nigeria's proximity to its OPEC quota in late 2025 and early 2026, reaching 99 percent compliance in April 2026 according to NUPRC's published figures, represents the closest the country has come to its production target in several years. Whether this is sustained or whether it reflects a temporary peak is precisely the question the forecasting models are designed to address.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-semibold text-green-400 mb-4">The Dashboard</h2>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              The project delivers an interactive Streamlit dashboard that makes the full analysis accessible without requiring any technical knowledge. The dashboard is organised into three layers.
-            </p>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              The summary view shows Nigeria's total production history against the government's 2 million barrels per day target, the model's national portfolio forecast with confidence intervals, and a production status indicator showing where the country currently sits relative to its OPEC quota.
-            </p>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              The terminal explorer allows users to select any terminal and view its individual production history, the model forecast for the next 12 to 24 months, the confidence interval around that forecast, and its classification tag. The dual-model comparison is shown for each terminal so the reader can see where Prophet and XGBoost agree and where they diverge.
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              The portfolio table ranks all terminals by their forecast trajectory and flags terminals with notable recent events, including YOHO's effective production stoppage in late 2025, BONGA's February 2026 shutdown event, and CAWTHORNE's accelerating ramp-up.
+              The one exception is Forcados, where the model consistently under-predicted by approximately 370,000 barrels per month across 2024. The reason is that Forcados staged a stronger recovery than the training data, which covered the crisis period, led the model to expect. Even with this directional bias, Forcados achieved a MAPE of 5 percent on the test set.
             </p>
 
-            <div className="bg-[#111111] border border-gray-800 rounded-xl p-6 mt-6">
-              <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Dashboard</p>
-              <p className="text-gray-400 text-sm">
-                The interactive dashboard is currently in development and will be deployed to a public URL on completion. This page will be updated with the live link once available.
-              </p>
+            <div className="grid md:grid-cols-3 gap-4 mt-6">
+              <div className="bg-[#111111] border border-gray-800 rounded-xl p-5 text-center">
+                <p className="text-3xl font-bold text-green-400 mb-1">7.88%</p>
+                <p className="text-gray-400 text-sm">XGBoost mean MAPE across 26 terminals</p>
+              </div>
+              <div className="bg-[#111111] border border-gray-800 rounded-xl p-5 text-center">
+                <p className="text-3xl font-bold text-green-400 mb-1">0.983</p>
+                <p className="text-gray-400 text-sm">R-squared for major terminal predictions</p>
+              </div>
+              <div className="bg-[#111111] border border-gray-800 rounded-xl p-5 text-center">
+                <p className="text-3xl font-bold text-green-400 mb-1">22/26</p>
+                <p className="text-gray-400 text-sm">Terminals meeting the 15% MAPE target</p>
+              </div>
             </div>
           </div>
 
+          {/* KEY FINDINGS */}
           <div>
-            <h2 className="text-2xl font-semibold text-green-400 mb-4">Publication</h2>
+            <h2 className="text-2xl font-semibold text-green-400 mb-4">Key Findings</h2>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              Nigeria's production is not driven by a single uniform force. The seven major terminals behave in at least three distinct ways simultaneously: disruption and recovery at Forcados and Bonny, steady reservoir decline at Agbami and Egina, and relative stability at Escravos and Qua Iboe. Any policy or investment discussion that treats Nigerian production as a single number misses the structural divergence within the portfolio.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              A tightly coupled group of maturing deepwater terminals including AGBAMI, EGINA, AKPO, ANTAN, OKORO, BRASS, and EBOK move together in decline because they share a common driver: reservoir depletion. Their forecasts reflect this shared trajectory and are unlikely to reverse without new drilling or enhanced recovery investment.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              The Forcados recovery is the most important positive finding in the dataset. By early 2026, Forcados was approaching or exceeding its pre-crisis production levels, representing a genuine infrastructure and security improvement in Nigeria's most strategically significant export corridor. Combined with the ramp-up of UTAPATE and NEMBE, the data supports a cautiously optimistic near-term production outlook.
+            </p>
             <p className="text-gray-300 leading-relaxed">
-              This project is being prepared for publication as a research paper. It will be available on Zenodo as a citable preprint and submitted to Energy Reports for peer review. The full methodology, model configurations, evaluation results, and dataset documentation will be included in the published version.
+              Nigeria reached 99 percent OPEC quota compliance in April 2026 according to NUPRC's published figures, the closest the country has come to its production target in several years. Whether this is sustained or represents a temporary peak is precisely the question the forecasting models are designed to address.
             </p>
           </div>
 
+          {/* DASHBOARD */}
+          <div>
+            <h2 className="text-2xl font-semibold text-green-400 mb-4">The Dashboard</h2>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              The project delivers an interactive Streamlit dashboard that makes the full analysis accessible without requiring any technical knowledge. It is organised into four sections.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              The national overview shows Nigeria's total production history against the government's 2 million barrels per day target and OPEC quota line, with the model's portfolio-level forecast extending to December 2026 and a live metric showing the most recent month's production and quota compliance percentage.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              The terminal explorer allows users to select any of the 30 terminals and view its full production history, the Prophet and XGBoost forecasts side by side, the uncertainty band around each forecast, and the terminal's classification tag. Checkboxes allow each model and the uncertainty band to be toggled independently.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-4">
+              The terminal classification portfolio displays all 30 terminals in a filterable table, sortable by classification and tier, with average and latest monthly production figures. Summary counts at the bottom show how the portfolio breaks down across the four classifications.
+            </p>
+            <p className="text-gray-300 leading-relaxed mb-6">
+              The model performance section presents the full MAPE comparison table for all 26 evaluated terminals alongside the headline metrics, so any visitor can see the evidence behind the model selection.
+            </p>
+
+            <div className="bg-[#111111] border border-gray-800 rounded-xl p-6">
+              <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Live Dashboard</p>
+              <p className="text-gray-400 text-sm mb-4">
+                The interactive dashboard is live. Explore terminal-level production histories, model forecasts, classification tags, and the full model performance comparison.
+              </p>
+              <a
+                href="https://terminal-forecast-dashboard.streamlit.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium text-sm transition"
+              >
+                Open Dashboard
+              </a>
+            </div>
+          </div>
+
+          {/* PUBLICATION */}
+          <div>
+            <h2 className="text-2xl font-semibold text-green-400 mb-4">Publication</h2>
+            <p className="text-gray-300 leading-relaxed">
+              This project is being prepared for publication as a research paper authored by Vera Ezeagu, OmahTech, Lagos, Nigeria. It will be available on Zenodo as a citable preprint and submitted to Energy Reports for peer review. The full methodology, model configurations, evaluation results, and dataset documentation will be included in the published version.
+            </p>
+          </div>
+
+          {/* THE VALUE */}
           <div>
             <h2 className="text-2xl font-semibold text-green-400 mb-4">The Value</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
