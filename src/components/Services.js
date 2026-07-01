@@ -18,6 +18,14 @@ const Services = ({ onServiceSelect }) => {
     }
   };
 
+  const scrollToResearch = (e) => {
+    e.preventDefault();
+    const researchSection = document.getElementById("research");
+    if (researchSection) {
+      researchSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="services" className="py-16 px-4">
       <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
@@ -85,8 +93,8 @@ const Services = ({ onServiceSelect }) => {
               Get Started
             </button>
             <a
-              href="#projects"
-              onClick={scrollToWork}
+              href="#research"
+              onClick={scrollToResearch}
               className="mt-3 text-sm text-green-400 text-center block hover:underline"
             >
               See our research →

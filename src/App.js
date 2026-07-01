@@ -21,6 +21,9 @@ import SalesForecasting from "./pages/projects/SalesForecasting";
 import TerminalProductionForecast from "./pages/projects/TerminalProductionForecast";
 import Testimonials from './components/Testimonials';
 import CompanyPolicy from "./pages/CompanyPolicy";
+import Founder from "./components/Founder";
+import Updates from "./components/Updates";
+import Research from "./components/Research";
 
 function App() {
   const [selectedService, setSelectedService] = useState(null);
@@ -39,7 +42,10 @@ function App() {
                 <About />
                 <Services onServiceSelect={setSelectedService} />
                 <Projects />
+                <Research />
+                <Updates />
                 <Testimonials />
+                <Founder />
                 <Contact selectedService={selectedService} />
               </>
             }
