@@ -5,15 +5,15 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${process.env.REACT_APP_FORMS
 
 const serviceConfig = {
   "ai-data-solutions": {
-    title: "AI & Data Solutions",
+    title: "Data Systems & Implementation",
     subtitle: "Tell us about your business and we'll take it from there.",
-    cta: "Send Message",
+    cta: "Discuss Your Project",
     fields: "business",
   },
   "ai-strategy-advisory": {
-    title: "AI Strategy & Advisory",
-    subtitle: "Book a focused session and leave with a clear roadmap.",
-    cta: "Book a Session",
+    title: "Advisory & Systems Design",
+    subtitle: "A structured consultation to identify opportunities for data-driven operational improvement.",
+    cta: "Request a Consultation",
     fields: "advisory",
   },
   "ml-project-implementation": {
@@ -88,20 +88,32 @@ export default function Contact({ selectedService }) {
             <input name="company" required onChange={handleChange} className={inputClass} placeholder="Your company" />
           </div>
           <div>
-            <label className={labelClass}>Industry</label>
+            <label className={labelClass}>What are you looking to improve?</label>
             <select name="industry" required onChange={handleChange} className={inputClass}>
-              <option value="">Select your industry</option>
-              <option>Fintech</option>
-              <option>Oil & Gas</option>
-              <option>Retail</option>
-              <option>Healthcare</option>
+              <option value="">Select Area of Interest</option>
+              <option>Production Monitoring</option>
+              <option>Asset Performance</option>
+              <option>Equipment Performance</option>
+              <option>Operational Research</option>
+              <option>Data Strategy & Systems Design</option>
               <option>Other</option>
             </select>
           </div>
           <div>
-            <label className={labelClass}>Tell us about the problem you want to solve</label>
-            <textarea name="message" required onChange={handleChange} className={`${inputClass} h-28 resize-none`} placeholder="Describe the challenge or opportunity..." />
+            <label className={labelClass}>Describe the operational challenge or objective.</label>
+            <textarea name="message" required onChange={handleChange} className={`${inputClass} h-28 resize-none`} placeholder="e.g. production monitoring, equipment performance, data integration, anomaly detection, or another operational challenge." />
           </div>
+          <div>
+            <label className={labelClass}>Project Stage</label>
+            <select name="industry" required onChange={handleChange} className={inputClass}>
+              <option value="">Select project stage</option>
+              <option>Exploring possibilities</option>
+              <option>Planning a project</option>
+              <option>Existing system needs improvement</option>
+              <option>Looking for technical partner</option>
+            </select>
+          </div>
+          <div></div>
         </>
       );
     }
@@ -132,8 +144,8 @@ export default function Contact({ selectedService }) {
             </select>
           </div>
           <div>
-            <label className={labelClass}>What is your biggest question about AI right now?</label>
-            <textarea name="message" required onChange={handleChange} className={`${inputClass} h-28 resize-none`} placeholder="What's on your mind..." />
+            <label className={labelClass}>Tell us about the operational challenge you’d like to explore.</label>
+            <textarea name="message" required onChange={handleChange} className={`${inputClass} h-28 resize-none`} placeholder="Share a brief overview of the operational challenge you'd like to discuss" />
           </div>
         </>
       );

@@ -10,13 +10,13 @@ const Services = ({ onServiceSelect }) => {
     }
   };
 
-  const scrollToWork = (e) => {
-    e.preventDefault();
-    const workSection = document.getElementById("projects");
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const scrollToWork = (e) => {
+  //   e.preventDefault();
+  //   const workSection = document.getElementById("projects");
+  //   if (workSection) {
+  //     workSection.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   // const scrollToResearch = (e) => {
   //   e.preventDefault();
@@ -38,11 +38,11 @@ const Services = ({ onServiceSelect }) => {
         {/* AI & Data Solutions */}
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
-            <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 block">For Businesses</span>
-            <h3 className="text-xl font-semibold mb-3 text-green-400">AI & Data Solutions</h3>
+            <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 block">For upstream operators</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">Data Systems & Implementation
+</h3>
             <p className="text-gray-300">
-              We build data systems tailored to your operational environment. For oil and gas operators, this means production monitoring, equipment anomaly detection, well performance analysis, and tools that help you meet regulatory reporting requirements.
-            </p>
+We design and build data-driven decision support systems for upstream oil and gas operations. Our work includes production monitoring, equipment performance analysis, anomaly detection, asset performance evaluation, and operational research, helping operators make more informed decisions using their operational data.            </p>
           </div>
           <div>
             <button
@@ -51,23 +51,23 @@ const Services = ({ onServiceSelect }) => {
             >
               Get Started
             </button>
-            <a
+            {/* <a
               href="#projects"
               onClick={scrollToWork}
               className="mt-3 text-sm text-green-400 text-center block hover:underline"
             >
               See our research →
-            </a>
+            </a> */}
           </div>
         </div>
 
         {/* AI Strategy & Advisory */}
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
-            <span className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-2 block">For Business Leaders</span>
-            <h3 className="text-xl font-semibold mb-3 text-green-400">AI Strategy & Advisory</h3>
+            <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-2 block">FOR OPERATORS & BUSINESS LEADERS</span>
+            <h3 className="text-xl font-semibold mb-3 text-green-400">Advisory & Systems Design</h3>
             <p className="text-gray-300">
-              A focused working session for operators and business leaders who want to know where data and AI can make a real difference in their operations. We look at your current data environment, identify the areas with the most impact, and give you a clear, practical plan. This is especially useful for operators building out their technical functions who want to move forward without guessing. You leave with direction, not just information.
+We work with operators and business leaders to identify where data-driven systems can create the greatest operational impact. Through a structured assessment of your operational workflows, data environment, and business objectives, we define practical opportunities and develop a clear roadmap for implementation.
             </p>
           </div>
           <button

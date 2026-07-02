@@ -40,7 +40,7 @@ From production monitoring and equipment performance to operational research and
               <div className="space-y-5 text-gray-300 leading-8">
 
                 <p>
-                  <strong className="text-white">OmahTech</strong> is a technology company thst builds <strong className="text-white">data-driven decision support systems for oil and gas operators across Africa</strong>, with offices in Lagos and Abuja. Our work sits at the intersection of petroleum engineering and machine learning, enabling us to design systems that reflect how upstream operations actually function.        
+                  <strong className="text-white">OmahTech</strong> is a technology company that builds <strong className="text-white">data-driven decision support systems for oil and gas operators across Africa</strong>, with offices in Lagos and Abuja. Our work sits at the intersection of petroleum engineering and machine learning, enabling us to design systems that reflect how upstream operations actually function.        
                 </p>
 
                 <p>
@@ -117,7 +117,7 @@ We are selective about the problems we take on. Every system we build is tied to
               <div className="space-y-5 text-gray-300 leading-8">
 
                 <p>
-                  <strong className="text-white">Vera I. Ezeagu</strong> is the Founder and CEO of <strong className="text-white">OmahTech Enterprises Ltd.</strong>, a company developing AI-powered data systems for Nigeria's upstream oil and gas industry. She combines expertise in petroleum engineering, machine learning, and software engineering to build practical tools that help operators make faster, data-driven decisions.
+                  <strong className="text-white">Vera I. Ezeagu</strong> is the Founder and CEO of <strong className="text-white">OmahTech Enterprises Ltd.</strong>, a technology company that builds data systems for Nigeria's upstream oil and gas industry. She combines expertise in petroleum engineering, machine learning, and software engineering to build practical tools that help operators make faster, data-driven decisions.
                 </p>
 
                 <p>

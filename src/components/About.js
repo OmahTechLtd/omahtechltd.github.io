@@ -35,7 +35,7 @@ From production monitoring and equipment performance to operational research and
               <div className="space-y-5 text-gray-300 leading-8">
 
                 <p>
-                  <strong className="text-white">OmahTech</strong> is a technology company thst builds <strong className="text-white">data-driven decision support systems for oil and gas operators across Africa</strong>, with offices in Lagos and Abuja. Our work sits at the intersection of petroleum engineering and machine learning, enabling us to design systems that reflect how upstream operations actually function.        
+                  <strong className="text-white">OmahTech</strong> is a technology company that builds <strong className="text-white">data-driven decision support systems for oil and gas operators across Africa</strong>, with offices in Lagos and Abuja. Our work sits at the intersection of petroleum engineering and machine learning, enabling us to design systems that reflect how upstream operations actually function.        
                 </p>
 
                 <p>
