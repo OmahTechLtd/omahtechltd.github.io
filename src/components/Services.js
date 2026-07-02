@@ -28,11 +28,13 @@ const Services = ({ onServiceSelect }) => {
 
   return (
     <section id="services" className="py-16 px-4">
-              <div className="border-t border-gray-800 mb-14"></div>
 
-      <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
+      <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
         Services
       </h2>
+      <p className="text-center text-gray-400 mb-12 max-w-xl mx-auto">
+        Our core services.
+      </p>
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
 
         {/* AI & Data Solutions */}

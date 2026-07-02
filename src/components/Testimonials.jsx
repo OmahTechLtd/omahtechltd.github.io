@@ -6,15 +6,14 @@ const testimonials = [
     role: "Researcher",
     organization: "University of Port Harcourt",
     quote:
-      "I had research ideas and needed a competent ML expert to handle the technical side. OmahTech delivered. The project scored 80/100 and the paper was accepted for presentation at an energy conference. Top notch professionalism and quality outputs throughout.",
-    result: "Paper accepted at an energy conference",
+      "I had research ideas and needed a competent ML expert to handle the technical side. OmahTech delivered. The project scored 80/100 and was accepted for presentation at an energy conference. Top notch professionalism and quality outputs throughout.",
+    result: "Project accepted for energy conference",
   },
 ];
 
 const Testimonials = () => {
   return (
     <section id="testimonials" className="py-16 px-4">
-              <div className="border-t border-gray-800 mb-14"></div>
 
       <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
         A Word From a Client

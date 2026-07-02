@@ -25,7 +25,7 @@ export const updates = [
     category: "Conferences",
     date: "August 2026",
     status: "Upcoming",
-    title: "SPE NAICE 2026 — Eco Hotel, Lagos",
+    title: "SPE NAICE 2026 — Eko Hotel, Lagos",
     description: "OmahTech will be presenting at the SPE Nigeria Annual International Conference and Exhibition, August 3 to 5, 2026.",
     image: null,
   },
@@ -41,12 +41,13 @@ export const updates = [
   {
     id: 5,
     category: "Company",
-    date: "July 2026",
+    date: "November 2025",
     status: null,
     title: "Meeting with CBI",
     description: "OmahTech met with CBI to explore opportunities in Nigeria's upstream data and AI space.",
     image: null,
   },
+  
 ];
 
 export const UpdateCard = ({ date, status, title, description, image }) => (
@@ -76,7 +77,6 @@ const Updates = () => {
     <section id="updates" className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
 
-        <div className="border-t border-gray-800 mb-14"></div>
 
         <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
           Latest Updates
