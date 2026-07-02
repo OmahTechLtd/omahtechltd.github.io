@@ -1,25 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Research = () => {
+const ResearchPage = () => {
   return (
-    <section id="research" className="py-16 px-4">
+    <div className="bg-black text-white min-h-screen py-20 px-4">
       <div className="max-w-6xl mx-auto">
 
-        <div className="border-t border-gray-800 mb-14"></div>
+        <Link to="/" className="text-sm text-green-400 hover:underline mb-10 inline-block">
+          ← Back to Home
+        </Link>
 
-        <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent">
           Research & Publications
-        </h2>
-        <p className="text-center text-gray-400 mb-16 max-w-xl mx-auto">
-          Original studies and peer-reviewed conference papers produced by OmahTech on Nigerian upstream production data.
+        </h1>
+        <p className="text-gray-400 mb-16 max-w-xl">
+          Original studies and peer-reviewed conference papers produced by OmahTech on Nigerian upstream production data. Our research work informs the design and implementation of operational decision support systems.
+
         </p>
 
         {/* Published */}
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500">Published</h3>
-          <Link to="/research" className="text-xs text-green-400 hover:underline">See all →</Link>
-        </div>
+        <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-6">Published</h3>
         <div className="grid md:grid-cols-2 gap-8 mb-16">
 
           <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] p-8 rounded-xl shadow-xl border border-gray-800 flex flex-col justify-between hover:border-green-800 transition duration-300">
@@ -43,7 +43,7 @@ const Research = () => {
               >
                 Read Paper →
               </a>
-              <a
+                <a      
                 href="https://terminal-forecast-dashboard.streamlit.app"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -79,10 +79,7 @@ const Research = () => {
         </div>
 
         {/* Conference Papers */}
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500">Conference Papers</h3>
-          <Link to="/research" className="text-xs text-green-400 hover:underline">See all →</Link>
-        </div>
+        <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-6">Conference Papers</h3>
         <div className="grid md:grid-cols-2 gap-8 mb-16">
 
           <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] p-8 rounded-xl shadow-xl border border-gray-800 flex flex-col justify-between hover:border-green-800 transition duration-300">
@@ -95,7 +92,7 @@ const Research = () => {
                 Univariate Time-Series Anomaly Detection in Crude Oil Production Volumes Using Unsupervised Learning Techniques
               </h3>
               <p className="text-gray-400 text-sm">
-                A co-authored conference paper accepted and presented at the SPE Nigeria Annual International Conference and Exhibition 2026 in Lagos.
+                A co-authored conference paper accepted and presented at the SPE Nigeria Annual International Conference and Exhibition 2026 in Lagos. Applies unsupervised learning techniques to anomaly detection in crude oil production volumes.
               </p>
             </div>
           </div>
@@ -110,7 +107,7 @@ const Research = () => {
                 Comparative Production Modeling and Forecasting of Crude Oil and Natural Gas in Nigeria
               </h3>
               <p className="text-gray-400 text-sm">
-                A co-authored conference paper accepted and presented at SPE NAICE 2026 in Lagos.
+                A co-authored conference paper accepted and presented at SPE NAICE 2026 in Lagos. Presents a comparative analysis of production modelling and forecasting approaches for Nigerian crude oil and natural gas.
               </p>
             </div>
           </div>
@@ -118,9 +115,7 @@ const Research = () => {
         </div>
 
         {/* In Progress */}
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500">In Progress</h3>
-        </div>
+        <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-6">In Progress</h3>
         <div className="grid md:grid-cols-2 gap-8">
 
           <div className="relative bg-gradient-to-r from-black via-[#0d0d0d] to-[#111111] p-8 rounded-xl border border-dashed border-gray-700 opacity-75">
@@ -135,7 +130,7 @@ const Research = () => {
                 Trajectory versus Driver: Unsupervised Classification of Nigeria's Crude Oil Export Infrastructure
               </h3>
               <p className="text-gray-500 text-sm">
-                A multivariate study extending the terminal-level analysis to ask not just where each terminal went, but what drove it there.
+                A multivariate study extending the terminal-level analysis to ask not just where each terminal went, but what drove it there. Uses unsupervised machine learning to classify terminals by production driver across security, oil price, and OPEC policy signals simultaneously.
               </p>
             </div>
           </div>
@@ -143,8 +138,8 @@ const Research = () => {
         </div>
 
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Research;
+export default ResearchPage;

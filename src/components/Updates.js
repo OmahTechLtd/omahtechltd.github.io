@@ -1,4 +1,75 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+export const updates = [
+  {
+    id: 1,
+    category: "Research",
+    date: "June 2026",
+    status: null,
+    title: "Second independent study published on Zenodo",
+    description: "Our paper proposing a three-tier data collaboration framework for Nigeria's upstream sector is now available on Zenodo.",
+    image: null,
+  },
+  {
+    id: 2,
+    category: "Research",
+    date: "May 2026",
+    status: null,
+    title: "First independent study published on Zenodo",
+    description: "Our terminal-level production forecasting study across 30 Nigerian export terminals is now available on Zenodo with a live interactive dashboard.",
+    image: null,
+  },
+  {
+    id: 3,
+    category: "Conferences",
+    date: "August 2026",
+    status: "Upcoming",
+    title: "SPE NAICE 2026 — Eco Hotel, Lagos",
+    description: "OmahTech will be presenting at the SPE Nigeria Annual International Conference and Exhibition, August 3 to 5, 2026.",
+    image: null,
+  },
+  {
+    id: 4,
+    category: "Conferences",
+    date: "June 2026",
+    status: null,
+    title: "Two papers presented at SPE NAICE 2026",
+    description: "OmahTech co-authored two peer-reviewed papers presented at the SPE Nigeria Annual International Conference and Exhibition in Lagos.",
+    image: null,
+  },
+  {
+    id: 5,
+    category: "Company",
+    date: "July 2026",
+    status: null,
+    title: "Meeting with CBI",
+    description: "OmahTech met with CBI to explore opportunities in Nigeria's upstream data and AI space.",
+    image: null,
+  },
+];
+
+export const UpdateCard = ({ date, status, title, description, image }) => (
+  <div>
+    {image && (
+      <img src={image} alt={title} className="w-full h-40 object-cover rounded-lg mb-4" />
+    )}
+    <div className="flex items-center gap-2 mb-2">
+      <p className="text-xs text-gray-500">{date}</p>
+      {status && (
+        <span className="text-xs text-orange-400 font-semibold">{status}</span>
+      )}
+    </div>
+    <h4 className="text-sm font-semibold text-white mb-2">{title}</h4>
+    <p className="text-gray-400 text-xs leading-6">{description}</p>
+  </div>
+);
+
+const categories = [
+  { name: "Research", color: "text-blue-400" },
+  { name: "Conferences", color: "text-orange-400" },
+  { name: "Company", color: "text-green-400" },
+];
 
 const Updates = () => {
   return (
@@ -15,94 +86,37 @@ const Updates = () => {
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
-
-          {/* Research */}
-          <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-xl border border-gray-800 overflow-hidden hover:border-green-800 transition duration-300">
-            <div className="p-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4 block">
-                Research
-              </span>
-              <div className="space-y-6">
-
-                <div className="border-b border-gray-800 pb-6">
-                  <p className="text-xs text-gray-500 mb-2">June 2026</p>
-                  <h4 className="text-sm font-semibold text-white mb-2">
-                    Second independent study published on Zenodo
-                  </h4>
-                  <p className="text-gray-400 text-xs leading-6">
-                    Our paper proposing a three-tier data collaboration framework for Nigeria's upstream sector is now available on Zenodo.
-                  </p>
+          {categories.map((cat) => {
+            const items = updates.filter((u) => u.category === cat.name).slice(0, 2);
+            return (
+              <div
+                key={cat.name}
+                className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-xl border border-gray-800 p-6 hover:border-green-800 transition duration-300"
+              >
+                <span className={`text-xs font-semibold uppercase tracking-widest mb-6 block ${cat.color}`}>
+                  {cat.name}
+                </span>
+                <div className="space-y-6">
+                  {items.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className={index < items.length - 1 ? "border-b border-gray-800 pb-6" : ""}
+                    >
+                      <UpdateCard {...item} />
+                    </div>
+                  ))}
                 </div>
-
-                <div>
-                  <p className="text-xs text-gray-500 mb-2">May 2026</p>
-                  <h4 className="text-sm font-semibold text-white mb-2">
-                    First independent study published on Zenodo
-                  </h4>
-                  <p className="text-gray-400 text-xs leading-6">
-                    Our terminal-level production forecasting study across 30 Nigerian export terminals is now available on Zenodo with a live interactive dashboard.
-                  </p>
-                </div>
-
               </div>
-            </div>
-          </div>
-
-          {/* Conferences */}
-          <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-xl border border-gray-800 overflow-hidden hover:border-green-800 transition duration-300">
-            <div className="p-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-orange-400 mb-4 block">
-                Conferences
-              </span>
-              <div className="space-y-6">
-
-                <div className="border-b border-gray-800 pb-6">
-                  <p className="text-xs text-gray-500 mb-2">August 2026 — Upcoming</p>
-                  <h4 className="text-sm font-semibold text-white mb-2">
-                    SPE NAICE 2026 — Eco Hotel, Lagos
-                  </h4>
-                  <p className="text-gray-400 text-xs leading-6">
-                    OmahTech will be presenting at the SPE Nigeria Annual International Conference and Exhibition, August 3 to 5, 2026.
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-xs text-gray-500 mb-2">June 2026</p>
-                  <h4 className="text-sm font-semibold text-white mb-2">
-                    Two papers presented at SPE NAICE 2026
-                  </h4>
-                  <p className="text-gray-400 text-xs leading-6">
-                    OmahTech co-authored two peer-reviewed papers presented at the SPE Nigeria Annual International Conference and Exhibition in Lagos.
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          {/* Company */}
-          <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-xl border border-gray-800 overflow-hidden hover:border-green-800 transition duration-300">
-            <div className="p-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-green-400 mb-4 block">
-                Company
-              </span>
-              <div className="space-y-6">
-
-                <div>
-                  <p className="text-xs text-gray-500 mb-2">July 2026</p>
-                  <h4 className="text-sm font-semibold text-white mb-2">
-                    Meeting with CBI
-                  </h4>
-                  <p className="text-gray-400 text-xs leading-6">
-                    OmahTech met with CBI to explore opportunities in Nigeria's upstream data and AI space.
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
+            );
+          })}
         </div>
+
+        <div className="text-center mt-10">
+          <Link to="/updates" className="text-sm text-green-400 hover:underline">
+            See all updates →
+          </Link>
+        </div>
+
       </div>
     </section>
   );

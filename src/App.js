@@ -21,13 +21,15 @@ import SalesForecasting from "./pages/projects/SalesForecasting";
 import TerminalProductionForecast from "./pages/projects/TerminalProductionForecast";
 import Testimonials from './components/Testimonials';
 import CompanyPolicy from "./pages/CompanyPolicy";
-import Founder from "./components/Founder";
+// import Founder from "./components/Founder";
 import Updates from "./components/Updates";
 import Research from "./components/Research";
+import FounderPage from "./pages/FounderPage";
+import ResearchPage from "./pages/ResearchPage";
+import UpdatesPage from "./pages/UpdatesPage";
 
 function App() {
   const [selectedService, setSelectedService] = useState(null);
-
   return (
     <Router>
       <div className="bg-black text-white min-h-screen">
@@ -45,11 +47,14 @@ function App() {
                 <Research />
                 <Updates />
                 <Testimonials />
-                <Founder />
+                {/* <Founder /> */}
                 <Contact selectedService={selectedService} />
               </>
             }
           />
+          <Route path="/founder" element={<FounderPage />} />
+          <Route path="/research" element={<ResearchPage />} />
+          <Route path="/updates" element={<UpdatesPage />} />
           <Route path="/billing" element={<Billing />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />

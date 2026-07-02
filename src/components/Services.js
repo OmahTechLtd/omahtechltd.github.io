@@ -18,16 +18,18 @@ const Services = ({ onServiceSelect }) => {
     }
   };
 
-  const scrollToResearch = (e) => {
-    e.preventDefault();
-    const researchSection = document.getElementById("research");
-    if (researchSection) {
-      researchSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const scrollToResearch = (e) => {
+  //   e.preventDefault();
+  //   const researchSection = document.getElementById("research");
+  //   if (researchSection) {
+  //     researchSection.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   return (
     <section id="services" className="py-16 px-4">
+              <div className="border-t border-gray-800 mb-14"></div>
+
       <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
         Services
       </h2>
@@ -76,7 +78,7 @@ const Services = ({ onServiceSelect }) => {
           </button>
         </div>
 
-        {/* ML Project Implementation */}
+        {/* ML Project Implementation
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold text-orange-400 uppercase tracking-widest mb-2 block">For Researchers</span>
@@ -100,9 +102,9 @@ const Services = ({ onServiceSelect }) => {
               See our research →
             </a>
           </div>
-        </div>
+        </div> */}
 
-        {/* Training Programmes */}
+        {/* Training Programmes
         <div className="bg-gradient-to-r from-black via-[#111111] to-[#222222] p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col justify-between">
           <div>
             <span className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-2 block">Coming Soon</span>
@@ -120,7 +122,7 @@ const Services = ({ onServiceSelect }) => {
           >
             Join Waitlist
           </button>
-        </div>
+        </div> */}
 
       </div>
     </section>
