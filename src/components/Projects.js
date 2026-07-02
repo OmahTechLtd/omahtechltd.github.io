@@ -19,7 +19,7 @@ const caseStudies = [
     title: "Amine System Energy Optimisation",
     outcome: "Predicted optimal reboiler duty to cut energy use without compromising gas treatment performance.",
     description: "Using simulation data from an industrial amine regeneration system, we trained a model that recommends the most energy-efficient reboiler settings for a given set of operating conditions. The result is a decision-support tool that helps operators reduce energy costs while maintaining acid gas removal targets.",
-    stat: "Built on Aspen HYSYS simulation data from an industrial amine regeneration system",
+    stat: "Built on data from an industrial amine regeneration system",
     link: "/projects/amine-energy",
   },
 ];

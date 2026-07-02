@@ -23,10 +23,10 @@ const AmineEnergy = () => {
             <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Industry</p>
             <p className="text-white font-medium">Oil & Gas Processing</p>
           </div>
-          <div className="bg-[#111111] p-6 rounded-xl border border-gray-800">
+          {/* <div className="bg-[#111111] p-6 rounded-xl border border-gray-800">
             <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Data Source</p>
             <p className="text-white font-medium">Aspen HYSYS simulation data</p>
-          </div>
+          </div> */}
           <div className="bg-[#111111] p-6 rounded-xl border border-gray-800">
             <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Application</p>
             <p className="text-white font-medium">Real-time decision support</p>
@@ -45,10 +45,10 @@ const AmineEnergy = () => {
           <div>
             <h2 className="text-2xl font-semibold text-green-400 mb-4">What We Built</h2>
             <p className="text-gray-300 leading-relaxed mb-4">
-              Using process simulation data generated from an Aspen HYSYS model of the amine regeneration system, we trained a machine learning model to predict the optimal reboiler duty for a given set of inlet conditions.
+              We trained a machine learning model to predict the optimal reboiler duty for a given set of inlet conditions.
             </p>
             <p className="text-gray-300 leading-relaxed mb-4">
-              The model learns the relationship between operating variables and energy requirements across a wide range of simulated conditions. Given a new set of inputs, it recommends the reboiler setting that achieves efficient acid gas removal at the lowest energy cost.
+              The model learns the relationship between operating variables and energy requirements across a wide range of conditions. Given a new set of inputs, it recommends the reboiler setting that achieves efficient acid gas removal at the lowest energy cost.
             </p>
             <p className="text-gray-300 leading-relaxed">
               The output was packaged into an interactive dashboard that operators can use as a real-time decision-support tool, entering current operating conditions and receiving a recommended reboiler duty alongside the reasoning behind it.
