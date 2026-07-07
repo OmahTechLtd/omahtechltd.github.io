@@ -129,7 +129,7 @@ We are selective about the problems we take on. Every system we build is tied to
                 </p>
 
                 <p>
-                  Alongside her work in petroleum engineering and machine learning, Vera has worked as a software engineer, designing and building web applications before founding OmahTech.
+                  Alongside her work in petroleum engineering and machine learning, Vera has worked as a software engineer, designing and building web and SaaS applications.
                 </p>
 
                 <p>
