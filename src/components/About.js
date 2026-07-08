@@ -30,6 +30,8 @@ From production monitoring and equipment performance to operational research and
                 <span className="px-3 py-1 rounded-full border border-green-500/30 text-green-400 text-sm">Upstream Oil & Gas</span>
                 <span className="px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-sm">Machine Learning</span>
                 <span className="px-3 py-1 rounded-full border border-orange-500/30 text-orange-400 text-sm">Applied Research</span>
+               <span className="px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-sm">AI</span>
+
               </div>
 
               <div className="space-y-5 text-gray-300 leading-8">
