@@ -26,18 +26,18 @@ export const updates = [
     date: "August 2026",
     status: "Upcoming",
     title: "SPE NAICE 2026 — Eko Hotel, Lagos",
-    description: "OmahTech will be presenting at the SPE Nigeria Annual International Conference and Exhibition, August 3 to 5, 2026.",
+    description: "OmahTech co-authored two peer-reviewed papers that will be presented at the SPE Nigeria Annual International Conference and Exhibition in Lagos.",
     image: null,
   },
-  {
-    id: 4,
-    category: "Conferences",
-    date: "June 2026",
-    status: null,
-    title: "Two papers presented at SPE NAICE 2026",
-    description: "OmahTech co-authored two peer-reviewed papers presented at the SPE Nigeria Annual International Conference and Exhibition in Lagos.",
-    image: null,
-  },
+  // {
+  //   id: 4,
+  //   category: "Conferences",
+  //   date: "June 2026",
+  //   status: null,
+  //   title: "Two papers presented at SPE NAICE 2026",
+  //   description: "OmahTech co-authored two peer-reviewed papers presented at the SPE Nigeria Annual International Conference and Exhibition in Lagos.",
+  //   image: null,
+  // },
   {
     id: 5,
     category: "Company",
@@ -47,76 +47,98 @@ export const updates = [
     description: "OmahTech met with CBI to explore opportunities in Nigeria's upstream data and AI space.",
     image: null,
   },
-  
 ];
 
 export const UpdateCard = ({ date, status, title, description, image }) => (
-  <div>
-    {image && (
-      <img src={image} alt={title} className="w-full h-40 object-cover rounded-lg mb-4" />
-    )}
-    <div className="flex items-center gap-2 mb-2">
-      <p className="text-xs text-gray-500">{date}</p>
-      {status && (
-        <span className="text-xs text-orange-400 font-semibold">{status}</span>
+  <div className="flex flex-col h-full justify-between">
+    <div>
+      {image && (
+        <img src={image} alt={title} className="w-full h-40 object-cover rounded-lg mb-4" />
       )}
+      <div className="flex items-center gap-2 mb-2">
+        <p className="text-xs text-gray-500 font-mono">{date}</p>
+        {status && (
+          <span className="px-2 py-0.5 text-[10px] bg-orange-500/10 text-orange-400 rounded font-mono font-semibold uppercase tracking-wider border border-orange-500/20">
+            {status}
+          </span>
+        )}
+      </div>
+      <h4 className="text-sm font-bold text-white mb-2 group-hover:text-green-400 transition-colors tracking-tight">
+        {title}
+      </h4>
+      <p className="text-gray-400 text-xs leading-relaxed">{description}</p>
     </div>
-    <h4 className="text-sm font-semibold text-white mb-2">{title}</h4>
-    <p className="text-gray-400 text-xs leading-6">{description}</p>
   </div>
 );
 
 const categories = [
-  { name: "Research", color: "text-blue-400" },
-  { name: "Conferences", color: "text-orange-400" },
-  { name: "Company", color: "text-green-400" },
+  { name: "Research", label: "Research Publications" },
+  { name: "Conferences", label: "Technical Conventions" },
+  { name: "Company", label: "Company Updates" },
 ];
 
 const Updates = () => {
   return (
-    <section id="updates" className="py-16 px-4">
+    <section id="updates" className="py-24 px-6 bg-black relative">
+      {/* Structural Visual Boundary Line Thread */}
+      <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-gray-900 to-transparent"></div>
+
+      {/* Visual lighting layer */}
+      <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-blue-900/5 rounded-full filter blur-[140px] pointer-events-none"></div>
+
       <div className="max-w-6xl mx-auto">
+        {/* Section Label */}
+        <div className="text-sm md:text-base font-mono font-bold tracking-widest text-blue-500 uppercase mb-12 text-center">
+          Insights & Activity
+        </div>
 
+        {/* <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight text-center mb-4">
+          Latest Activities
+        </h2> */}
+        
+        <p className="text-center text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-16 leading-relaxed">
+Tracking our latest research, conference activity, and company milestones.        </p>
 
-        <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-          Latest Updates
-        </h2>
-        <p className="text-center text-gray-400 mb-12 max-w-xl mx-auto">
-          What OmahTech has been working on.
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* 3-Column Structured Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {categories.map((cat) => {
             const items = updates.filter((u) => u.category === cat.name).slice(0, 2);
             return (
               <div
                 key={cat.name}
-                className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-xl border border-gray-800 p-6 hover:border-green-800 transition duration-300"
+                className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-6 rounded-xl shadow-2xl flex flex-col justify-between"
               >
-                <span className={`text-xs font-semibold uppercase tracking-widest mb-6 block ${cat.color}`}>
-                  {cat.name}
-                </span>
-                <div className="space-y-6">
-                  {items.map((item, index) => (
-                    <div
-                      key={item.id}
-                      className={index < items.length - 1 ? "border-b border-gray-800 pb-6" : ""}
-                    >
-                      <UpdateCard {...item} />
-                    </div>
-                  ))}
+                <div>
+                  <span className="text-[11px] font-mono font-bold text-gray-500 uppercase tracking-wider mb-6 block border-b border-gray-950 pb-3">
+                    {cat.label}
+                  </span>
+                  <div className="space-y-6">
+                    {items.map((item, index) => (
+                      <div
+                        key={item.id}
+                        className={`group cursor-pointer ${
+                          index < items.length - 1 ? "border-b border-gray-950 pb-6" : ""
+                        }`}
+                      >
+                        <UpdateCard {...item} />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        <div className="text-center mt-10">
-          <Link to="/updates" className="text-sm text-green-400 hover:underline">
-            See all updates →
+        <div className="text-center mt-12">
+          <Link
+            to="/updates"
+            className="inline-flex items-center text-xs font-mono text-green-400 hover:text-green-300 transition-colors tracking-wider uppercase group"
+          >
+            View All Updates
+            <span className="transform group-hover:translate-x-1 transition-transform ml-2">→</span>
           </Link>
         </div>
-
       </div>
     </section>
   );

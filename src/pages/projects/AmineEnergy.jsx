@@ -3,86 +3,89 @@ import { Link } from "react-router-dom";
 
 const AmineEnergy = () => {
   return (
-    <div className="bg-black text-white min-h-screen py-16 px-4">
+    <div className="bg-black text-white min-h-screen py-24 px-6 relative">
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-green-900/5 rounded-full filter blur-[150px] pointer-events-none"></div>
+
       <div className="max-w-4xl mx-auto">
 
         <div className="mb-4">
-          <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Oil & Gas</span>
+          <span className="text-xs font-mono text-blue-500 uppercase tracking-widest border border-blue-500/20 px-3 py-1 rounded-full">
+            Process Optimization Architecture
+          </span>
         </div>
 
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent">
+        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-6 leading-tight">
           Amine System Energy Optimisation
         </h1>
 
-        <p className="text-gray-300 text-lg mb-12">
-          A predictive model that recommends optimal reboiler settings to reduce energy consumption in amine regeneration units without compromising gas treatment performance.
+        <p className="text-gray-400 text-base md:text-lg mb-12 max-w-3xl leading-relaxed">
+          A predictive machine learning framework designed to continually balance minimum reboiler duty requirements against real-time variable inlet gas loads.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-[#111111] p-6 rounded-xl border border-gray-800">
-            <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Industry</p>
-            <p className="text-white font-medium">Oil & Gas Processing</p>
+        {/* Technical Metadata Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-6 rounded-xl">
+            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">Process Segment</p>
+            <p className="text-white text-sm font-bold">Thermodynamic & Energy Balancing</p>
           </div>
-          {/* <div className="bg-[#111111] p-6 rounded-xl border border-gray-800">
-            <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Data Source</p>
-            <p className="text-white font-medium">Aspen HYSYS simulation data</p>
-          </div> */}
-          <div className="bg-[#111111] p-6 rounded-xl border border-gray-800">
-            <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Application</p>
-            <p className="text-white font-medium">Real-time decision support</p>
+          <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-6 rounded-xl">
+            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">Target Variable</p>
+            <p className="text-white text-sm font-bold">Real-Time Reboiler Duty Configuration</p>
           </div>
         </div>
 
-        <div className="space-y-12">
+        {/* Narrative Deep Dive */}
+        <div className="space-y-12 text-sm md:text-base">
 
-          <div>
-            <h2 className="text-2xl font-semibold text-green-400 mb-4">The Problem</h2>
-            <p className="text-gray-300 leading-relaxed">
-              The reboiler is one of the most energy-intensive components in an amine regeneration system. Operating it at the wrong duty setting means either wasting energy or under-stripping acid gases, both of which carry real operational and cost consequences. Most facilities rely on fixed operating targets or manual adjustments, neither of which accounts for the variability in feed conditions that happens in practice.
+          <div className="border-l-2 border-gray-900 pl-6 lg:pl-8">
+            <h2 className="text-lg font-bold text-white tracking-tight mb-3 uppercase font-mono text-blue-500">
+              The Operational Problem
+            </h2>
+            <p className="text-gray-400 leading-relaxed">
+              The acid gas stripper reboiler represents the primary utility and thermal energy sink in a gas processing facility. Operating at a static, conservative over-steaming baseline leads to excessive fuel gas penalties and accelerates thermal degradation of the solvent. Conversely, running under-stripped duty risks violating hydrogen sulfide (H2S) and carbon dioxide (CO2) pipeline compliance specifications. Because inlet gas composition and flow rates fluctuate continuously, manual or fixed-setpoint target tracking fails to adapt efficiently.
             </p>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold text-green-400 mb-4">What We Built</h2>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              We trained a machine learning model to predict the optimal reboiler duty for a given set of inlet conditions.
+          <div className="border-l-2 border-gray-900 pl-6 lg:pl-8">
+            <h2 className="text-lg font-bold text-white tracking-tight mb-3 uppercase font-mono text-green-500">
+              The Optimization System
+            </h2>
+            <p className="text-gray-400 leading-relaxed mb-4">
+              OmahTech mapped and trained a specialized machine learning regressor capable of predicting exactly the minimal required reboiler heat input for any volatile permutation of inlet conditions. 
             </p>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              The model learns the relationship between operating variables and energy requirements across a wide range of conditions. Given a new set of inputs, it recommends the reboiler setting that achieves efficient acid gas removal at the lowest energy cost.
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              The output was packaged into an interactive dashboard that operators can use as a real-time decision-support tool, entering current operating conditions and receiving a recommended reboiler duty alongside the reasoning behind it.
+            <p className="text-gray-400 leading-relaxed">
+              By analyzing the complex, non-linear relationships governing gas-to-solvent contact ratios and stripper temperatures, the model establishes a precise real-time recommendation matrix. Instead of running on static safe-guesses, technical teams are provided with a tight, responsive operational envelope.
             </p>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold text-green-400 mb-4">The Value</h2>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              Energy costs in gas processing are significant. A model that consistently identifies more efficient reboiler settings translates directly into reduced fuel gas consumption and lower operating costs over time.
-            </p>
-            <p className="text-gray-300 leading-relaxed">
-              Beyond cost savings, the tool gives operators a data-backed basis for their decisions rather than operating on intuition or fixed targets that may no longer reflect current conditions. It is a practical step toward smarter, more responsive process management.
+          <div className="border-l-2 border-gray-900 pl-6 lg:pl-8">
+            <h2 className="text-lg font-bold text-white tracking-tight mb-3 uppercase font-mono text-blue-500">
+              Asset Value Realization
+            </h2>
+            <p className="text-gray-400 leading-relaxed">
+              Optimizing thermal duty transfers directly into reduced plant fuel gas consumption and measurably lower carbon intensity metrics. By deploying data-backed setpoint boundaries, independent operators gain an immediate competitive edge, safeguarding strict environmental emissions baselines and product purity targets while driving down variable lifting and processing costs.
             </p>
           </div>
 
         </div>
 
-        <div className="mt-16 bg-[#111111] border border-gray-800 rounded-xl p-8 text-center">
-          <h3 className="text-xl font-semibold text-white mb-3">Interested in optimising your operations?</h3>
-          <p className="text-gray-400 mb-6">
-            We build predictive tools for oil and gas processes using your operational data or simulation outputs.
+        {/* Action Card */}
+        <div className="mt-20 bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 rounded-xl p-8 text-center">
+          <h3 className="text-xl font-bold text-white tracking-tight mb-3">Deploy Process Optimization</h3>
+          <p className="text-gray-400 text-sm max-w-xl mx-auto mb-6 leading-relaxed">
+            We engineer tailored process models that anchor directly into your facility's specific layout and simulation designs.
           </p>
           <a
             href="/#services"
-            className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition"
+            className="inline-block bg-green-600 hover:bg-green-700 text-white text-xs font-mono font-bold uppercase tracking-wider px-8 py-3 rounded-lg transition-all"
           >
-            Talk to Us
+            Initiate System Design Consultation
           </a>
         </div>
 
-        <div className="mt-8 text-center">
-          <Link to="/#projects" className="text-gray-500 hover:text-gray-300 text-sm transition">
-            Back to Our Work
+        <div className="mt-12 text-center">
+          <Link to="/#projects" className="text-gray-500 hover:text-gray-300 text-xs font-mono uppercase tracking-wider transition-colors">
+            ← Return to Technical Validation Matrix
           </Link>
         </div>
 

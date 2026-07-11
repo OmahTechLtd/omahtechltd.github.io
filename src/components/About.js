@@ -1,68 +1,103 @@
-import { Link } from "react-router-dom";
-
+import React from "react";
 
 export default function About() {
   return (
-    <section id="about" className="py-16 px-4">
-      <div className="bg-black text-white min-h-screen py-20 px-4">
-        
+    <section id="about" className="py-24 px-6 bg-black relative">
+      
+      {/* Structural Visual Boundary Line Thread */}
+      <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-gray-900 to-transparent"></div>
+      
+      {/* Ambient lighting layers */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-900/10 rounded-full filter blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-900/5 rounded-full filter blur-[140px] pointer-events-none"></div>
 
-    {/* <div className="bg-black text-white min-h-screen py-4 px-4"> */}
       <div className="max-w-6xl mx-auto">
-
-        {/* <div className="border-t border-gray-800 mb-14"></div> */}
-
-        {/* <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
+        
+        {/* Clean, Elevated Section Tag */}
+        <div className="text-sm md:text-base font-mono font-bold tracking-widest text-blue-500 uppercase mb-12 text-center">
           About OmahTech
-        </h2>
-        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-From production monitoring and equipment performance to operational research and asset analysis, we build data systems aligned with real upstream operations.
-        </p> */}
+        </div>
 
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-2xl border border-gray-800 shadow-xl overflow-hidden">
+        {/* Top Block: Direct, Clean Narrative Introduction */}
+        <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+            As local operators step up to drive Nigeria's energy future, maximizing production efficiency is a high-stakes challenge. Acquiring assets is only the first step; unlocking their true financial value requires deep operational data insight.
+          </p>
+          <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+            OmahTech bridges the gap between traditional petroleum engineering and applied machine learning. We deploy custom data systems that translate complex field metrics into clear, profitable decisions.
+          </p>
+        </div>
 
-            <div className="p-8 lg:p-10 flex flex-col justify-start">
-
-              <h1 className="text-3xl font-bold text-green-400 mb-2">About OmahTech</h1>
-              <p className="text-gray-300 text-lg mb-6">Omah Tech Enterprises Ltd.</p>
-
-              <div className="flex flex-wrap gap-3 mb-8">
-                <span className="px-3 py-1 rounded-full border border-green-500/30 text-green-400 text-sm">Upstream Oil & Gas</span>
-                <span className="px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-sm">Machine Learning</span>
-                <span className="px-3 py-1 rounded-full border border-orange-500/30 text-orange-400 text-sm">Applied Research</span>
-               <span className="px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-sm">AI</span>
-
+        {/* Bottom Block: Balanced 3-Column Identity Profile with Color and Numbers */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 border-t border-gray-950 pt-16">
+          
+          {/* Identity Column 1: Our Mission */}
+          <div className="relative group">
+            <div className="flex flex-col gap-3">
+              <span className="font-mono text-xs text-blue-500/50 font-bold">01</span>
+              <div>
+                <h4 className="text-base font-bold tracking-tight mb-3 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  Our Mission
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  To equip indigenous operators with the same analytical depth typically reserved for supermajors. We replace legacy guesswork with precise machine learning models to ensure mature fields reach their maximum physical and financial potential.
+                </p>
               </div>
+            </div>
+          </div>
 
-              <div className="space-y-5 text-gray-300 leading-8">
-
-                <p>
-                  <strong className="text-white">OmahTech</strong> is a technology company that builds <strong className="text-white">data-driven decision support systems for oil and gas operators across Africa</strong>, with offices in Lagos and Abuja. Our work sits at the intersection of petroleum engineering and machine learning, enabling us to design systems that reflect how upstream operations actually function.        
+          {/* Identity Column 2: Our Focus */}
+          <div className="relative group">
+            <div className="flex flex-col gap-3">
+              <span className="font-mono text-xs text-green-500/50 font-bold">02</span>
+              <div>
+                <h4 className="text-base font-bold tracking-tight mb-3 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+                  Our Focus
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Our systems are engineered exclusively for independent producers, marginal field developers, and joint ventures navigating the distinct operational realities of the Nigerian basin.
                 </p>
-
-                <p>
-We support operators managing assets that require stronger technical and analytical capacity by helping them monitor production, detect anomalies early, analyze asset performance, and improve field development decisions using operational data.        
-                </p>
-
-                <p>
-In addition, we collaborate with researchers requiring applied machine learning support, and individuals building practical skills in data and AI.
-                </p>
-
-                <p>
-We are selective about the problems we take on. Every system we build is tied to a specific operational challenge and structured around real industry data, not generic off-the-shelf solutions.        
-                </p>
-
-
               </div>
+            </div>
+          </div>
 
-<Link to="/founder" className="text-sm text-green-400 hover:underline mb-10 inline-block">
-                Read more →
-              </Link>
+          {/* Identity Column 3: Our Commitment */}
+          <div className="relative group">
+            <div className="flex flex-col gap-3">
+              <span className="font-mono text-xs text-blue-500/50 font-bold">03</span>
+              <div>
+                <h4 className="text-base font-bold tracking-tight mb-3 bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
+                  Our Commitment
+                </h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+We build for operational utility, not business hype. Every system we deliver is functional, secure, and designed to fit directly into your asset team's daily operations.                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Corporate Metadata Footer Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-16 mt-16 border-t border-gray-950 text-left">
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-gray-600 mb-1">Corporate Registration</div>
+            <div className="text-xs font-semibold text-gray-300">Omah Tech Enterprises Ltd.</div>
+          </div>
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-gray-600 mb-1">Operational Hubs</div>
+            <div className="text-xs font-semibold text-gray-300">Lagos & Abuja, Nigeria</div>
+          </div>
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-gray-600 mb-1">Strategic Scope</div>
+            <div className="text-xs font-semibold text-gray-300">Upstream Asset Analytics</div>
+          </div>
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-gray-600 mb-1">Deployment Model</div>
+            <div className="text-xs font-semibold text-gray-300">Applied Production Intelligence</div>
+          </div>
+        </div>
+
       </div>
-      </div>
-      </div>
-      </div>
-      {/* </div> */}
     </section>
   );
 }

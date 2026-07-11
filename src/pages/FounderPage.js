@@ -1,164 +1,97 @@
+import React from "react";
 import { Link } from "react-router-dom";
-// import founderImage from "../assets/founder.jpg";
-import { FaLinkedin, FaResearchgate, FaOrcid, FaBookOpen, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
-
+import founderImage from "../assets/founder.jpg";
+import { FaLinkedin, FaResearchgate, FaOrcid, FaBookOpen } from "react-icons/fa";
 
 export default function FounderPage() {
   return (
-    <div>
-    <div className="bg-black text-white min-h-screen py-20 px-4">
-        <Link to="/" className="text-sm text-green-400 hover:underline mb-10 inline-block">
-          ← Back to Home
-        </Link>
+    <div className="bg-black text-white min-h-screen py-24 px-6 relative overflow-hidden">
+      {/* Background Engineering Canvas Layer */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#09090b_1px,transparent_1px),linear-gradient(to_bottom,#09090b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none"></div>
 
-    <div className="bg-black text-white min-h-screen py-4 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto relative z-10">
+        
+        {/* Navigation Back Home */}
+        <div className="mb-16">
+          <Link 
+            to="/" 
+            className="inline-flex items-center text-xs font-mono text-green-400 hover:text-green-300 transition-colors tracking-wider uppercase group"
+          >
+            <span className="transform group-hover:-translate-x-1 transition-transform mr-2">←</span> 
+            Return to Hub
+          </Link>
+        </div>
 
-        {/* <div className="border-t border-gray-800 mb-14"></div> */}
-
-        <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-          About OmahTech
-        </h2>
-        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-From production monitoring and equipment performance to operational research and asset analysis, we build data systems aligned with real upstream operations.
-        </p>
-
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-2xl border border-gray-800 shadow-xl overflow-hidden">
-
-            <div className="p-8 lg:p-10 flex flex-col justify-start">
-
-              <h1 className="text-3xl font-bold text-green-400 mb-2">Omah Tech Enterprises Ltd.</h1>
-              <p className="text-gray-300 text-lg mb-6">Helping oil and gas operators unlock more value from their assets using data and AI
-</p>
-
-              <div className="flex flex-wrap gap-3 mb-8">
-                <span className="px-3 py-1 rounded-full border border-green-500/30 text-green-400 text-sm">Upstream Oil & Gas</span>
-                <span className="px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-sm">Machine Learning</span>
-                <span className="px-3 py-1 rounded-full border border-orange-500/30 text-orange-400 text-sm">Applied Research</span>
-              </div>
-
-              <div className="space-y-5 text-gray-300 leading-8">
-
-                <p>
-                  <strong className="text-white">OmahTech</strong> is a technology company that builds <strong className="text-white">data-driven decision support systems for oil and gas operators across Africa</strong>, with offices in Lagos and Abuja. Our work sits at the intersection of petroleum engineering and machine learning, enabling us to design systems that reflect how upstream operations actually function.        
-                </p>
-
-                <p>
-We support operators managing assets that require stronger technical and analytical capacity by helping them monitor production, detect anomalies early, analyze asset performance, and improve field development decisions using operational data.        
-                </p>
-
-                <p>
-In addition, we collaborate with researchers requiring applied machine learning support, and individuals building practical skills in data and AI.
-                </p>
-
-                <p>
-We are selective about the problems we take on. Every system we build is tied to a specific operational challenge and structured around real industry data, not generic off-the-shelf solutions.        
-                </p>
-
-
-              </div>
-
-              <div className="flex gap-5 mt-10 text-2xl text-white">
-                <a href="https://www.linkedin.com/company/omah-tech/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                            <FaLinkedin />
-                          </a>
-                          <a href="https://x.com/OmahTechLtd" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                            <FaTwitter />
-                          </a>
-                          <a href="https://instagram.com/omah.tech" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                            <FaInstagram />
-                          </a>
-                          <a href="mailto:admin@omahtech.co" className="hover:text-green-400 transition">
-                            <FaEnvelope />
-                          </a>
-              </div>
-
-            </div>
+        {/* Clean Header Block with Circle Image Placement */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 pb-8 border-b border-gray-900">
+          
+          {/* Circular Frame Profile Asset mimicking your reference design */}
+          <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-900 p-1 bg-gradient-to-b from-gray-800 to-black shrink-0 shadow-xl">
+            <img 
+              src={founderImage} 
+              alt="Vera I. Ezeagu" 
+              className="w-full h-full object-cover object-center rounded-full"
+            />
           </div>
+
+          <div className="text-center sm:text-left">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-blue-500 mb-1">
+              Leadership Registry
+            </div>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white">
+              Vera I. Ezeagu
+            </h1>
+            <p className="text-sm font-mono text-green-400 mt-1 uppercase tracking-wider">
+              Founder & CEO, OmahTech Enterprises Ltd.
+            </p>
+          </div>
+        </div>
+
+        {/* Core Domain Competency Tags Grid */}
+        <div className="flex flex-wrap gap-2 mb-10 font-mono">
+          <span className="px-3 py-1 rounded-lg bg-[#0a0a0a] border border-gray-950 text-gray-400 text-xs">
+            Petroleum Engineering
+          </span>
+          <span className="px-3 py-1 rounded-lg bg-[#0a0a0a] border border-gray-950 text-gray-400 text-xs">
+            Machine Learning
+          </span>
+          <span className="px-3 py-1 rounded-lg bg-[#0a0a0a] border border-gray-950 text-gray-400 text-xs">
+            Software Engineering
+          </span>
+        </div>
+
+        {/* Precise Refined Biography Content */}
+        <div className="space-y-6 text-gray-400 leading-relaxed text-sm md:text-base max-w-3xl">
+          <p>
+            <strong className="text-white font-semibold">Vera I. Ezeagu</strong> is the Founder and CEO of <strong className="text-white font-semibold">OmahTech Enterprises Ltd.</strong> She combines expertise in petroleum engineering, machine learning, and software engineering to build operational intelligence systems for Nigeria's upstream oil and gas sector.
+          </p>
+
+          <p>
+            Her research focuses on production forecasting, anomaly detection, and data collaboration among upstream operators. She has co-authored papers presented at SPE NAICE, with work published through SPE OnePetro, Zenodo, and ResearchGate.
+          </p>
+
+          <p>
+            Vera holds an <strong className="text-white font-semibold">MSc in Petroleum Engineering</strong> from the African University of Science and Technology, Abuja, and a <strong className="text-white font-semibold">BEng in Petroleum Engineering</strong> from Afe Babalola University. She developed her software engineering expertise through Semicolon Africa's Techpreneurship Programme, which deepened her interest in data analysis and led to her machine learning practice. She gained industry experience at Indorama Eleme Petrochemicals in Port Harcourt.
+          </p>
+        </div>
+
+        {/* Secondary Social Verification Tray */}
+        <div className="mt-12 pt-8 border-t border-gray-900 flex gap-6 justify-center sm:justify-start text-xl text-gray-600">
+          <a href="https://www.linkedin.com/in/YOURPROFILE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <FaLinkedin />
+          </a>
+          <a href="https://www.researchgate.net/profile/YOURPROFILE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <FaResearchgate />
+          </a>
+          <a href="https://orcid.org/YOURORCID" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <FaOrcid />
+          </a>
+          <a href="https://onepetro.org" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <FaBookOpen />
+          </a>
         </div>
 
       </div>
     </div>
-    
-    <div className="bg-black text-white min-h-screen py-4 px-4">
-      <div className="max-w-6xl mx-auto">
-
-        {/* <div className="border-t border-gray-800 mb-14"></div> */}
-
-        <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent text-center">
-          Meet the Founder
-        </h2>
-        <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-          The engineering, machine learning, and research expertise behind Omah Tech's AI-powered data systems.
-        </p>
-
-        <div className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-2xl border border-gray-800 shadow-xl overflow-hidden">
-          {/* <div className="grid lg:grid-cols-2"> */}
-
-            {/* <div className="flex justify-center items-start p-8">
-              <img
-                src={founderImage}
-                alt="Vera I. Ezeagu"
-                className="rounded-xl object-cover max-h-[620px] w-10%"
-              />
-            </div> */}
-
-            <div className="p-8 lg:p-10 flex flex-col justify-start">
-
-              <h1 className="text-3xl font-bold text-green-400 mb-2">Vera I. Ezeagu</h1>
-              <p className="text-gray-300 text-lg mb-6">Founder & CEO, Omah Tech Enterprises Ltd.</p>
-
-              <div className="flex flex-wrap gap-3 mb-8">
-                <span className="px-3 py-1 rounded-full border border-green-500/30 text-green-400 text-sm">Machine Learning Engineer</span>
-                <span className="px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-sm">Petroleum Engineer</span>
-                <span className="px-3 py-1 rounded-full border border-orange-500/30 text-orange-400 text-sm">Researcher</span>
-              </div>
-
-              <div className="space-y-5 text-gray-300 leading-8">
-
-                <p>
-                  <strong className="text-white">Vera I. Ezeagu</strong> is the Founder and CEO of <strong className="text-white">OmahTech Enterprises Ltd.</strong>, a technology company that builds data systems for Nigeria's upstream oil and gas industry. She combines expertise in petroleum engineering, machine learning, and software engineering to build practical tools that help operators make faster, data-driven decisions.
-                </p>
-
-                <p>
-                  Her research focuses on applying machine learning to production forecasting, anomaly detection, and data collaboration within Nigeria's upstream sector. She has co-authored peer-reviewed papers presented at SPE NAICE, and her work is available through SPE OnePetro, Zenodo, and ResearchGate.
-                </p>
-
-                <p>
-                  Vera holds an <strong className="text-white">MSc in Petroleum Engineering</strong> from the African University of Science and Technology (AUST), Abuja, and a <strong className="text-white">BEng in Petroleum Engineering</strong> from Afe Babalola University, Ado-Ekiti. She further developed her machine learning expertise through Semicolon Africa's Techpreneurship Programme.
-                </p>
-
-                <p>
-                  Alongside her work in petroleum engineering and machine learning, Vera has worked as a software engineer, designing and building web and SaaS applications.
-                </p>
-
-                <p>
-                  She also completed an engineering internship at <strong className="text-white">Indorama Eleme Petrochemicals Limited (IEPL)</strong> in Port Harcourt, formerly Eleme Petrochemicals Company Limited (EPCL), a wholly owned subsidiary of the Nigerian National Petroleum Corporation (NNPC) before its privatization. The experience provided practical exposure to large-scale industrial operations within Nigeria's energy sector.
-                </p>
-
-              </div>
-
-              <div className="flex gap-5 mt-10 text-2xl text-white">
-                <a href="https://www.linkedin.com/in/YOURPROFILE" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                  <FaLinkedin />
-                </a>
-                <a href="https://www.researchgate.net/profile/YOURPROFILE" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                  <FaResearchgate />
-                </a>
-                <a href="https://orcid.org/YOURORCID" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                  <FaOrcid />
-                </a>
-                <a href="https://onepetro.org" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition">
-                  <FaBookOpen />
-                </a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-     </div>
-    // </div>
   );
 }

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
-import Projects from './components/Projects';
+// import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -21,17 +21,42 @@ import SalesForecasting from "./pages/projects/SalesForecasting";
 import TerminalProductionForecast from "./pages/projects/TerminalProductionForecast";
 import Testimonials from './components/Testimonials';
 import CompanyPolicy from "./pages/CompanyPolicy";
-// import Founder from "./components/Founder";
+import Founder from "./components/Founder";
 import Updates from "./components/Updates";
 import Research from "./components/Research";
 import FounderPage from "./pages/FounderPage";
 import ResearchPage from "./pages/ResearchPage";
 import UpdatesPage from "./pages/UpdatesPage";
 
+// Cross-route synchronization handler
+function RouteStateListener({ setSelectedService }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.targetService) {
+      setSelectedService(location.state.targetService);
+      
+      // Clear route state history so it doesn't reopen on clean updates
+      window.history.replaceState({}, document.title);
+
+      setTimeout(() => {
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+    }
+  }, [location, setSelectedService]);
+
+  return null;
+}
+
 function App() {
   const [selectedService, setSelectedService] = useState(null);
+
   return (
     <Router>
+      <RouteStateListener setSelectedService={setSelectedService} />
       <div className="bg-black text-white min-h-screen">
         <Navbar />
         <ScrollToTop />
@@ -43,17 +68,17 @@ function App() {
                 <Hero />
                 <About />
                 <Services onServiceSelect={setSelectedService} />
-                <Projects />
-                <Research />
+                {/* <Projects /> */}
+                <Research onServiceSelect={setSelectedService} />
                 <Updates />
                 <Testimonials />
-                {/* <Founder /> */}
+                <Founder />
                 <Contact selectedService={selectedService} />
               </>
             }
           />
           <Route path="/founder" element={<FounderPage />} />
-          <Route path="/research" element={<ResearchPage />} />
+          <Route path="/research" element={<ResearchPage onServiceSelect={setSelectedService} />} />
           <Route path="/updates" element={<UpdatesPage />} />
           <Route path="/billing" element={<Billing />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />

@@ -3,47 +3,75 @@ import { Link } from "react-router-dom";
 import { updates, UpdateCard } from "../components/Updates";
 
 const categories = [
-  { name: "Research", color: "text-blue-400" },
-  { name: "Conferences", color: "text-orange-400" },
-  { name: "Company", color: "text-green-400" },
+  { name: "Research", label: "Research Publications" },
+  { name: "Conferences", label: "Technical Conventions" },
+  { name: "Company", label: "Company Updates" },
 ];
 
 const UpdatesPage = () => {
   return (
-    <div className="bg-black text-white min-h-screen py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-black text-white min-h-screen relative">
 
-        <Link to="/" className="text-sm text-green-400 hover:underline mb-10 inline-block">
-          ← Back to Home
+      {/* Top visual boundary */}
+      <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-gray-900 to-transparent"></div>
+
+      {/* Background lighting */}
+      <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-blue-900/5 rounded-full filter blur-[140px] pointer-events-none"></div>
+
+      <div className="max-w-6xl mx-auto py-28 px-6">
+
+        {/* Back link */}
+        <Link
+          to="/"
+          className="inline-flex items-center text-xs font-mono text-gray-500 hover:text-green-400 transition-colors tracking-wider uppercase mb-12 group"
+        >
+          <span className="transform group-hover:-translate-x-1 transition-transform mr-2">←</span>
+          Back to Home
         </Link>
 
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 via-blue-400 to-orange-500 bg-clip-text text-transparent">
-          Updates
-        </h1>
-        <p className="text-gray-400 mb-16 max-w-xl">
+        {/* Section Label */}
+        <div className="text-sm md:text-base font-mono font-bold tracking-widest text-blue-500 uppercase mb-4 text-center">
+          Insights & Activity
+        </div>
+
+        {/* Description */}
+        <p className="text-center text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-20 leading-relaxed">
           Everything OmahTech has been working on, across research, conferences, and company activity.
         </p>
 
-        {categories.map((cat) => {
-          const items = updates.filter((u) => u.category === cat.name);
-          return (
-            <div key={cat.name} className="mb-16">
-              <h3 className={`text-sm font-semibold uppercase tracking-widest mb-6 ${cat.color}`}>
-                {cat.name}
-              </h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-gradient-to-r from-black via-[#111111] to-[#1a1a1a] rounded-xl border border-gray-800 p-6 hover:border-green-800 transition duration-300"
-                  >
-                    <UpdateCard {...item} />
-                  </div>
-                ))}
+        {/* Categories */}
+        <div className="space-y-16">
+          {categories.map((cat) => {
+            const items = updates.filter((u) => u.category === cat.name);
+            if (items.length === 0) return null;
+            return (
+              <div key={cat.name}>
+
+                {/* Category label */}
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="text-[11px] font-mono font-bold text-gray-500 uppercase tracking-wider">
+                    {cat.label}
+                  </span>
+                  <div className="flex-1 h-[1px] bg-gray-950"></div>
+                </div>
+
+                {/* Cards grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {items.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-6 rounded-xl shadow-2xl group relative"
+                    >
+                      <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-blue-500/10 to-transparent"></div>
+                      <UpdateCard {...item} />
+                    </div>
+                  ))}
+                </div>
+
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
 
       </div>
     </div>
