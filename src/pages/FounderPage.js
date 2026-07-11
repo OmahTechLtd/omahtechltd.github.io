@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import founderImage from "../assets/founder.heic";
+import founderImage from "../assets/founder.jpeg";
 import { FaLinkedin, FaResearchgate, FaOrcid, FaBookOpen } from "react-icons/fa";
 
 export default function FounderPage() {
