@@ -57,13 +57,14 @@ function App() {
   return (
     <Router>
       <RouteStateListener setSelectedService={setSelectedService} />
-      <div className="bg-black text-white min-h-screen">
+      {/* Global overflow wall to eliminate mobile horizontal scrolling gaps */}
+      <div className="bg-black text-white min-h-screen overflow-x-hidden">
         <Navbar />
         <ScrollToTop />
         <Routes>
           <Route
             path="/"
-            element={
+            element = {
               <>
                 <Hero />
                 <About />
