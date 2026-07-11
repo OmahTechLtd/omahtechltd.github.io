@@ -3,18 +3,27 @@ import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-black text-white text-center p-6">
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-indigo-500 bg-clip-text text-transparent">
-        404 - Page Not Found
+    <div className="min-h-screen flex flex-col justify-center items-center bg-black text-white text-center p-6 select-none">
+      {/* Structural Minimalist Status Code */}
+      <h1 className="text-6xl font-extrabold tracking-tight text-white mb-2">
+        404
       </h1>
-      <p className="text-gray-400 mt-4">
-        Sorry, the page you're looking for doesn't exist or the network is down.
+      
+      {/* Clean, Non-gradient Typography */}
+      <h2 className="text-xl font-medium text-gray-200 tracking-wide">
+        Page Not Found
+      </h2>
+      
+      <p className="text-sm text-gray-400 mt-4 max-w-sm leading-relaxed">
+        The resource you are looking for does not exist, has been relocated, or is temporarily unavailable.
       </p>
+
+      {/* Premium Institutional Action Button */}
       <Link
         to="/"
-        className="mt-6 px-6 py-2 bg-gradient-to-r from-green-400 via-blue-400 to-indigo-500 text-black font-semibold rounded-lg hover:opacity-90"
+        className="mt-8 px-6 py-2.5 text-xs tracking-wider uppercase font-medium bg-white text-black border border-white hover:bg-black hover:text-white transition-all duration-300 ease-in-out rounded-sm"
       >
-        Go Home
+        Back to Home
       </Link>
     </div>
   );
