@@ -13,13 +13,13 @@ export default function FounderPage() {
         
         {/* Navigation Back Home */}
         <div className="mb-16">
-          <Link 
-            to="/" 
-            className="inline-flex items-center text-xs font-mono text-green-400 hover:text-green-300 transition-colors tracking-wider uppercase group"
-          >
-            <span className="transform group-hover:-translate-x-1 transition-transform mr-2">←</span> 
-            Return to Hub
-          </Link>
+          <Link
+                              to="/"
+                              className="inline-flex items-center text-xs font-mono text-gray-500 hover:text-green-400 transition-colors tracking-wider uppercase mb-12 group"
+                            >
+                              <span className="transform group-hover:-translate-x-1 transition-transform mr-2">←</span>
+                              Back to Home
+                            </Link>
         </div>
 
         {/* Clean Header Block with Circle Image Placement */}
