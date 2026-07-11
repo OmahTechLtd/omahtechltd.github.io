@@ -2,9 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-<link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Omah | Operational Intelligence</title>
+
+    <!-- Structured Corporate Identity Schema to Fix Search Indexing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Omah Tech Enterprises Ltd.",
+      "legalName": "Omah Tech Enterprises Ltd.",
+      "url": "https://www.omahtech.co",
+      "logo": "https://www.omahtech.co/favicon.png",
+      "foundingDate": "2025",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lagos & Abuja",
+        "addressCountry": "NG"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Vera Ezeagu",
+        "jobTitle": "Founder & Lead Machine Learning Engineer"
+      },
+      "sameAs": [
+        "https://www.instagram.com/omah.tech"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
