@@ -10,14 +10,9 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import OilAndGasProject from "./pages/OilAndGasProject";
-import Billing from "./pages/Billing";
 import NotFound from "./pages/NotFound";
-import PaymentSuccess from "./pages/PaymentSuccess";
 import AmineAnomaly from "./pages/projects/AmineAnomaly";
 import AmineEnergy from "./pages/projects/AmineEnergy";
-import CrudeOilProduction from "./pages/projects/CrudeOilProduction";
-import SalesForecasting from "./pages/projects/SalesForecasting";
 import TerminalProductionForecast from "./pages/projects/TerminalProductionForecast";
 import Testimonials from './components/Testimonials';
 import CompanyPolicy from "./pages/CompanyPolicy";
@@ -81,13 +76,8 @@ function App() {
           <Route path="/founder" element={<FounderPage />} />
           <Route path="/research" element={<ResearchPage onServiceSelect={setSelectedService} />} />
           <Route path="/updates" element={<UpdatesPage />} />
-          <Route path="/billing" element={<Billing />} />
-          <Route path="/payment-success" element={<PaymentSuccess />} />
-          <Route path="/projects/oil-and-gas" element={<OilAndGasProject />} />
           <Route path="/projects/amine-anomaly" element={<AmineAnomaly />} />
           <Route path="/projects/amine-energy" element={<AmineEnergy />} />
-          <Route path="/projects/crude-oil-production" element={<CrudeOilProduction />} />
-          <Route path="/projects/sales-forecasting" element={<SalesForecasting />} />
           <Route path="/projects/terminal-production-forecast" element={<TerminalProductionForecast />} />
           <Route path="/company-policy" element={<CompanyPolicy />} />
           <Route path="*" element={<NotFound />} />
