@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { FaLinkedin, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaInstagram } from "react-icons/fa";
+import { SiCrunchbase } from "react-icons/si";
 
 const FORMSPREE_ENDPOINT = `https://formspree.io/f/${process.env.REACT_APP_FORMSPREE_ID}`;
 
@@ -341,12 +342,13 @@ export default function Contact({ selectedService }) {
             <FaLinkedin />
           </a>
           <a
-            href="https://x.com/OmahTechLtd"
+            href="https://www.crunchbase.com/organization/omah-tech-enterprises-ltd" 
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition"
+            aria-label="Crunchbase Profile"
           >
-            <FaTwitter />
+            <SiCrunchbase />
           </a>
           <a
             href="https://instagram.com/omah.tech"

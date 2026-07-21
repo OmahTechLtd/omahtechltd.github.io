@@ -1,6 +1,8 @@
-import { FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import logoPart1 from '../assets/logo.png';
 import logoPart2 from '../assets/logoname.png';
+import { SiCrunchbase } from "react-icons/si";
+
 
 function Footer() {
   return (
@@ -61,12 +63,13 @@ function Footer() {
               <FaLinkedin />
             </a>
             <a
-              href="https://x.com/OmahTechLtd"
+              href="https://www.crunchbase.com/organization/omah-tech-enterprises-ltd" 
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-green-400 transition"
+              className="hover:text-white transition"
+              aria-label="Crunchbase Profile"
             >
-              <FaTwitter />
+              <SiCrunchbase />
             </a>
             <a
               href="https://instagram.com/omah.tech"

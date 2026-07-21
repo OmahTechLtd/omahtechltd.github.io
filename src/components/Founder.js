@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import founderImage from "../assets/founder.jpeg";
 import { FaLinkedin, FaResearchgate, FaOrcid, FaBookOpen } from "react-icons/fa";
 
@@ -45,7 +45,7 @@ export default function Founder() {
               <div className="mb-6 mt-2 pl-6">
                 <h3 className="text-2xl font-bold text-white tracking-tight">Vera I. Ezeagu</h3>
                 <p className="text-green-400 font-mono text-xs md:text-sm tracking-wider uppercase font-semibold mt-1">
-                  Founder & CEO, Omah Tech Enterprises Ltd.
+                  Founder & CEO, OmahTech 
                 </p>
               </div>
 
@@ -58,7 +58,7 @@ export default function Founder() {
                 </span>
               </div>
 
-              <div className="mb-8 pl-6">
+              {/* <div className="mb-8 pl-6">
                 <Link 
                   to="/founder" 
                   className="inline-flex items-center text-xs font-mono tracking-wider uppercase text-white bg-[#050505] border border-gray-900 hover:border-green-500 px-5 py-3 rounded-lg transition-all duration-300 group"
@@ -66,10 +66,10 @@ export default function Founder() {
                   View Full Profile 
                   <span className="transform group-hover:translate-x-1 transition-transform ml-2">→</span>
                 </Link>
-              </div>
+              </div> */}
 
               <div className="flex gap-5 text-xl text-gray-600 pl-6">
-                <a href="https://www.linkedin.com/in/YOURPROFILE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                <a href="https://www.linkedin.com/in/vera-ezeagu-51631a160/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                   <FaLinkedin />
                 </a>
                 <a href="https://www.researchgate.net/profile/YOURPROFILE" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
