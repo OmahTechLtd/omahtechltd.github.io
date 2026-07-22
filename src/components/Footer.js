@@ -24,7 +24,7 @@ function Footer() {
 
           {/* Tagline */}
           <p className="text-[11px] font-mono text-gray-500 tracking-wide leading-relaxed">
-            Building operational intelligence for upstream oil and gas.
+            Upstream Operational Intelligence
           </p>
 
           {/* Address */}
