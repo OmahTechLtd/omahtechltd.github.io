@@ -24,7 +24,7 @@ export default function About() {
             As local operators step up to drive Nigeria's energy future, maximizing production efficiency is a high-stakes challenge. Acquiring assets is only the first step; unlocking their true financial value requires deep operational data insight.
           </p>
           <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-            OmahTech bridges the gap between traditional petroleum engineering and applied machine learning. We deploy custom data systems that translate complex field metrics into clear, profitable decisions.
+            OmahTech is a technology company that bridges the gap between traditional petroleum engineering and applied machine learning to build data-driven decision support systems for upstream oil and gas operations. We deploy custom data systems that translate complex field metrics into clear, profitable decisions.
           </p>
         </div>
 
