@@ -6,8 +6,8 @@ const sections = [
     number: "01",
     title: "About OmahTech",
     content: [
-      "OmahTech is an operational intelligence and machine learning enterprise registered in Nigeria, with active engineering hubs in Lagos and Abuja. We design and deploy production-grade data pipelines, predictive models, and asset analytics specifically tailored for upstream independent operators.",
-      "Our work is strictly grounded in technical engineering rigour, commercial asset optimization, and a commitment to secure, responsible data practices within the energy sector.",
+      "OmahTech is a technology company that bridges the gap between traditional petroleum engineering and applied machine learning to build data-driven decision support systems for upstream oil and gas operations. We design and deploy custom, production-grade data systems engineered specifically to navigate the distinct operational realities of the Nigerian basin.",
+      "We are registered in Nigeria, with active engineering hubs in Lagos and Abuja. Our work is strictly grounded in technical engineering rigour, commercial asset optimization, and a commitment to secure, responsible data practices within the energy sector.",
     ],
   },
   {
