@@ -172,6 +172,7 @@ Research & Publications          </div>
     View on OnePetro →
   </a>
 </div>
+            </div>
             
             <p className="text-gray-500 text-[10px] font-mono border-t border-gray-950 pt-4 mt-6">
               Location: Lagos, Nigeria | Peer-Reviewed
