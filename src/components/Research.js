@@ -42,6 +42,44 @@ Research & Publications          </div>
             </Link>
           </div>
         </div>
+        {/* Featured Industry Insight */}
+<div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-8 md:p-10 rounded-xl shadow-2xl mb-8 hover:border-gray-900 transition-all group">
+  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+    <div className="flex-1">
+      <span className="text-xs font-mono font-semibold text-blue-500 uppercase tracking-widest mb-3 block">
+        Industry Insight
+      </span>
+      <h3 className="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-green-400 transition-colors tracking-tight">
+        Five Conversations Shaping Nigeria's Upstream Digital Future
+      </h3>
+      <p className="text-gray-200 text-sm font-semibold mb-3 leading-snug">
+        Operational insights from SPE NAICE 2026 and what they mean for indigenous operators.
+      </p>
+      <p className="text-gray-400 text-sm leading-relaxed">
+        Five recurring themes from conversations with a major operator, a reservoir engineering researcher, and field level engineers at SPE NAICE 2026, on production optimization, reservoir engineering workflows, water breakthrough, and what makes technology credible in Nigeria's upstream sector.
+      </p>
+      <p className="text-gray-500 text-[10px] font-mono border-t border-gray-950 pt-4 mt-6">
+        August 2026 | OmahTech Enterprises Ltd.
+      </p>
+    </div>
+    <div className="flex flex-row md:flex-col gap-3 md:w-48 shrink-0">
+      <a
+        href="/research/five-conversations-shaping-nigerias-upstream-digital-future.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2.5 rounded-lg text-[11px] font-mono tracking-wider uppercase font-bold text-center transition-all"
+      >
+        Read Paper
+      </a>
+      <Link
+        to="/research"
+        className="flex-1 border border-gray-800 hover:border-gray-700 bg-transparent hover:bg-white/5 text-white py-2.5 rounded-lg text-[11px] font-mono tracking-wider uppercase font-bold text-center transition-all"
+      >
+        More Research
+      </Link>
+    </div>
+  </div>
+</div>
 
         {/* 3-Column Master Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-16 items-stretch">

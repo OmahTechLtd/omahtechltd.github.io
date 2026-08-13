@@ -31,6 +31,45 @@ const ResearchPage = ({ onServiceSelect }) => {
 Original studies and peer-reviewed conference papers on Nigeria's upstream oil and gas sector, published openly and designed to inform operational practice.          </p>
         </div>
 
+        {/* Featured Insight Section */}
+<div className="mb-16">
+  <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 mb-6 border-b border-gray-950 pb-2">
+    Industry Insight
+  </h3>
+
+  <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-8 md:p-10 rounded-xl shadow-2xl hover:border-gray-900 transition-all group">
+    <div className="flex flex-col lg:flex-row lg:items-start gap-8">
+      <div className="flex-1">
+        <span className="text-xs font-mono font-semibold text-blue-500 uppercase tracking-widest mb-3 block">
+          Executive Report
+        </span>
+        <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-green-400 transition-colors tracking-tight">
+          Five Conversations Shaping Nigeria's Upstream Digital Future
+        </h3>
+        <p className="text-gray-200 text-sm font-semibold mb-4 leading-snug">
+          Operational insights from SPE NAICE 2026 and what they mean for indigenous operators.
+        </p>
+        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+          Five recurring themes from conversations with a major operator, a reservoir engineering researcher, and field level engineers at SPE NAICE 2026, on production optimization, reservoir engineering workflows, water breakthrough, and what makes technology credible in Nigeria's upstream sector.
+        </p>
+        <p className="text-gray-500 text-xs font-mono border-t border-gray-950 pt-4">
+          August 2026 | 12 pages | OmahTech Enterprises Ltd.
+        </p>
+      </div>
+      <div className="lg:w-56 shrink-0 flex flex-col gap-3">
+        <a
+          href="/research/five-conversations-shaping-nigerias-upstream-digital-future.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase font-bold text-center transition-all"
+        >
+          Read Full Paper
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
         {/* Published Section */}
         <div className="mb-16">
           <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-gray-500 mb-6 border-b border-gray-950 pb-2">
