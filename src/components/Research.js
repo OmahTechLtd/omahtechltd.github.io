@@ -71,12 +71,12 @@ Research & Publications          </div>
       >
         Read Paper
       </a>
-      <Link
+      {/* <Link
         to="/research"
         className="flex-1 border border-gray-800 hover:border-gray-700 bg-transparent hover:bg-white/5 text-white py-2.5 rounded-lg text-[11px] font-mono tracking-wider uppercase font-bold text-center transition-all"
       >
         More Research
-      </Link>
+      </Link> */}
     </div>
   </div>
 </div>
