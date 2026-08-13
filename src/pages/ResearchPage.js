@@ -53,7 +53,7 @@ Original studies and peer-reviewed conference papers on Nigeria's upstream oil a
           Five recurring themes from conversations with a major operator, a reservoir engineering researcher, and field level engineers at SPE NAICE 2026, on production optimization, reservoir engineering workflows, water breakthrough, and what makes technology credible in Nigeria's upstream sector.
         </p>
         <p className="text-gray-500 text-xs font-mono border-t border-gray-950 pt-4">
-          August 2026 | 12 pages | OmahTech Enterprises Ltd.
+          August 2026 | 12 pages | Omah Tech Enterprises Ltd.
         </p>
       </div>
       <div className="lg:w-56 shrink-0 flex flex-col gap-3">

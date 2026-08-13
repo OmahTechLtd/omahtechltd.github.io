@@ -59,7 +59,7 @@ Research & Publications          </div>
         Five recurring themes from conversations with a major operator, a reservoir engineering researcher, and field level engineers at SPE NAICE 2026, on production optimization, reservoir engineering workflows, water breakthrough, and what makes technology credible in Nigeria's upstream sector.
       </p>
       <p className="text-gray-500 text-[10px] font-mono border-t border-gray-950 pt-4 mt-6">
-        August 2026 | OmahTech Enterprises Ltd.
+        August 2026 | Omah Tech Enterprises Ltd.
       </p>
     </div>
     <div className="flex flex-row md:flex-col gap-3 md:w-48 shrink-0">
