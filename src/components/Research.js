@@ -138,25 +138,40 @@ Research & Publications          </div>
               </div>
 
               {/* Conference Paper 1 */}
-              <div>
-                <h4 className="text-white text-sm font-bold tracking-tight mb-1">
-                  Univariate Time-Series Anomaly Detection
-                </h4>
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  Crude oil production volume anomaly validation using unsupervised machine learning. Presented at SPE NAICE 2026 in Lagos.
-                </p>
-              </div>
+<div>
+  <h4 className="text-white text-sm font-bold tracking-tight mb-1">
+    Univariate Time-Series Anomaly Detection
+  </h4>
+  <p className="text-gray-400 text-xs leading-relaxed">
+    Crude oil production volume anomaly validation using unsupervised machine learning. Presented at SPE NAICE 2026 in Lagos.
+  </p>
+  <a
+    href="https://onepetro.org/SPENAIC/proceedings-abstract/26NAIC/26NAIC/SPE-234794-MS/802110"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block mt-2 text-[11px] font-mono text-green-400 hover:text-green-300 transition-all"
+  >
+    View on OnePetro →
+  </a>
+</div>
 
-              {/* Conference Paper 2 */}
-              <div className="border-t border-gray-950/80 pt-4">
-                <h4 className="text-white text-sm font-bold tracking-tight mb-1">
-                  Comparative Production Modeling and Forecasting
-                </h4>
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  Evaluating historical analytics maps for crude oil and natural gas in Nigeria. Presented at SPE NAICE 2026 in Lagos.
-                </p>
-              </div>
-            </div>
+{/* Conference Paper 2 */}
+<div className="border-t border-gray-950/80 pt-4">
+  <h4 className="text-white text-sm font-bold tracking-tight mb-1">
+    Comparative Production Modeling and Forecasting
+  </h4>
+  <p className="text-gray-400 text-xs leading-relaxed">
+    Evaluating historical analytics maps for crude oil and natural gas in Nigeria. Presented at SPE NAICE 2026 in Lagos.
+  </p>
+  <a
+    href="https://onepetro.org/SPENAIC/proceedings-abstract/26NAIC/26NAIC/SPE-234795-MS/802126"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block mt-2 text-[11px] font-mono text-green-400 hover:text-green-300 transition-all"
+  >
+    View on OnePetro →
+  </a>
+</div>
             
             <p className="text-gray-500 text-[10px] font-mono border-t border-gray-950 pt-4 mt-6">
               Location: Lagos, Nigeria | Peer-Reviewed

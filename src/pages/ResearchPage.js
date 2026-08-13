@@ -175,10 +175,18 @@ Original studies and peer-reviewed conference papers on Nigeria's upstream oil a
                   A co-authored conference paper accepted and presented at the SPE Nigeria Annual International Conference and Exhibition 2026 in Lagos.
                 </p>
                 <p className="text-gray-500 text-xs font-mono border-t border-gray-950 pt-4">
-                  Location: Lagos, Nigeria | High-Frequency Baseline Engine
-                </p>
-              </div>
-            </div>
+      Location: Lagos, Nigeria | High-Frequency Baseline Engine
+    </p>
+  </div>
+  <a
+    href="https://onepetro.org/SPENAIC/proceedings-abstract/26NAIC/26NAIC/SPE-234794-MS/802110"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-8 bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase font-bold text-center transition-all block w-full"
+  >
+    View on OnePetro
+  </a>
+</div>
 
             {/* Conf Paper 2 */}
             <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-8 rounded-xl shadow-2xl flex flex-col justify-between hover:border-gray-900 transition-all group">
@@ -201,10 +209,18 @@ Original studies and peer-reviewed conference papers on Nigeria's upstream oil a
                   A co-authored conference paper accepted and presented at SPE NAICE 2026 in Lagos.
                 </p>
                 <p className="text-gray-500 text-xs font-mono border-t border-gray-950 pt-4">
-                  Location: Lagos, Nigeria | Predictive Reservoir Horizons
-                </p>
-              </div>
-            </div>
+      Location: Lagos, Nigeria | Predictive Reservoir Horizons
+    </p>
+  </div>
+  <a
+    href="https://onepetro.org/SPENAIC/proceedings-abstract/26NAIC/26NAIC/SPE-234795-MS/802126"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-8 bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 rounded-lg text-xs font-mono tracking-wider uppercase font-bold text-center transition-all block w-full"
+  >
+    View on OnePetro
+  </a>
+</div>
           </div>
         </div>
 
