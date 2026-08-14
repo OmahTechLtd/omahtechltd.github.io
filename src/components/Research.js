@@ -27,10 +27,6 @@ const Research = ({ onServiceSelect }) => {
         <div className="text-sm md:text-base font-mono font-bold tracking-widest text-blue-500 uppercase mb-12 text-center">
 Research & Publications          </div>
 
-          {/* <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight text-center mb-4">
-            Research & Publications
-          </h2> */}
-          
           <p className="text-center text-gray-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
             Original studies and peer-reviewed conference papers published by OmahTech on Nigerian upstream production data.
           </p>
@@ -71,18 +67,12 @@ Research & Publications          </div>
       >
         Read Paper
       </a>
-      {/* <Link
-        to="/research"
-        className="flex-1 border border-gray-800 hover:border-gray-700 bg-transparent hover:bg-white/5 text-white py-2.5 rounded-lg text-[11px] font-mono tracking-wider uppercase font-bold text-center transition-all"
-      >
-        More Research
-      </Link> */}
     </div>
   </div>
 </div>
 
-        {/* 3-Column Master Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-16 items-stretch">
+        {/* 2-Column Master Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-16 items-stretch">
           
           {/* Column 1: Published Asset Studies */}
           <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-6 md:p-8 rounded-xl shadow-2xl flex flex-col justify-between hover:border-gray-900 transition-all group">
@@ -179,35 +169,10 @@ Research & Publications          </div>
             </p>
           </div>
 
-          {/* Column 3: Forthcoming Studies */}
-          <div className="bg-[#020202] border border-dashed border-gray-800 p-6 md:p-8 rounded-xl flex flex-col justify-between relative group">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-mono font-semibold text-blue-500 uppercase tracking-widest">
-                  Forthcoming Studies
-                </span>
-                <span className="text-[9px] font-mono font-semibold tracking-wider text-gray-500 uppercase border border-gray-800 px-1.5 py-0.5 rounded bg-black">
-                  Under Development
-                </span>
-              </div>
-              
-              <h3 className="text-base font-bold mb-3 text-white tracking-tight">
-                Trajectory versus Driver: A Panel Data Analysis of Security, Oil Price, and OPEC Policy Effects
-              </h3>
-              <p className="text-gray-400 text-xs leading-relaxed mb-4">
-isolating how exogenous shocks determine production behaviour across terminal types.              </p>
-            </div>
-            
-            <p className="text-gray-500 text-[10px] font-mono border-t border-gray-950 pt-4 mt-4">
-              Methodology: Fixed Effects Estimator | Driscoll-Kraay Robustness
-            </p>
-          </div>
-
         </div>
 
         {/* --- COLLABORATION CTA --- */}
         <div className="bg-gradient-to-b from-[#0a0a0a] to-[#020202] border border-gray-950 p-8 md:p-12 rounded-xl shadow-2xl text-center">
-          {/* <h3 className="text-xl font-bold text-white mb-3 tracking-tight">Propose a Research Collaboration</h3> */}
           <p className="text-gray-400 text-sm max-w-xl mx-auto mb-8 leading-relaxed">
             We partner with industry operators, technology developers, and research institutions to produce peer-reviewed machine learning frameworks within secure data-sharing frameworks.
           </p>

@@ -21,10 +21,10 @@ export default function About() {
         {/* Top Block: Direct, Clean Narrative Introduction */}
         <div className="max-w-3xl mx-auto text-center mb-20 space-y-6">
           <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-            As local operators step up to drive Nigeria's energy future, maximizing production efficiency is a high-stakes challenge. Acquiring assets is only the first step; unlocking their true financial value requires deep operational data insight.
+            As local operators step up to drive Nigeria's energy future, maximizing production efficiency is a high-stakes challenge. Acquiring assets is only the first step, unlocking their true financial value requires deep operational insight.
           </p>
           <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-            OmahTech is a technology company that bridges the gap between traditional petroleum engineering and applied machine learning to build data-driven decision support systems for upstream oil and gas operations. We deploy custom data systems that translate complex field metrics into clear, profitable decisions.
+            OmahTech builds operational intelligence systems for upstream oil and gas, combining petroleum engineering expertise with applied data science to translate complex field metrics into clear, profitable decisions.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export default function About() {
                   Our Mission
                 </h4>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  To equip indigenous operators with the same analytical depth typically reserved for supermajors. We replace legacy guesswork with precise machine learning models to ensure mature fields reach their maximum physical and financial potential.
+                  To equip indigenous operators with the same analytical depth typically reserved for supermajors, so mature fields reach their full physical and financial potential.
                 </p>
               </div>
             </div>
