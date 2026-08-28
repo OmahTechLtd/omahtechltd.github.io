@@ -65,13 +65,13 @@ export default function Hero() {
           From high-frequency production monitoring to brownfield optimization, we build production-grade data systems engineered specifically for the operational realities of Nigerian upstream assets.
         </p>
         
-        {/* Sleek, Institutional CTAs */}
+        {/* Institutional CTAs */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto">
           <a
             href="#services"
             className="w-full sm:w-auto inline-flex justify-center items-center px-7 py-3.5 bg-green-500 hover:bg-green-600 text-black text-sm font-bold rounded-xl transition-all duration-300 shadow-lg shadow-green-500/10 active:scale-[0.98]"
           >
-            Get Started
+            Book a Consultation
           </a>
           <a
             href="#research"
